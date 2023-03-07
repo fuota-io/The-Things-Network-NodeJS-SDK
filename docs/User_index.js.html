@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> User/index.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APICall.html">APICall</a></li><li><a href="Application.html">Application</a></li><li><a href="Organization.html">Organization</a></li><li><a href="User.html">User</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>User/index.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
+    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
+const axios_1 = __importDefault(require("axios"));
+/**
+ * It's a class that makes an API call and returns a promise.
+ * @returns {Promise} - Promise
+ */
+class APICall {
+    send(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /* It's making an API call and returning a promise. */
+            return (0, axios_1.default)(params.url, {
+                method: params.method,
+                data: params.data,
+                headers: params.headers,
+            })
+                .then((response) => {
+                return response.data;
+            })
+                .catch((error) => {
+                return Promise.reject(error.response.data);
+            });
+        });
+    }
+}
+class User {
+    /**
+     * The constructor function is a special function that is called when an object is created from a
+     * class.
+     * @param {Config} config - Config
+     */
+    constructor(config) {
+        this.API = new APICall();
+        this.COLLAB_ID = config.COLLAB_ID;
+        this.IDENTITY_SERVER = config.IDENTITY_SERVER;
+        this.JOIN_SERVER = config.JOIN_SERVER;
+        this.APPLICATION_SERVER = config.APPLICATION_SERVER;
+        this.NETWORK_SERVER = config.NETWORK_SERVER;
+        this.API_KEY = config.API_KEY;
+    }
+    // /**
+    //  * This function takes a string as an argument and returns that string.
+    //  * @param {string} collabid - The ID of the collaboration.
+    //  * @returns The value of the variable COLLAB_ID.
+    //  */
+    // collabId(collabid: string) {
+    //     const COLLAB_ID = collabid;
+    //     return COLLAB_ID;
+    // }
+    /**
+     * The function returns an object with a property called AUTHORIZATION, which has a value of the
+     * string "Bearer " concatenated with the value of the API_KEY property.
+     * @returns The HEADERS object.
+     */
+    get headers() {
+        const headers = { AUTHORIZATION: `Bearer ${this.API_KEY}` };
+        return headers;
+    }
+    // /**
+    //  * A song
+    //  * @typedef {Object} Song
+    //  * @property {string} title - The title
+    //  * @property {string} artist - The artist
+    //  * @property {number} year - The year
+    //  */
+    // /**
+    //  * This function takes a payload object, creates a new object with the same properties, and then sends
+    //  * it to the API.
+    //  * @param {CreateApplicationUserPayload} payload - CreateApplicationUserPayload
+    //  * @returns The response from the API call.
+    //  */
+    // /**
+    //  * Create an application
+    //  * @param {CreateApplicationPayload} song - The {@link Song} to be played
+    //  */
+    // /**
+    //  * Get the assets information according to the id provided.
+    //  * @see {@link http://docs.bynder.apiary.io/#reference/assets/specific-asset-operations/retrieve-specific-asset|API Call}
+    //  * @param {Object} params - An object containing the id and the version of the desired asset.
+    //  * @param {String} params.id - The id of the desired asset.
+    //  * @param {Boolean} [params.versions] - Whether to include info about the different asset versions.
+    //  * @return {Promise} Asset - Returns a Promise that, when fulfilled, will either return an Object with the asset or
+    //  * an Error with the problem.
+    //  */
+    /**
+     * This function is used to create a new application for a user
+     * @param {Object} payload - An object containing the id and the version of the desired asset.
+     * @param {String} payload.id - The id of the desired asset.
+     * @param {Boolean} [payload.versions] - Whether to include info about the different asset versions.
+     * @return {Promise} Asset - Returns a Promise that, when fulfilled, will either return an Object with the asset or
+     */
+    createApplication(payload) {
+        const apiPayload = {
+            application: {
+                ids: { application_id: payload.application_id },
+                name: payload.name,
+                description: payload.description,
+            },
+        };
+        return this.API.send({
+            method: 'POST',
+            url: `${this.IDENTITY_SERVER}/users/${this.COLLAB_ID}/applications`,
+            headers: this.headers,
+            data: apiPayload,
+        });
+    }
+    /**
+     * This function is used to get the list of applications that a user has access to
+     * @param {getApplicationUserPayload} payload - getApplicationUserPayload
+     * @returns The response from the API call.
+     */
+    getApplicationList(payload) {
+        return this.API.send({
+            method: 'GET',
+            url: `${this.IDENTITY_SERVER}/users/${payload.user_id}/applications`,
+            headers: this.headers,
+            data: {},
+        });
+    }
+    /**
+     * It takes a payload object with a user_id, email, name, rights, and expires_at property and returns
+     * a promise that resolves to an object with an api_key property
+     * @param {CreateAPIKeyUserPayload} payload - CreateAPIKeyUserPayload
+     * @returns The response from the API call.
+     */
+    createAPIKey(payload) {
+        const apiPayload = {
+            user_ids: { user_id: payload.user_id, email: payload.email },
+            name: payload.name,
+            rights: payload.rights,
+            expires_at: payload.expires_at,
+        };
+        return this.API.send({
+            method: 'POST',
+            url: `${this.IDENTITY_SERVER}/users/${payload.user_id}/api-keys`,
+            headers: this.headers,
+            data: apiPayload,
+        });
+    }
+    /**
+     * This function is used to get a list of API keys for a user
+     * @param {GetAPIKeyListUserPayload} payload - GetAPIKeyListUserPayload
+     * @returns The response from the API call.
+     */
+    getAPIKeyList(payload) {
+        return this.API.send({
+            method: 'GET',
+            url: `${this.IDENTITY_SERVER}/users/${payload.user_id}/api-keys`,
+            headers: this.headers,
+            data: payload,
+        });
+    }
+    /**
+     * This function takes a payload object with two properties, user_id and key_id, and returns a
+     * promise that resolves to an object with the properties user_id, key_id, and key_secret
+     * @param {GetAPIKeyInfoUserPayload} payload - GetAPIKeyInfoUserPayload
+     * @returns The response from the API.
+     */
+    getAPIKeyInfo(payload) {
+        return this.API.send({
+            method: 'GET',
+            url: `${this.IDENTITY_SERVER}/users/${payload.user_id}/api-keys/${payload.key_id}`,
+            headers: this.headers,
+            data: payload,
+        });
+    }
+    /**
+     * This function takes in a payload object with a user_id, email, api_key_id, api_key_name,
+     * api_key_rights, and expires_at property and returns a promise that resolves to an object with an
+     * id, name, rights, and expires_at property
+     * @param {UpdateAPIKeyUserPayload} payload - UpdateAPIKeyUserPayload
+     * @returns The response is a promise that resolves to an object with the following properties:
+     */
+    updateAPIKey(payload) {
+        const extractPayload = {
+            name: payload.api_key_name,
+            rights: payload.api_key_rights,
+            expires_at: payload.expires_at,
+        };
+        const paths = Object.keys(extractPayload);
+        const apiPayload = {
+            user_ids: { user_id: payload.user_id, email: payload.email },
+            api_key: {
+                id: payload.api_key_id,
+                name: payload.api_key_name,
+                rights: payload.api_key_rights,
+                expires_at: payload.expires_at,
+            },
+            field_mask: {
+                paths: paths,
+            },
+        };
+        return this.API.send({
+            method: 'PUT',
+            url: `${this.IDENTITY_SERVER}/users/${payload.user_id}/api-keys/${payload.api_key_id}`,
+            headers: this.headers,
+            data: apiPayload,
+        });
+    }
+    /**
+     * This function is used to get the collaborator information of a user
+     * @param {GetCollaboratorInfoUserPayload} payload - GetCollaboratorInfoUserPayload
+     * @returns The response is a JSON object with the following properties:
+     */
+    getCollaboratorInfo(payload) {
+        return this.API.send({
+            method: 'GET',
+            url: `${this.IDENTITY_SERVER}/applications/${payload.application_id}/collaborator/user/${payload.user_id}`,
+            headers: this.headers,
+            data: payload,
+        });
+    }
+    /**
+     * This function takes a payload object with a user_id, email, application_id, and rights, and
+     * returns a promise that resolves to the response from the API.
+     * @param {SetCollaboratorUserPayload} payload - SetCollaboratorUserPayload
+     * @returns The response is a promise.
+     */
+    setCollaborator(payload) {
+        const apiPayload = {
+            application_ids: { application_id: payload.application_id },
+            collaborator: {
+                ids: {
+                    user_ids: { user_id: payload.user_id, email: payload.email },
+                },
+                rights: payload.rights,
+            },
+        };
+        return this.API.send({
+            method: 'PUT',
+            url: `${this.IDENTITY_SERVER}/applications/${payload.application_id}/collaborators`,
+            headers: this.headers,
+            data: apiPayload,
+        });
+    }
+}
+exports.User = User;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "source": {
+    "include": ["dist/User/index.js", "dist/Organization/index.js", "dist/Application/index.js", "dist/Device/index.js", "dist/Gateway/index.js", "dist/Interfaces/User/user.interface.d.ts"]
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "template": "node_modules/better-docs",
+    "recurse": true,
+    "destination": "./docs/",
+    "encoding": "utf8",
+    "verbose": true
+  }
+}
