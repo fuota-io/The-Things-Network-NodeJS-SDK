@@ -1,8 +1,5 @@
-export interface ApplicationID {
-  application_id: string;
-}
-
 export interface CreateApplicationUserPayload {
+  application_id: string;
   name: string;
   description: string;
 }

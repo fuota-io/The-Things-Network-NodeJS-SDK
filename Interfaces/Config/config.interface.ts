@@ -6,8 +6,6 @@ export interface ApiConnectionOptions {
 }
 
 export interface Config {
-  APPLICATION_ID: string;
-  COLLAB_ID: string;
   IDENTITY_SERVER: string;
   API_KEY: string;
   NETWORK_SERVER: string;

@@ -1,5 +1,5 @@
-import { APICall } from '../index';
-import { ApiConnectionOptions, Config } from '../Interfaces/Config/config.interface';
+import { APICall, SetConfig } from '../index';
+import { Config } from '../Interfaces/Config/config.interface';
 import {
   GetApplicationPayload,
   GetApplication,
@@ -22,37 +22,22 @@ import {
   GetCollabortorListUserPayload,
   GetCollabortorList,
   GetCollaboratorInfoUserPayload,
-  GetCollaboratorInfo,
   GetCollaboratorInfoOrgPayload,
   SetCollaboratorUserPayloadForUser,
   SetCollaboratorPayloadForUser,
   SetCollaboratorPayloadForOrg,
   SetCollaboratorUserPayloadForOrg,
+  GetCollaboratorInfoUser,
+  GetCollaboratorInfoOrg,
 } from '../Interfaces/Application/application.interface';
 
-export class Application {
+export class Application extends SetConfig {
   private APPLICATION_ID: string;
-  private COLLAB_ID: string;
-  private IDENTITY_SERVER: string;
-  private JOIN_SERVER: string;
-  private NETWORK_SERVER: string;
-  private APPLICATION_SERVER: string;
-  private API_KEY: string;
   private API: APICall = new APICall();
 
-  constructor(config: Config) {
-    this.APPLICATION_ID = config.APPLICATION_ID;
-    this.COLLAB_ID = config.COLLAB_ID;
-    this.IDENTITY_SERVER = config.IDENTITY_SERVER;
-    this.JOIN_SERVER = config.JOIN_SERVER;
-    this.APPLICATION_SERVER = config.APPLICATION_SERVER;
-    this.NETWORK_SERVER = config.NETWORK_SERVER;
-    this.API_KEY = config.API_KEY;
-  }
-
-  get headers() {
-    const headers = { AUTHORIZATION: `Bearer ${this.API_KEY}` };
-    return headers;
+  constructor(applicationID: string, config: Config) {
+    super(config);
+    this.APPLICATION_ID = applicationID;
   }
 
   getApplicationInfo(): Promise<GetApplication> {
@@ -207,9 +192,9 @@ export class Application {
     });
   }
 
-  getCollaboratorInfoForUser(
+  getCollaboratorInfoOfUser(
     payload: GetCollaboratorInfoUserPayload
-  ): Promise<GetCollaboratorInfo> {
+  ): Promise<GetCollaboratorInfoUser> {
     return this.API.send({
       method: 'GET',
       url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/collaborator/user/${payload.user_id}`,
@@ -218,7 +203,9 @@ export class Application {
     });
   }
 
-  getCollaboratorInfoForOrg(payload: GetCollaboratorInfoOrgPayload): Promise<GetCollaboratorInfo> {
+  getCollaboratorInfoOfOrg(
+    payload: GetCollaboratorInfoOrgPayload
+  ): Promise<GetCollaboratorInfoOrg> {
     return this.API.send({
       method: 'GET',
       url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/collaborator/organization/${payload.organization_id}`,
@@ -245,12 +232,12 @@ export class Application {
     });
   }
 
-  setCollaboratorOrg(payload: SetCollaboratorUserPayloadForOrg): Promise<any> {
+  setCollaboratorOfOrg(payload: SetCollaboratorUserPayloadForOrg): Promise<any> {
     const apiPayload: SetCollaboratorPayloadForOrg = {
       application_ids: { application_id: this.APPLICATION_ID },
       collaborator: {
         ids: {
-          organziation_ids: { organziation_id: payload.organization_id },
+          organization_ids: { organization_id: payload.organization_id },
         },
         rights: payload.rights,
       },

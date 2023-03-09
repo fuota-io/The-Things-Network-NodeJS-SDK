@@ -1,5 +1,5 @@
-import { APICall } from '../index';
-import { ApiConnectionOptions, Config } from '../Interfaces/Config/config.interface';
+import { APICall, SetConfig } from '../index';
+import { Config } from '../Interfaces/Config/config.interface';
 import {
   CreateApplicationPayload,
   CreateApplication,
@@ -21,42 +21,26 @@ import {
   SetCollaboratorPayload,
 } from '../Interfaces/Organization/organization.interface';
 
-export class Organization {
-  private APPLICATION_ID: string;
-  private COLLAB_ID: string;
-  private IDENTITY_SERVER: string;
-  private JOIN_SERVER: string;
-  private NETWORK_SERVER: string;
-  private APPLICATION_SERVER: string;
-  private API_KEY: string;
+export class Organization extends SetConfig {
+  private ORGANIZATION_ID: string;
   private API: APICall = new APICall();
 
-  constructor(config: Config) {
-    this.APPLICATION_ID = config.APPLICATION_ID;
-    this.COLLAB_ID = config.COLLAB_ID;
-    this.IDENTITY_SERVER = config.IDENTITY_SERVER;
-    this.JOIN_SERVER = config.JOIN_SERVER;
-    this.APPLICATION_SERVER = config.APPLICATION_SERVER;
-    this.NETWORK_SERVER = config.NETWORK_SERVER;
-    this.API_KEY = config.API_KEY;
-  }
-
-  get headers() {
-    const headers = { AUTHORIZATION: `Bearer ${this.API_KEY}` };
-    return headers;
+  constructor(organizationID: string, config: Config) {
+    super(config);
+    this.ORGANIZATION_ID = organizationID;
   }
 
   createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication> {
     const apiPayload: CreateApplicationPayload = {
       application: {
-        ids: { application_id: this.APPLICATION_ID },
+        ids: { application_id: payload.application_id },
         name: payload.name,
         description: payload.description,
       },
     };
     return this.API.send({
       method: 'POST',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/applications`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/applications`,
       headers: this.headers,
       data: apiPayload,
     });
@@ -65,7 +49,7 @@ export class Organization {
   getApplicationList(): Promise<getApplicationList> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/users/${this.COLLAB_ID}/applications`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/applications`,
       headers: this.headers,
       data: {},
     });
@@ -73,14 +57,14 @@ export class Organization {
 
   createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
     const apiPayload: CreateAPIKeyPayload = {
-      organization_ids: { organization_id: this.COLLAB_ID },
+      organization_ids: { organization_id: this.ORGANIZATION_ID },
       name: payload.name,
       rights: payload.rights,
       expires_at: payload.expires_at,
     };
     return this.API.send({
       method: 'POST',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/api-keys`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/api-keys`,
       headers: this.headers,
       data: apiPayload,
     });
@@ -89,7 +73,7 @@ export class Organization {
   getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/api-keys`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/api-keys`,
       headers: this.headers,
       data: payload,
     });
@@ -98,7 +82,7 @@ export class Organization {
   getAPIKeyInfo(payload: GetAPIKeyInfoUserPayload): Promise<GetAPIKeyInfo> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/api-keys/${payload.key_id}`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/api-keys/${payload.key_id}`,
       headers: this.headers,
       data: payload,
     });
@@ -114,7 +98,7 @@ export class Organization {
     const paths = Object.keys(extractPayload);
 
     const apiPayload: UpdateAPIKeyPayload = {
-      organization_ids: { organization_id: this.COLLAB_ID },
+      organization_ids: { organization_id: this.ORGANIZATION_ID },
       api_key: {
         id: payload.api_key_id,
         name: payload.api_key_name,
@@ -127,7 +111,7 @@ export class Organization {
     };
     return this.API.send({
       method: 'PUT',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/api-keys/${payload.api_key_id}`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/api-keys/${payload.api_key_id}`,
       headers: this.headers,
       data: apiPayload,
     });
@@ -136,7 +120,7 @@ export class Organization {
   getCollaboratorInfo(payload: GetCollaboratorInfoUserPayload): Promise<GetCollaboratorInfo> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/collaborator/user/${payload.user_id}`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/collaborator/user/${payload.user_id}`,
       headers: this.headers,
       data: payload,
     });
@@ -144,7 +128,7 @@ export class Organization {
 
   setCollaborator(payload: SetCollaboratorUserPayload): Promise<any> {
     const apiPayload: SetCollaboratorPayload = {
-      organization_ids: { organization_id: this.COLLAB_ID },
+      organization_ids: { organization_id: this.ORGANIZATION_ID },
       collaborator: {
         ids: {
           user_ids: { user_id: payload.user_id, email: payload.email },
@@ -154,7 +138,7 @@ export class Organization {
     };
     return this.API.send({
       method: 'PUT',
-      url: `${this.IDENTITY_SERVER}/organizations/${this.COLLAB_ID}/collaborators`,
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/collaborators`,
       headers: this.headers,
       data: apiPayload,
     });

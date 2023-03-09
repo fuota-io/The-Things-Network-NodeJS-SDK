@@ -204,11 +204,20 @@ export interface GetCollaboratorInfoPayload {
   };
 }
 
-export interface GetCollaboratorInfo {
+export interface GetCollaboratorInfoUser {
   ids: {
     user_ids: {
       user_id: string;
       email: string;
+    };
+  };
+  rights: string[];
+}
+
+export interface GetCollaboratorInfoOrg {
+  ids: {
+    organization_ids: {
+      organization_id: string;
     };
   };
   rights: string[];
@@ -239,7 +248,7 @@ export interface SetCollaboratorPayloadForOrg {
   application_ids: { application_id: string };
   collaborator: {
     ids: {
-      organziation_ids: { organziation_id: string };
+      organization_ids: { organization_id: string };
     };
     rights: string[];
   };

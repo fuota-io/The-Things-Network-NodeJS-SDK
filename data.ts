@@ -1,5 +1,4 @@
-export const config = {
-  COLLAB_ID: 'meetsavaj',
+export const config_T = {
   IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
   NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
   APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
@@ -8,9 +7,17 @@ export const config = {
     'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ',
 };
 
-export const appID = { APPLICATION_ID: 'meet59' };
+export const config_F = {
+  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
+  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  API_KEY:
+    'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTH',
+};
 
-export const createApplicationPayloadForUser = {
+export const createApplicationPayloadForUser_T = {
+  application_id: 'me',
   name: 'meet',
   description: '',
   // collaborator: {
@@ -18,7 +25,17 @@ export const createApplicationPayloadForUser = {
   // },
 };
 
-export const createApplicationPayloadForOrg = {
+export const createApplicationPayloadForUser_F = {
+  application_id: 'meet59',
+  name: 'meet',
+  description: '',
+  // collaborator: {
+  //     user_ids: { user_id: "meetsavaj", email: "", },
+  // },
+};
+
+export const createApplicationPayloadForOrg_T = {
+  application_id: 'meet59',
   name: 'meet',
   description: '',
 
@@ -27,9 +44,23 @@ export const createApplicationPayloadForOrg = {
   // },
 };
 
-// export const getApplicationPayload = {
-//   application_id: 'meet59',
-// };
+export const createApplicationPayloadForOrg_F = {
+  application_id: 'meet59',
+  name: 'meet',
+  description: '',
+
+  // collaborator: {
+  //     organization_ids: { organization_id: "" },
+  // },
+};
+
+export const getApplicationPayload_T = {
+  application_id: 'meet59',
+};
+
+export const getApplicationPayload_F = {
+  application_id: 'meet60',
+};
 
 // export const getApplicationListPayloadForUser = {
 //   user_id: 'meetsavaj',
@@ -39,7 +70,13 @@ export const createApplicationPayloadForOrg = {
 //   organization_id: 'organ1',
 // };
 
-export const updateApplicationPayload = {
+export const updateApplicationPayload_T = {
+  name: 'meet',
+  description: '',
+  attributes: { hello: 'world', hello2: 'world2' },
+};
+
+export const updateApplicationPayload_F = {
   name: 'meet',
   description: '',
   attributes: { hello: 'world', hello2: 'world2' },
@@ -110,19 +147,31 @@ export const getAPIKeyListForOrg = {
   page: 0,
 };
 
-export const getAPIKeyInfoPayloadForApplication = {
+export const getAPIKeyInfoPayloadForApplication_T = {
   key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7VI',
 };
 
-export const getAPIKeyInfoPayloadForUser = {
+export const getAPIKeyInfoPayloadForApplication_F = {
+  key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7V',
+};
+
+export const getAPIKeyInfoPayloadForUser_T = {
   key_id: '2FWUMYHE5AQVFTNG4HKP54M73CVSCKVYVM2WCGY',
 };
 
-export const getAPIKeyInfoPayloadForOrganization = {
+export const getAPIKeyInfoPayloadForUser_F = {
+  key_id: '2FWUMYHE5AQVFTNG4HKP54M73CVSCKVYVM2WCG',
+};
+
+export const getAPIKeyInfoPayloadForOrganization_T = {
   key_id: '4V3TUAG6SHJQDEKFR6JE4QLZYTUXWGORMJWHWAA',
 };
 
-export const updateAPIKeyUserPayloadForApplication = {
+export const getAPIKeyInfoPayloadForOrganization_F = {
+  key_id: '4V3TUAG6SHJQDEKFR6JE4QLZYTUXWGORMJWHWA',
+};
+
+export const updateAPIKeyUserPayloadForApplication_T = {
   api_key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7VI',
   api_key_name: 'meet',
   api_key_rights: [
@@ -133,7 +182,18 @@ export const updateAPIKeyUserPayloadForApplication = {
   expires_at: null,
 };
 
-export const updateAPIKeyUserPayloadForUser = {
+export const updateAPIKeyUserPayloadForApplication_F = {
+  api_key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7V',
+  api_key_name: 'meet',
+  api_key_rights: [
+    'RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE',
+    'RIGHT_APPLICATION_DEVICES_WRITE_KEYS',
+    'RIGHT_APPLICATION_DEVICES_READ',
+  ],
+  expires_at: null,
+};
+
+export const updateAPIKeyUserPayloadForUser_T = {
   email: '',
   api_key_id: '2FWUMYHE5AQVFTNG4HKP54M73CVSCKVYVM2WCGY',
   api_key_name: 'meet',
@@ -145,7 +205,19 @@ export const updateAPIKeyUserPayloadForUser = {
   expires_at: null,
 };
 
-export const updateAPIKeyUserPayloadForOrg = {
+export const updateAPIKeyUserPayloadForUser_F = {
+  email: '',
+  api_key_id: '2FWUMYHE5AQVFTNG4HKP54M73CVSCKVYVM2WCG',
+  api_key_name: 'meet',
+  api_key_rights: [
+    'RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE',
+    'RIGHT_APPLICATION_DEVICES_WRITE_KEYS',
+    'RIGHT_APPLICATION_DEVICES_READ',
+  ],
+  expires_at: null,
+};
+
+export const updateAPIKeyUserPayloadForOrg_T = {
   api_key_id: '4V3TUAG6SHJQDEKFR6JE4QLZYTUXWGORMJWHWAA',
   api_key_name: 'meet',
   api_key_rights: [
@@ -156,28 +228,73 @@ export const updateAPIKeyUserPayloadForOrg = {
   expires_at: null,
 };
 
-export const getCollaboratorInfoPayloadForApplication = {
+export const updateAPIKeyUserPayloadForOrg_F = {
+  api_key_id: '4V3TUAG6SHJQDEKFR6JE4QLZYTUXWGORMJWHWA',
+  api_key_name: 'meet',
+  api_key_rights: [
+    'RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE',
+    'RIGHT_APPLICATION_DEVICES_WRITE_KEYS',
+    'RIGHT_APPLICATION_DEVICES_READ',
+  ],
+  expires_at: null,
+};
+
+export const getCollaboratorInfoPayloadForApplication_User_T = {
   user_id: 'meetsavaj',
   email: '',
 };
 
-export const getCollaboratorInfoPayloadForOrg = {
+export const getCollaboratorInfoPayloadForApplication_User_F = {
+  user_id: 'meetsava',
+  email: '',
+};
+
+export const getCollaboratorInfoPayloadForApplication_Org_T = {
+  organization_id: 'organ1',
+};
+
+export const getCollaboratorInfoPayloadForApplication_Org_F = {
+  organization_id: 'orgsdbh',
+};
+
+export const getCollaboratorInfoPayloadForOrg_T = {
   user_id: 'meetsavaj',
 };
 
-export const setCollaboratorPayloadForApplication_User = {
+export const getCollaboratorInfoPayloadForOrg_F = {
+  user_id: 'meetsava',
+};
+
+export const setCollaboratorPayloadForApplication_User_T = {
   user_id: 'meetsavaj',
   email: '',
   rights: ['RIGHT_ALL'],
 };
 
-export const setCollaboratorPayloadForApplication_Org = {
+export const setCollaboratorPayloadForApplication_User_F = {
+  user_id: 'meetsava',
+  email: '',
+  rights: ['RIGHT_ALL'],
+};
+
+export const setCollaboratorPayloadForApplication_Org_T = {
   organization_id: 'organ4',
   rights: ['RIGHT_APPLICATION_ALL'],
 };
 
-export const setCollaboratorPayloadForOrg = {
-  user_id: 'organ1',
+export const setCollaboratorPayloadForApplication_Org_F = {
+  organization_id: 'organ4asfas',
+  rights: ['RIGHT_APPLICATION_ALL'],
+};
+
+export const setCollaboratorPayloadForOrg_T = {
+  user_id: 'meetsavaj',
+  email: '',
+  rights: ['RIGHT_ALL'],
+};
+
+export const setCollaboratorPayloadForOrg_F = {
+  user_id: 'organ1amsbjas',
   email: '',
   rights: ['RIGHT_ALL'],
 };

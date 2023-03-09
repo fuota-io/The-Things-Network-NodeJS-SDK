@@ -1,4 +1,5 @@
 export interface CreateApplicationUserPayload {
+  application_id: string;
   name: string;
   description: string;
 }
