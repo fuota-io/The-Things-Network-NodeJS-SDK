@@ -187,7 +187,6 @@ export interface GetCollabortorList {
 
 export interface GetCollaboratorInfoUserPayload {
   user_id: string;
-  email: string;
 }
 
 export interface GetCollaboratorInfoOrgPayload {

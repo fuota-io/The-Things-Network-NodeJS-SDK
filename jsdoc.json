@@ -1,6 +1,7 @@
 {
   "source": {
-    "include": ["dist/User/index.js", "dist/Organization/index.js", "dist/Application/index.js", "dist/Device/index.js", "dist/Gateway/index.js", "dist/Interfaces/User/user.interface.d.ts"]
+    "include": ["dist/User/index.js", "dist/Organization/index.js", "dist/Application/index.js", "dist/Device/index.js", "dist/index.js",
+   "dist/Interfaces/Doc Common/doc.interface.js"]
   },
   "plugins": ["plugins/markdown"],
   "templates": {
@@ -8,10 +9,19 @@
     "monospaceLinks": true
   },
   "opts": {
-    "template": "node_modules/better-docs",
+    "template": "node_modules/clean-jsdoc-theme",
     "recurse": true,
     "destination": "./docs/",
     "encoding": "utf8",
-    "verbose": true
-  }
+    "verbose": true,
+    "theme_opts": {
+      "default_theme": "dark",
+      "search": false,
+      "includeFilesListInHomepage": false
+  }  
+},
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+}
 }

@@ -39,27 +39,11 @@ export interface CreateApplication {
   network_server_address: string;
   application_server_address: string;
   join_server_address: string;
-  dev_eui_counter: 0;
+  dev_eui_counter: number;
   end_device_limit: null;
 }
 
-export interface getApplicationUserPayload {
-  user_id: string;
-}
-
-export interface getApplicationListPayload {
-  collaborator: {
-    user_ids: { user_id: string; email: string };
-    rights: string[];
-  };
-  field_mask: {};
-  order: string;
-  limit: number;
-  page: number;
-  deleted: boolean;
-}
-
-export interface getApplicationList {
+export interface GetApplicationList {
   application: [
     {
       ids: { application_id: string };
@@ -99,13 +83,6 @@ export interface GetAPIKeyListUserPayload {
   page?: number;
 }
 
-export interface GetAPIKeyListPayload {
-  user_ids: { user_id: string };
-  order?: string;
-  limit?: number;
-  page?: number;
-}
-
 export interface GetAPIKeyList {
   api_keys: [
     {
@@ -121,11 +98,6 @@ export interface GetAPIKeyList {
 }
 
 export interface GetAPIKeyInfoUserPayload {
-  key_id: string;
-}
-
-export interface GetAPIKeyInfoPayload {
-  user_ids: { user_id: string };
   key_id: string;
 }
 

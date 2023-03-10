@@ -43,23 +43,7 @@ export interface CreateApplication {
   end_device_limit: null;
 }
 
-export interface getApplicationUserPayload {
-  organization_id: string;
-}
-
-export interface getApplicationListPayload {
-  collaborator: {
-    organization_ids: { organization_id: string; email: string };
-    rights: string[];
-  };
-  field_mask: {};
-  order: string;
-  limit: number;
-  page: number;
-  deleted: boolean;
-}
-
-export interface getApplicationList {
+export interface GetApplicationList {
   application: [
     {
       ids: { application_id: string };
@@ -98,13 +82,6 @@ export interface GetAPIKeyListUserPayload {
   page?: number;
 }
 
-export interface GetAPIKeyListPayload {
-  organization_ids: { organization_id: string };
-  order?: string;
-  limit?: number;
-  page?: number;
-}
-
 export interface GetAPIKeyList {
   api_keys: [
     {
@@ -120,11 +97,6 @@ export interface GetAPIKeyList {
 }
 
 export interface GetAPIKeyInfoUserPayload {
-  key_id: string;
-}
-
-export interface GetAPIKeyInfoPayload {
-  organization_ids: { organization_id: string };
   key_id: string;
 }
 
@@ -154,15 +126,6 @@ export interface UpdateAPIKey extends CreateAPIKey {}
 
 export interface GetCollaboratorInfoUserPayload {
   user_id: string;
-}
-
-export interface GetCollaboratorInfoPayload {
-  organization_ids: { organization_id: string };
-  collaborator: {
-    organization_ids: {
-      organization_id: string;
-    };
-  };
 }
 
 export interface GetCollaboratorInfo {
