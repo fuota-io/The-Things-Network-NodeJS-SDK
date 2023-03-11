@@ -114,7 +114,7 @@
  */
 
 /**
- * @typedef {Object} PL-CreateAPIKeyOfOrg
+ * @typedef {Object} PL-CreateAPIKeyForOrg
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
  * @prop {timestamp} expires_at API Key Expires At
@@ -221,7 +221,7 @@
  */
 
 /**
- * @typedef {Object} PL-CreateAPIKeyOfApplication
+ * @typedef {Object} PL-CreateAPIKeyForApplication
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
  * @prop {timestamp} expires_at API Key Expires At

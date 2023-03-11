@@ -17,7 +17,7 @@ export const config_F = {
 };
 
 export const createApplicationPayloadForUser_T = {
-  application_id: 'me',
+  application_id: 'meet59',
   name: 'meet',
   description: '',
   // collaborator: {

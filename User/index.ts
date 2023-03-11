@@ -1,5 +1,4 @@
 import { APICall, SetConfig } from '../index';
-import '../interface';
 import { Config } from '../Interfaces/Config/config.interface';
 import {
   CreateApplicationPayload,
@@ -41,10 +40,12 @@ export class User extends SetConfig {
 
   /**
    * It creates an application for the user.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").PL-CreateApplication}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateApplication}
    * @param {PL-CreateApplication} payload - PL-CreateApplication
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-CreateApplication}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateApplication}
    * The response from the API.
+   * @example
+   * globalNS.method1(5, 10);
    */
   createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication> {
     const apiPayload: CreateApplicationPayload = {
@@ -64,7 +65,7 @@ export class User extends SetConfig {
 
   /**
    * It returns the list of applications that have been created by the user.
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-GetApplicationList}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetApplicationList}
    * The response from the API.
    */
   getApplicationList(): Promise<GetApplicationList> {
@@ -78,9 +79,9 @@ export class User extends SetConfig {
 
   /**
    * It creates an api key for the user.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").PL-CreateAPIKeyForUser}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateAPIKeyForUser}
    * @param {PL-CreateAPIKeyForUser} payload - PL-CreateAPIKeyForUser
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-CreateAPIKey}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateAPIKey}
    * The response from the API.
    */
   createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
@@ -100,9 +101,9 @@ export class User extends SetConfig {
 
   /**
    * It returns the list of api keys that have been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").cGetAPIKeyList}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").cGetAPIKeyList}
    * @param {PL-GetAPIKeyList} payload - PL-GetAPIKeyList
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-GetAPIKeyList}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyList}
    * The response from the API.
    */
   getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
@@ -116,9 +117,9 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").PL-GetAPIKeyInfo}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-GetAPIKeyInfo}
    * @param {PL-GetAPIKeyInfo} payload - PL-GetAPIKeyInfo
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-GetAPIKeyInfo}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyInfo}
    * The response from the API.
    */
   getAPIKeyInfo(payload: GetAPIKeyInfoUserPayload): Promise<GetAPIKeyInfo> {
@@ -132,9 +133,9 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").PL-UpdateAPIKeyOfUser}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-UpdateAPIKeyOfUser}
    * @param {PL-UpdateAPIKeyOfUser} payload - PL-UpdateAPIKeyOfUser
-   * @returns {import("../dist/Interfaces/Doc Common/doc.interface").RESP-UpdateAPIKey}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-UpdateAPIKey}
    * The response from the API.
    */
   updateAPIKey(payload: UpdateAPIKeyUserPayload): Promise<UpdateAPIKey> {

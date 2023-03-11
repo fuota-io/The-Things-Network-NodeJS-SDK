@@ -1,7 +1,14 @@
 {
   "source": {
-    "include": ["dist/User/index.js", "dist/Organization/index.js", "dist/Application/index.js", "dist/Device/index.js", "dist/index.js",
-   "dist/Interfaces/Doc Common/doc.interface.js"]
+    "include": [
+      "dist/User/index.js",
+      "dist/Organization/index.js",
+      "dist/Application/index.js",
+      "dist/EndDevice/index.js",
+      "dist/index.js",
+      "dist/Interfaces/Doc Common/docApp.interface.js",
+      "dist/Interfaces/Doc Common/docEndDevice.interface.js"
+    ]
   },
   "plugins": ["plugins/markdown"],
   "templates": {
@@ -16,12 +23,11 @@
     "verbose": true,
     "theme_opts": {
       "default_theme": "dark",
-      "search": false,
-      "includeFilesListInHomepage": false
-  }  
-},
+      "search": false
+    }
+  },
   "markdown": {
     "hardwrap": false,
     "idInHeadings": true
-}
+  }
 }

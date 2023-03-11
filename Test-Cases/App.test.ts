@@ -1,6 +1,6 @@
-import { Application } from './Application/index';
-import { Organization } from './Organization/index';
-import { User } from './User/index';
+import { Application } from '../Application/index';
+import { Organization } from '../Organization/index';
+import { User } from '../User/index';
 // import { Device } from './Device/index';
 // import { Gateway } from './Gateway/index';
 import {
@@ -44,7 +44,7 @@ import {
   setCollaboratorPayloadForOrg_T,
   setCollaboratorPayloadForOrg_F,
   getCollaboratorListUserPayload,
-} from './data';
+} from '../Data/AppAPI-data';
 
 const app = new Application('meet59', config_T);
 const user = new User('meetsavaj', config_T);
