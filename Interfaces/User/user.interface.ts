@@ -24,7 +24,7 @@ export interface CreateApplication {
   deleted_at: any;
   name: string;
   description: string;
-  attributes: any;
+  attributes: { [key: string]: string };
   contact_info: string[];
   administrative_contact: {
     user_ids: {

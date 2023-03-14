@@ -1,19 +1,4 @@
-export interface CreateEndDeviceUserPayload {
-  application_id: string;
-  join_eui: string;
-  dev_eui: string;
-  device_id: string;
-  brand_id?: string;
-  model_id?: string;
-  hardware_version?: string;
-  firmware_version?: string;
-  band_id?: string;
-  network_server_address?: string;
-  application_server_address?: string;
-  join_server_address?: string;
-}
-
-export interface CreateEndDevicePayload {
+export interface CreateEndDeviceISUserPayload {
   end_device: {
     ids: {
       join_eui: string;
@@ -23,7 +8,30 @@ export interface CreateEndDevicePayload {
         application_id: string;
       };
     };
-    version_ids: {
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    network_server_address?: string;
+    application_server_address?: string;
+    join_server_address?: string;
+  };
+}
+
+export interface CreateEndDeviceISPayload {
+  end_device: {
+    ids: {
+      join_eui: string;
+      dev_eui: string;
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+    };
+    version_ids?: {
       brand_id?: string;
       model_id?: string;
       hardware_version?: string;
@@ -39,7 +47,7 @@ export interface CreateEndDevicePayload {
   };
 }
 
-export interface CreateEndDevice {
+export interface CreateEndDeviceIS {
   ids: {
     join_eui: string;
     dev_eui: string;
@@ -64,12 +72,23 @@ export interface CreateEndDevice {
 }
 
 export interface SetEndDeviceJSUserPayload {
-  join_eui: string;
-  dev_eui: string;
-  device_id: string;
-  network_server_address?: string;
-  application_server_address?: string;
-  app_key: string;
+  end_device: {
+    ids: {
+      join_eui: string;
+      dev_eui: string;
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+    };
+    network_server_address?: string;
+    application_server_address?: string;
+    root_keys: {
+      app_key: {
+        key: string;
+      };
+    };
+  };
 }
 
 export interface SetEndDeviceJSPayload {
@@ -104,8 +123,8 @@ export interface SetEndDeviceJS {
     dev_eui: string;
     join_eui: string;
   };
-  created_at: string;
-  updated_at: string;
+  created_at: any;
+  updated_at: any;
   network_server_address: string;
   application_server_address: string;
   root_keys: {
@@ -116,26 +135,8 @@ export interface SetEndDeviceJS {
 }
 
 export interface SetEndDeviceNSUserPayload {
-  join_eui: string;
-  dev_eui: string;
-  device_id: string;
-  brand_id?: string;
-  model_id?: string;
-  hardware_version?: string;
-  firmware_version?: string;
-  band_id?: string;
-  frequency_plan_id: string;
-  supports_join: boolean;
-  supports_class_c: boolean;
-  lorawan_version: string;
-  lorawan_phy_version: string;
-  class_c_timeout?: string;
-  supports_32_bit_f_cnt?: boolean;
-}
-
-export interface SetEndDeviceNSPayload {
   end_device: {
-    version_ids: {
+    version_ids?: {
       brand_id?: string;
       model_id?: string;
       hardware_version?: string;
@@ -147,7 +148,36 @@ export interface SetEndDeviceNSPayload {
     supports_class_c: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
-    mac_settings: {
+    mac_settings?: {
+      class_c_timeout?: string;
+      supports_32_bit_f_cnt?: boolean;
+    };
+    ids: {
+      join_eui: string;
+      dev_eui: string;
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+    };
+  };
+}
+
+export interface SetEndDeviceNSPayload {
+  end_device: {
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    frequency_plan_id: string;
+    supports_join: boolean;
+    supports_class_c: boolean;
+    lorawan_version: string;
+    lorawan_phy_version: string;
+    mac_settings?: {
       class_c_timeout?: string;
       supports_32_bit_f_cnt?: boolean;
     };
@@ -174,8 +204,8 @@ export interface SetEndDeviceNS {
       application_id: string;
     };
   };
-  created_at: string;
-  updated_at: string;
+  created_at: any;
+  updated_at: any;
   version_ids: {
     brand_id: string;
     model_id: string;
@@ -193,3 +223,639 @@ export interface SetEndDeviceNS {
     supports_32_bit_f_cnt: boolean;
   };
 }
+
+export interface SetEndDeviceASUserPayload {
+  end_device: {
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    formatters?: {
+      up_formatter?: string;
+      down_formatter?: string;
+    };
+    ids: {
+      join_eui: string;
+      dev_eui: string;
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+    };
+  };
+}
+
+export interface SetEndDeviceASPayload {
+  end_device: {
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    formatters?: {
+      up_formatter?: string;
+      down_formatter?: string;
+    };
+    ids: {
+      join_eui: string;
+      dev_eui: string;
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+    };
+  };
+  field_mask: {
+    paths: string[];
+  };
+}
+
+export interface SetEndDeviceAS {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+  };
+  created_at: any;
+  updated_at: any;
+  version_ids: {
+    brand_id: string;
+    model_id: string;
+    hardware_version: string;
+    firmware_version: string;
+    band_id: string;
+  };
+  formatters: {
+    up_formatter: string;
+    down_formatter: string;
+  };
+}
+
+export interface GetEndDeviceInfoUserPayload {
+  device_id: string;
+}
+
+export interface GetEndDeviceInfo {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+  };
+  created_at: any;
+  updated_at: any;
+}
+
+export interface GetEndDeviceList {
+  end_devices: [GetEndDeviceInfo];
+}
+
+export interface ApplicationDownlink {
+  session_key_id?: string;
+  f_port?: number;
+  f_cnt?: number;
+  frm_payload?: string;
+  decoded_payload?: any; //********************* google.protobuf. Struct */
+  decoded_payload_warnings?: string[];
+  confirmed?: boolean;
+  class_b_c?: {
+    gateways?: [
+      {
+        gateway_ids?: { gateway_id?: string; antenna_index?: number; group_index?: number };
+        antenna_index?: number;
+        group_index?: number;
+      }
+    ];
+    absolute_time?: any;
+  };
+  priority?: string;
+  correlation_ids?: string[];
+}
+
+export interface MacSettings {
+  class_b_timeout?: string; //******************* google.protobuf. Duration */
+  ping_slot_periodicity?: { value: string };
+  ping_slot_data_rate_index?: { value: string };
+  ping_slot_frequency?: { value: number };
+  beacon_frequency?: { value: number };
+  class_c_timeout?: string;
+  rx1_delay?: { value: string };
+  rx1_data_rate_offset?: { value: string };
+  rx2_data_rate_index?: { value: string };
+  rx2_frequency?: { value: number };
+  factory_preset_frequencies?: number[]; //****************** repeated uint64 */
+  max_duty_cycle?: { value: string };
+  supports_32_bit_f_cnt?: { value: boolean };
+  use_adr?: { value: boolean };
+  adr_margin?: number; //************************ google.protobuf. FloatValue */ */
+  resets_f_cnt?: { value: boolean };
+  status_time_periodicity?: string; //********************* google.protobuf. Duration */
+  status_count_periodicity?: number; //******************** google.protobuf. UInt32Value */
+  desired_rx1_delay?: { value: string };
+  desired_rx1_data_rate_offset?: { value: string };
+  desired_rx2_data_rate_index?: { value: string };
+  desired_rx2_frequency?: { value: number };
+  desired_max_duty_cycle?: { value: string };
+  desired_adr_ack_limit_exponent?: { value: string };
+  desired_adr_ack_delay_exponent?: { value: string };
+  desired_ping_slot_data_rate_index?: { value: string };
+  desired_ping_slot_frequency?: { value: number };
+  desired_beacon_frequency?: { value: number };
+  desired_max_eirp?: { value: string };
+  class_b_c_downlink_interval?: string; //******************* google.protobuf. Duration */
+  uplink_dwell_time?: { value: boolean };
+  downlink_dwell_time?: { value: boolean };
+  adr?: {
+    static?: {
+      data_rate_index?: string;
+      tx_power_index?: number /******* uint32 */;
+      nb_trans?: number /******* uint32 */;
+    };
+    dynamic?: {
+      margin?: number; //*************************** google.protobuf. FloatValue */
+      min_data_rate_index?: { value: string };
+      max_data_rate_index?: { value: string };
+      min_tx_power_index?: number; //********************* google.protobuf. UInt32Value */
+      max_tx_power_index?: number; //********************* google.protobuf. UInt32Value */
+      min_nb_trans?: number; //********************* google.protobuf. UInt32Value */
+      max_nb_trans?: number; //********************* google.protobuf. UInt32Value */
+    };
+    disabled?: {};
+  };
+  schedule_downlinks?: { value: boolean };
+}
+
+export interface MacParameters {
+  max_eirp?: number;
+  adr_data_rate_index?: string;
+  adr_tx_power_index?: number;
+  adr_nb_trans?: number;
+  adr_ack_limit?: number;
+  adr_ack_delay?: number;
+  rx1_delay?: string;
+  rx1_data_rate_offset?: string;
+  rx2_data_rate_index?: string;
+  rx2_frequency?: number;
+  max_duty_cycle?: string;
+  rejoin_time_periodicity?: string;
+  rejoin_count_periodicity?: string;
+  ping_slot_frequency?: number;
+  ping_slot_data_rate_index?: string;
+  beacon_frequency?: number;
+  channels: [
+    {
+      uplink_frequency?: number;
+      downlink_frequency?: number;
+      min_data_rate_index?: string;
+      max_data_rate_index?: string;
+      enable_uplink?: boolean;
+    }
+  ];
+  uplink_dwell_time?: { value: boolean };
+  downlink_dwell_time?: { value: boolean };
+  adr_ack_limit_exponent?: { value: string };
+  adr_ack_delay_exponent?: { value: string };
+  ping_slot_data_rate_index_value?: { value: string };
+}
+
+export interface MacCommand {
+  cid?: string;
+  raw_payload?: string;
+  reset_ind?: { minor_version: string };
+  reset_conf?: { minor_version: string };
+  link_check_ans?: { margin?: number; gateway_count?: number };
+  link_adr_req?: {
+    data_rate_index?: string;
+    tx_power_index?: number;
+    channel_mask?: boolean[];
+    channel_mask_control?: number;
+    nb_trans?: number;
+  };
+  link_adr_ans?: {
+    channel_mask_ack?: boolean;
+    data_rate_index_ack?: boolean;
+    tx_power_index_ack?: boolean;
+  };
+  duty_cycle_req?: { max_duty_cycle: string };
+  rx_param_setup_req?: {
+    rx2_data_rate_index?: string;
+    rx1_data_rate_offset?: string;
+    rx2_frequency?: number;
+  };
+  rx_param_setup_ans?: {
+    rx2_data_rate_index_ack?: boolean;
+    rx1_data_rate_offset_ack?: boolean;
+    rx2_frequency_ack?: boolean;
+  };
+  dev_status_ans?: { battery?: number; margin?: number };
+  new_channel_req?: {
+    channel_index?: number;
+    frequency?: number;
+    min_data_rate_index?: string;
+    max_data_rate_index?: string;
+  };
+  new_channel_ans?: { frequency_ack?: boolean; data_rate_ack?: boolean };
+  dl_channel_req?: { channel_index?: number; frequency?: number };
+  dl_channel_ans?: { channel_index_ack?: boolean; frequency_ack?: boolean };
+  rx_timing_setup_req?: { delay: string };
+  tx_param_setup_req?: {
+    max_eirp_index?: string;
+    uplink_dwell_time?: boolean;
+    downlink_dwell_time?: boolean;
+  };
+  rekey_ind?: { minor_version: string };
+  rekey_conf?: { minor_version: string };
+  adr_param_setup_req?: {
+    adr_ack_limit_exponent?: string;
+    adr_ack_delay_exponent?: string;
+  };
+  device_time_ans?: { time: any };
+  force_rejoin_req?: {
+    rejoin_type?: string;
+    data_rate_index?: string;
+    max_retries?: number;
+    period_exponent?: string;
+  };
+  rejoin_param_setup_req?: {
+    max_count_exponent?: string;
+    max_time_exponent?: string;
+  };
+  rejoin_param_setup_ans?: {
+    max_time_exponent_ack: boolean;
+  };
+  ping_slot_info_req?: { period: string };
+  ping_slot_channel_req?: { frequency?: number; data_rate_index?: string };
+  ping_slot_channel_ans?: { frequency_ack?: boolean; data_rate_index_ack?: boolean };
+  beacon_timing_ans?: { delay?: number; channel_index?: number };
+  beacon_freq_req?: { frequency: number };
+  beacon_freq_ans?: { frequency_ack: boolean };
+  device_mode_ind?: { class: string };
+  device_mode_conf?: { class: string };
+}
+
+export interface MacState {
+  current_parameters?: MacParameters;
+  desired_parameters?: MacParameters;
+  device_class?: string;
+  lorawan_version?: string;
+  last_confirmed_downlink_at?: any;
+  last_dev_status_f_cnt_up?: number;
+  ping_slot_periodicity?: { value: string };
+  pending_application_downlink?: ApplicationDownlink;
+  queued_responses?: [MacCommand];
+  pending_requests?: [MacCommand];
+  queued_join_accept?: {
+    payload?: string;
+    request?: {
+      downlink_settings?: {
+        rx1_dr_offset?: string;
+        rx2_dr?: string;
+        opt_neg?: boolean;
+      };
+      rx_delay?: string;
+      cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
+    };
+    keys?: {
+      session_key_id?: string;
+      f_nwk_s_int_key?: KeyEnvelope;
+      s_nwk_s_int_key?: KeyEnvelope;
+      nwk_s_enc_key?: KeyEnvelope;
+      app_s_key?: KeyEnvelope;
+    };
+    correlation_ids?: string[];
+    dev_addr?: string;
+    net_id?: string;
+  };
+  pending_join_request?: {
+    downlink_settings?: {
+      rx1_dr_offset?: string;
+      rx2_dr?: string;
+      opt_neg?: boolean;
+    };
+    rx_delay?: string;
+    cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
+  };
+  rx_windows_available?: boolean;
+  recent_uplinks?: [
+    {
+      payload?: {
+        m_hdr: { m_type?: string; major?: string };
+        mic?: string;
+        mac_payload?: {
+          f_hdr?: {
+            dev_addr?: string;
+            f_ctrl?: {
+              adr?: boolean;
+              adr_ack_req?: boolean;
+              ack?: boolean;
+              f_pending?: boolean;
+              class_b?: boolean;
+            };
+            f_cnt?: number;
+            f_opts?: string;
+          };
+          f_port?: number;
+          frm_payload?: string;
+          decoded_payload?: any; //******************* google.protobuf. Struct */
+          full_f_cnt?: number;
+        };
+        join_request_payload?: { join_eui?: string; dev_eui?: string; dev_nonce?: string };
+        join_accept_payload?: {
+          encrypted?: string;
+          join_nonce?: string;
+          net_id?: string;
+          dev_addr?: string;
+          dl_settings?: {
+            rx1_dr_offset?: string;
+            rx2_dr?: string;
+            opt_neg?: boolean;
+          };
+          rx_delay?: string;
+          cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
+        };
+        rejoin_request_payload?: {
+          rejoin_type?: string;
+          net_id?: string;
+          join_eui?: string;
+          dev_eui?: string;
+          rejoin_cnt?: number;
+        };
+      };
+      settings?: {
+        data_rate?: {
+          lora?: { bandwidth?: number; spreading_factor?: number; coding_rate?: string };
+          fsk?: { bit_rate: number };
+          lrfhss?: {
+            modulation_type?: number;
+            operating_channel_width?: number;
+            coding_rate?: string;
+          };
+        };
+      };
+      rx_metadata?: [
+        {
+          gateway_ids?: { gateway_id?: string; eui?: string };
+          channel_rssi?: number;
+          snr?: number;
+          downlink_path_constraint?: string;
+          uplink_token?: string;
+          packet_broker?: {};
+        }
+      ];
+      received_at?: any;
+      correlation_ids?: string;
+      device_channel_index?: number;
+    }
+  ];
+  recent_downlinks?: [
+    {
+      payload?: {
+        m_hdr?: { m_type: string };
+        mac_payload?: { f_port?: number; full_f_cnt?: number };
+      };
+      correlation_ids?: string[];
+    }
+  ];
+  last_network_initiated_downlink_at?: any;
+  rejected_adr_data_rate_indexes?: string[];
+  rejected_adr_tx_power_indexes?: number[];
+  rejected_frequencies?: number[];
+  last_downlink_at?: any;
+  rejected_data_rate_ranges?: { [key: number]: string }; //********************** map of uint64 to MACState.DataRateRanges */
+  last_adr_change_f_cnt_up?: number;
+  recent_mac_command_identifiers?: string[];
+}
+
+export interface KeyEnvelope {
+  key?: string; //*********** bytes */
+  kek_label?: string;
+  encrypted_key?: string; //*********** bytes */
+}
+
+export interface Session {
+  dev_addr?: string;
+  keys?: {
+    session_key_id?: string;
+    f_nwk_s_int_key?: KeyEnvelope;
+    s_nwk_s_int_key?: KeyEnvelope;
+    nwk_s_enc_key?: KeyEnvelope;
+    app_s_key?: KeyEnvelope;
+  };
+  last_f_cnt_up?: number;
+  last_n_f_cnt_down?: number;
+  last_a_f_cnt_down?: number;
+  last_conf_f_cnt_down?: number;
+  started_at?: any;
+  queued_application_downlinks?: [ApplicationDownlink];
+}
+
+//**************************************************** UpdateEndDevice Main Interface ******************************************************
+export interface UpdateEndDevicePayload {
+  end_device: {
+    ids: {
+      device_id: string;
+      application_ids: {
+        application_id: string;
+      };
+      dev_eui: string;
+      join_eui: string;
+      dev_addr?: string; //****** bytes type */
+    };
+    name?: string;
+    description?: string;
+    attributes?: { [key: string]: string }; //********************* Map of string to string */
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    service_profile_id?: string;
+    network_server_address?: string;
+    network_server_kek_label?: string;
+    application_server_address?: string;
+    application_server_kek_label?: string;
+    application_server_id?: string;
+    join_server_address?: string;
+    locations?: {
+      [key: string]: {
+        latitude: number;
+        longitude: number;
+        altitude: number; //******************* int32 */
+        accuracy?: number; //******************* int32 */
+        source?: string;
+      };
+    };
+    picture?: {
+      embedded?: { mime_type?: string; data?: string /****************** bytes */ };
+      sizes?: { [key: number]: string } /************** map of uint32 to string */;
+    };
+    supports_class_b?: boolean;
+    supports_class_c?: boolean;
+    lorawan_version?: string;
+    lorawan_phy_version?: string;
+    frequency_plan_id?: string;
+    min_frequency?: number; //******************** unit64 */
+    max_frequency?: number; //******************** unit64 */
+    supports_join?: boolean;
+    resets_join_nonces?: boolean;
+    root_keys?: {
+      root_key_id?: string;
+      app_key?: KeyEnvelope;
+      nwk_key?: KeyEnvelope;
+    };
+    net_id?: string; //*********************** bytes */
+    mac_settings?: MacSettings;
+    mac_state?: MacState;
+    pending_mac_state?: MacState;
+    session?: Session;
+    pending_session?: Session;
+    last_dev_nonce?: number;
+    used_dev_nonces?: number[];
+    last_join_nonce?: number;
+    last_rj_count_0?: number;
+    last_rj_count_1?: number;
+    last_dev_status_received_at?: any;
+    power_state?: string;
+    battery_percentage?: number;
+    downlink_margin?: number;
+    queued_application_downlinks?: [ApplicationDownlink];
+    formatters?: {
+      up_formatter?: string;
+      up_formatter_parameter?: string;
+      down_formatter?: string;
+      down_formatter_parameter?: string;
+    };
+    provisioner_id?: string;
+    provisioning_data?: any; //*********** 	google.protobuf. Struct */
+    multicast?: boolean;
+    claim_authentication_code?: {
+      value?: string;
+      valid_from?: any;
+      valid_to?: any;
+    };
+    skip_payload_crypto?: boolean;
+    skip_payload_crypto_override?: boolean;
+    serial_number?: string;
+    lora_alliance_profile_ids?: { vendor_id?: number; vendor_profile_id?: number };
+  };
+  field_mask: {
+    paths: string[];
+  };
+}
+
+//**************************************************** UpdateEndDevice RESP Interface ******************************************************
+export interface UpdateEndDevice {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+    dev_addr?: string; //****** bytes type */
+  };
+  created_at: any;
+  updated_at: any;
+  name?: string;
+  description?: string;
+  attributes?: { [key: string]: string }; //********************* Map of string to string */
+  version_ids?: {
+    brand_id?: string;
+    model_id?: string;
+    hardware_version?: string;
+    firmware_version?: string;
+    band_id?: string;
+  };
+  service_profile_id?: string;
+  network_server_address?: string;
+  network_server_kek_label?: string;
+  application_server_address?: string;
+  application_server_kek_label?: string;
+  application_server_id?: string;
+  join_server_address?: string;
+  locations?: {
+    [key: string]: {
+      latitude: number;
+      longitude: number;
+      altitude: number; //******************* int32 */
+      accuracy?: number; //******************* int32 */
+      source?: string;
+    };
+  };
+  picture?: {
+    embedded?: { mime_type?: string; data?: string /****************** bytes */ };
+    sizes?: { [key: number]: string } /************** map of uint32 to string */;
+  };
+  supports_class_b?: boolean;
+  supports_class_c?: boolean;
+  lorawan_version?: string;
+  lorawan_phy_version?: string;
+  frequency_plan_id?: string;
+  min_frequency?: number; //******************** unit64 */
+  max_frequency?: number; //******************** unit64 */
+  supports_join?: boolean;
+  resets_join_nonces?: boolean;
+  root_keys?: {
+    root_key_id?: string;
+    app_key?: KeyEnvelope;
+    nwk_key?: KeyEnvelope;
+  };
+  net_id?: string; //*********************** bytes */
+  mac_settings?: MacSettings;
+  mac_state?: MacState;
+  pending_mac_state?: MacState;
+  session?: Session;
+  pending_session?: Session;
+  last_dev_nonce?: number;
+  used_dev_nonces?: number[];
+  last_join_nonce?: number;
+  last_rj_count_0?: number;
+  last_rj_count_1?: number;
+  last_dev_status_received_at?: any;
+  power_state?: string;
+  battery_percentage?: number;
+  downlink_margin?: number;
+  queued_application_downlinks?: [ApplicationDownlink];
+  formatters?: {
+    up_formatter?: string;
+    up_formatter_parameter?: string;
+    down_formatter?: string;
+    down_formatter_parameter?: string;
+  };
+  provisioner_id?: string;
+  provisioning_data?: any; //*********** 	google.protobuf. Struct */
+  multicast?: boolean;
+  claim_authentication_code?: {
+    value?: string;
+    valid_from?: any;
+    valid_to?: any;
+  };
+  skip_payload_crypto?: boolean;
+  skip_payload_crypto_override?: boolean;
+  activated_at?: any;
+  last_seen_at?: any;
+  serial_number?: string;
+  lora_alliance_profile_ids?: { vendor_id?: number; vendor_profile_id?: number };
+}
+
+export interface deleteEndDeviceISUserPayload {
+  device_id: string;
+}
+
+export interface deleteEndDeviceJSUserPayload extends deleteEndDeviceISUserPayload {}
+
+export interface deleteEndDeviceNSUserPayload extends deleteEndDeviceISUserPayload {}
+
+export interface deleteEndDeviceASUserPayload extends deleteEndDeviceISUserPayload {}

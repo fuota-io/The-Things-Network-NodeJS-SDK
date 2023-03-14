@@ -141,12 +141,13 @@ export class Organization extends SetConfig {
    * The response from the API.
    */
   updateAPIKey(payload: UpdateAPIKeyUserPayload): Promise<UpdateAPIKey> {
-    const extractPayload = {
+    const receievePayload = {
       name: payload.api_key_name,
       rights: payload.api_key_rights,
       expires_at: payload.expires_at,
     };
 
+    const extractPayload = JSON.parse(JSON.stringify(receievePayload));
     const paths = Object.keys(extractPayload);
 
     const apiPayload: UpdateAPIKeyPayload = {
