@@ -37,13 +37,11 @@ export interface GetApplication {
 }
 
 export interface GetApplicationList {
-  application: [
-    {
-      ids: { application_id: string };
-      created_at: string;
-      updated_at: string;
-    }
-  ];
+  application: {
+    ids: { application_id: string };
+    created_at: string;
+    updated_at: string;
+  }[];
 }
 
 export interface UpdateApplicationUserPayload {
@@ -114,17 +112,15 @@ export interface GetAPIKeyListPayload {
 }
 
 export interface GetAPIKeyList {
-  api_keys: [
-    {
-      id: string;
-      key: string;
-      name: string;
-      rights: string[];
-      created_at: string;
-      updated_at: string;
-      expires_at: any;
-    }
-  ];
+  api_keys: {
+    id: string;
+    key: string;
+    name: string;
+    rights: string[];
+    created_at: string;
+    updated_at: string;
+    expires_at: any;
+  }[];
 }
 
 export interface GetAPIKeyInfoUserPayload {
@@ -174,15 +170,13 @@ export interface GetCollabortorListPayload {
 }
 
 export interface GetCollabortorList {
-  collaborators: [
-    {
-      ids: {
-        organization_ids?: { organization_id: string };
-        user_ids?: { user_id: string; email: string };
-      };
-      rights: string[];
-    }
-  ];
+  collaborators: {
+    ids: {
+      organization_ids?: { organization_id: string };
+      user_ids?: { user_id: string; email: string };
+    };
+    rights: string[];
+  }[];
 }
 
 export interface GetCollaboratorInfoUserPayload {

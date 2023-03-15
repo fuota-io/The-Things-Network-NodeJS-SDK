@@ -69,17 +69,15 @@ export class SetConfig {
 
 //************** To Extract Nested Object Keys ******************
 //***************************************************************
-export function getAllKeys(obj: { [x: string]: any }): any {
+export function getAllKeys(obj: { [x: string]: any }): string[] {
   let keys = [];
   for (let key in obj) {
     if (typeof obj[key] === 'object' && obj[key] !== null) {
-      keys.push(...getAllKeys(obj[key]).map((subKey: any) => `${key}.${subKey}`));
+      keys.push(...getAllKeys(obj[key]).map((subKey: string) => `${key}.${subKey}`));
     } else {
       keys.push(key);
     }
   }
-  const str = keys.toString();
-  const newStr = str.replaceAll('end_device.', '');
-  const newKeys = newStr.split(',');
+  const newKeys = keys.toString().replaceAll('end_device.', '').split(',');
   return newKeys;
 }

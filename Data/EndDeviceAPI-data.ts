@@ -124,19 +124,11 @@ export const updateEndDeviceUserPayload = {
   end_device: {
     ids: {
       device_id: 'eui-70b3d57ed005b59e',
-      application_ids: {
-        application_id: 'meet59',
-      },
-      dev_eui: '70B3D57ED005B59E',
-      join_eui: 'DDFFDDFDFFDFDFDF',
     },
     name: 'device',
     network_server_address: 'nam1.cloud.thethings.network',
     application_server_address: 'nam1.cloud.thethings.network',
     join_server_address: 'nam1.cloud.thethings.network',
-  },
-  field_mask: {
-    paths: ['application_server_address', 'network_server_address', 'join_server_address', 'name'],
   },
 };
 
@@ -147,3 +139,36 @@ export const deleteEndDeviceJSUserPayload = { device_id: 'eui-70b3d57ed005b59e' 
 export const deleteEndDeviceNSUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 
 export const deleteEndDeviceASUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
+
+export const configDownlink = {
+  IDENTITY_SERVER: 'https://eu1.nam1.cloud.thethings.industries/api/v3',
+  NETWORK_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/ns',
+  APPLICATION_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/as',
+  JOIN_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/js',
+  API_KEY:
+    'NNSXS.IY3KRIWPL4CDGVSTHFRIZQ73MW3HBBTLB5JCFMI.4NOQAD7BKYPE4LPJD6KKYM4DG2W4EXWFNH6HUMQ2GRDUVGWKCBPA',
+  TENANT_ID: 'oxit',
+};
+
+export const downlinkQueuePushUserPayload = {
+  device_id: 'cgr-otaa-08ac',
+  payload: 12,
+  payload_type: 'decimal',
+  port_no: 10,
+  request_type: 'push',
+  confirmed_downlink: false,
+};
+
+// export const downlinkQueuePushUserPayload = {
+//   end_device_ids: {
+//     device_id: 'cgr-otaa-08ac',
+//     application_ids: { application_id: 'stratis-thermostat' },
+//   },
+//   downlinks: [
+//     {
+//       f_port: 10,
+//       frm_payload: 'MQ==',
+//       confirmed: false,
+//     },
+//   ],
+// };

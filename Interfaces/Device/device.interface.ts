@@ -329,13 +329,12 @@ export interface ApplicationDownlink {
   decoded_payload_warnings?: string[];
   confirmed?: boolean;
   class_b_c?: {
-    gateways?: [
-      {
-        gateway_ids?: { gateway_id?: string; antenna_index?: number; group_index?: number };
-        antenna_index?: number;
-        group_index?: number;
-      }
-    ];
+    gateways?: {
+      gateway_ids?: { gateway_id?: string; antenna_index?: number; group_index?: number };
+      antenna_index?: number;
+      group_index?: number;
+    }[];
+
     absolute_time?: any;
   };
   priority?: string;
@@ -412,15 +411,13 @@ export interface MacParameters {
   ping_slot_frequency?: number;
   ping_slot_data_rate_index?: string;
   beacon_frequency?: number;
-  channels: [
-    {
-      uplink_frequency?: number;
-      downlink_frequency?: number;
-      min_data_rate_index?: string;
-      max_data_rate_index?: string;
-      enable_uplink?: boolean;
-    }
-  ];
+  channels: {
+    uplink_frequency?: number;
+    downlink_frequency?: number;
+    min_data_rate_index?: string;
+    max_data_rate_index?: string;
+    enable_uplink?: boolean;
+  }[];
   uplink_dwell_time?: { value: boolean };
   downlink_dwell_time?: { value: boolean };
   adr_ack_limit_exponent?: { value: string };
@@ -512,8 +509,8 @@ export interface MacState {
   last_dev_status_f_cnt_up?: number;
   ping_slot_periodicity?: { value: string };
   pending_application_downlink?: ApplicationDownlink;
-  queued_responses?: [MacCommand];
-  pending_requests?: [MacCommand];
+  queued_responses?: MacCommand[];
+  pending_requests?: MacCommand[];
   queued_join_accept?: {
     payload?: string;
     request?: {
@@ -546,86 +543,80 @@ export interface MacState {
     cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
   };
   rx_windows_available?: boolean;
-  recent_uplinks?: [
-    {
-      payload?: {
-        m_hdr: { m_type?: string; major?: string };
-        mic?: string;
-        mac_payload?: {
-          f_hdr?: {
-            dev_addr?: string;
-            f_ctrl?: {
-              adr?: boolean;
-              adr_ack_req?: boolean;
-              ack?: boolean;
-              f_pending?: boolean;
-              class_b?: boolean;
-            };
-            f_cnt?: number;
-            f_opts?: string;
-          };
-          f_port?: number;
-          frm_payload?: string;
-          decoded_payload?: any; //******************* google.protobuf. Struct */
-          full_f_cnt?: number;
-        };
-        join_request_payload?: { join_eui?: string; dev_eui?: string; dev_nonce?: string };
-        join_accept_payload?: {
-          encrypted?: string;
-          join_nonce?: string;
-          net_id?: string;
+  recent_uplinks?: {
+    payload?: {
+      m_hdr: { m_type?: string; major?: string };
+      mic?: string;
+      mac_payload?: {
+        f_hdr?: {
           dev_addr?: string;
-          dl_settings?: {
-            rx1_dr_offset?: string;
-            rx2_dr?: string;
-            opt_neg?: boolean;
+          f_ctrl?: {
+            adr?: boolean;
+            adr_ack_req?: boolean;
+            ack?: boolean;
+            f_pending?: boolean;
+            class_b?: boolean;
           };
-          rx_delay?: string;
-          cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
+          f_cnt?: number;
+          f_opts?: string;
         };
-        rejoin_request_payload?: {
-          rejoin_type?: string;
-          net_id?: string;
-          join_eui?: string;
-          dev_eui?: string;
-          rejoin_cnt?: number;
+        f_port?: number;
+        frm_payload?: string;
+        decoded_payload?: any; //******************* google.protobuf. Struct */
+        full_f_cnt?: number;
+      };
+      join_request_payload?: { join_eui?: string; dev_eui?: string; dev_nonce?: string };
+      join_accept_payload?: {
+        encrypted?: string;
+        join_nonce?: string;
+        net_id?: string;
+        dev_addr?: string;
+        dl_settings?: {
+          rx1_dr_offset?: string;
+          rx2_dr?: string;
+          opt_neg?: boolean;
+        };
+        rx_delay?: string;
+        cf_list?: { type?: string; freq?: number[]; ch_masks?: boolean[] };
+      };
+      rejoin_request_payload?: {
+        rejoin_type?: string;
+        net_id?: string;
+        join_eui?: string;
+        dev_eui?: string;
+        rejoin_cnt?: number;
+      };
+    };
+    settings?: {
+      data_rate?: {
+        lora?: { bandwidth?: number; spreading_factor?: number; coding_rate?: string };
+        fsk?: { bit_rate: number };
+        lrfhss?: {
+          modulation_type?: number;
+          operating_channel_width?: number;
+          coding_rate?: string;
         };
       };
-      settings?: {
-        data_rate?: {
-          lora?: { bandwidth?: number; spreading_factor?: number; coding_rate?: string };
-          fsk?: { bit_rate: number };
-          lrfhss?: {
-            modulation_type?: number;
-            operating_channel_width?: number;
-            coding_rate?: string;
-          };
-        };
-      };
-      rx_metadata?: [
-        {
-          gateway_ids?: { gateway_id?: string; eui?: string };
-          channel_rssi?: number;
-          snr?: number;
-          downlink_path_constraint?: string;
-          uplink_token?: string;
-          packet_broker?: {};
-        }
-      ];
-      received_at?: any;
-      correlation_ids?: string;
-      device_channel_index?: number;
-    }
-  ];
-  recent_downlinks?: [
-    {
-      payload?: {
-        m_hdr?: { m_type: string };
-        mac_payload?: { f_port?: number; full_f_cnt?: number };
-      };
-      correlation_ids?: string[];
-    }
-  ];
+    };
+    rx_metadata?: {
+      gateway_ids?: { gateway_id?: string; eui?: string };
+      channel_rssi?: number;
+      snr?: number;
+      downlink_path_constraint?: string;
+      uplink_token?: string;
+      packet_broker?: {};
+    }[];
+    received_at?: any;
+    correlation_ids?: string;
+    device_channel_index?: number;
+  }[];
+  recent_downlinks?: {
+    payload?: {
+      m_hdr?: { m_type: string };
+      mac_payload?: { f_port?: number; full_f_cnt?: number };
+    };
+    correlation_ids?: string[];
+  }[];
   last_network_initiated_downlink_at?: any;
   rejected_adr_data_rate_indexes?: string[];
   rejected_adr_tx_power_indexes?: number[];
@@ -656,19 +647,19 @@ export interface Session {
   last_a_f_cnt_down?: number;
   last_conf_f_cnt_down?: number;
   started_at?: any;
-  queued_application_downlinks?: [ApplicationDownlink];
+  queued_application_downlinks?: ApplicationDownlink[];
 }
 
-//**************************************************** UpdateEndDevice Main Interface ******************************************************
-export interface UpdateEndDevicePayload {
+//**************************************************** UpdateEndDevice User Interface ******************************************************
+export interface UpdateEndDeviceUserPayload {
   end_device: {
     ids: {
       device_id: string;
-      application_ids: {
+      application_ids?: {
         application_id: string;
       };
-      dev_eui: string;
-      join_eui: string;
+      dev_eui?: string;
+      join_eui?: string;
       dev_addr?: string; //****** bytes type */
     };
     name?: string;
@@ -730,7 +721,100 @@ export interface UpdateEndDevicePayload {
     power_state?: string;
     battery_percentage?: number;
     downlink_margin?: number;
-    queued_application_downlinks?: [ApplicationDownlink];
+    queued_application_downlinks?: ApplicationDownlink[];
+    formatters?: {
+      up_formatter?: string;
+      up_formatter_parameter?: string;
+      down_formatter?: string;
+      down_formatter_parameter?: string;
+    };
+    provisioner_id?: string;
+    provisioning_data?: any; //*********** 	google.protobuf. Struct */
+    multicast?: boolean;
+    claim_authentication_code?: {
+      value?: string;
+      valid_from?: any;
+      valid_to?: any;
+    };
+    skip_payload_crypto?: boolean;
+    skip_payload_crypto_override?: boolean;
+    serial_number?: string;
+    lora_alliance_profile_ids?: { vendor_id?: number; vendor_profile_id?: number };
+  };
+}
+
+//**************************************************** UpdateEndDevice Main Interface ******************************************************
+export interface UpdateEndDevicePayload {
+  end_device: {
+    ids: {
+      device_id: string;
+      application_ids?: {
+        application_id: string;
+      };
+      dev_eui?: string;
+      join_eui?: string;
+      dev_addr?: string; //****** bytes type */
+    };
+    name?: string;
+    description?: string;
+    attributes?: { [key: string]: string }; //********************* Map of string to string */
+    version_ids?: {
+      brand_id?: string;
+      model_id?: string;
+      hardware_version?: string;
+      firmware_version?: string;
+      band_id?: string;
+    };
+    service_profile_id?: string;
+    network_server_address?: string;
+    network_server_kek_label?: string;
+    application_server_address?: string;
+    application_server_kek_label?: string;
+    application_server_id?: string;
+    join_server_address?: string;
+    locations?: {
+      [key: string]: {
+        latitude: number;
+        longitude: number;
+        altitude: number; //******************* int32 */
+        accuracy?: number; //******************* int32 */
+        source?: string;
+      };
+    };
+    picture?: {
+      embedded?: { mime_type?: string; data?: string /****************** bytes */ };
+      sizes?: { [key: number]: string } /************** map of uint32 to string */;
+    };
+    supports_class_b?: boolean;
+    supports_class_c?: boolean;
+    lorawan_version?: string;
+    lorawan_phy_version?: string;
+    frequency_plan_id?: string;
+    min_frequency?: number; //******************** unit64 */
+    max_frequency?: number; //******************** unit64 */
+    supports_join?: boolean;
+    resets_join_nonces?: boolean;
+    root_keys?: {
+      root_key_id?: string;
+      app_key?: KeyEnvelope;
+      nwk_key?: KeyEnvelope;
+    };
+    net_id?: string; //*********************** bytes */
+    mac_settings?: MacSettings;
+    mac_state?: MacState;
+    pending_mac_state?: MacState;
+    session?: Session;
+    pending_session?: Session;
+    last_dev_nonce?: number;
+    used_dev_nonces?: number[];
+    last_join_nonce?: number;
+    last_rj_count_0?: number;
+    last_rj_count_1?: number;
+    last_dev_status_received_at?: any;
+    power_state?: string;
+    battery_percentage?: number;
+    downlink_margin?: number;
+    queued_application_downlinks?: ApplicationDownlink[];
     formatters?: {
       up_formatter?: string;
       up_formatter_parameter?: string;
@@ -827,7 +911,7 @@ export interface UpdateEndDevice {
   power_state?: string;
   battery_percentage?: number;
   downlink_margin?: number;
-  queued_application_downlinks?: [ApplicationDownlink];
+  queued_application_downlinks?: ApplicationDownlink[];
   formatters?: {
     up_formatter?: string;
     up_formatter_parameter?: string;
@@ -859,3 +943,41 @@ export interface deleteEndDeviceJSUserPayload extends deleteEndDeviceISUserPaylo
 export interface deleteEndDeviceNSUserPayload extends deleteEndDeviceISUserPayload {}
 
 export interface deleteEndDeviceASUserPayload extends deleteEndDeviceISUserPayload {}
+
+export interface downlinkQueueUserPayload {
+  device_id: string;
+  payload: any;
+  payload_type: string;
+  port_no: number;
+  request_type: string;
+  confirmed_downlink: boolean;
+}
+
+export interface downlinkQueuePush {
+  end_device_ids?: {
+    device_id?: string;
+    application_ids?: { application_id?: string };
+    dev_eui?: string;
+    join_eui?: string;
+    dev_addr?: string;
+  };
+  downlinks?: {
+    session_key_id?: string;
+    f_port: number;
+    f_cnt?: number;
+    frm_payload: any;
+    decoded_payload?: any;
+    decoded_payload_warnings?: string[];
+    confirmed: boolean;
+    class_b_c?: {
+      gateways?: {
+        gateway_ids?: { gateway_id?: string; eui?: string };
+        antenna_index?: number;
+        group_index?: number;
+      }[];
+      absolute_time?: any;
+    };
+    priority?: string;
+    correlation_ids?: string[];
+  }[];
+}

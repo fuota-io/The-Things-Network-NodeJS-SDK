@@ -1,3 +1,5 @@
+import path from 'path';
+import { encode } from 'punycode';
 import { APICall, getAllKeys, SetConfig } from '../index';
 import { Config } from '../Interfaces/Config/config.interface';
 import {
@@ -22,6 +24,9 @@ import {
   deleteEndDeviceJSUserPayload,
   UpdateEndDevice,
   CreateEndDeviceISUserPayload,
+  UpdateEndDeviceUserPayload,
+  downlinkQueuePush,
+  downlinkQueueUserPayload,
 } from '../Interfaces/Device/device.interface';
 
 /**
@@ -51,22 +56,7 @@ export class EndDevice extends SetConfig {
    * The response from the API.
    */
   createEndDeviceIS(payload: CreateEndDeviceISUserPayload): Promise<CreateEndDeviceIS> {
-    const receievePayload = {
-      'version_ids.brand_id': payload.end_device.version_ids?.brand_id,
-      'version_ids.model_id': payload.end_device.version_ids?.model_id,
-      'version_ids.hardware_version': payload.end_device.version_ids?.hardware_version,
-      'version_ids.firmware_version': payload.end_device.version_ids?.firmware_version,
-      'version_ids.band_id': payload.end_device.version_ids?.band_id,
-      network_server_address: payload.end_device.network_server_address,
-      application_server_address: payload.end_device.application_server_address,
-      join_server_address: payload.end_device.join_server_address,
-    };
-
-    // const extractPayload = JSON.parse(JSON.stringify(receievePayload));
-    // const paths = Object.keys(extractPayload);
-
     const paths = getAllKeys(payload);
-    console.log('paths: ', paths);
 
     const apiPayload: CreateEndDeviceISPayload = {
       end_device: {
@@ -109,18 +99,7 @@ export class EndDevice extends SetConfig {
    * The response from the API.
    */
   setEndDeviceJS(payload: SetEndDeviceJSUserPayload): Promise<SetEndDeviceJS> {
-    const receievePayload = {
-      'ids.join_eui': payload.end_device.ids.join_eui,
-      'ids.dev_eui': payload.end_device.ids.dev_eui,
-      'ids.device_id': payload.end_device.ids.device_id,
-      'ids.application_ids.application_id': payload.end_device.ids.application_ids.application_id,
-      'root_keys.app_key.key': payload.end_device.root_keys.app_key.key,
-      network_server_address: payload.end_device.network_server_address,
-      application_server_address: payload.end_device.application_server_address,
-    };
-
-    const extractPayload = JSON.parse(JSON.stringify(receievePayload));
-    const paths = Object.keys(extractPayload);
+    const paths = getAllKeys(payload);
 
     const apiPayload: SetEndDeviceJSPayload = {
       end_device: {
@@ -160,27 +139,7 @@ export class EndDevice extends SetConfig {
    * The response from the API.
    */
   setEndDeviceNS(payload: SetEndDeviceNSUserPayload): Promise<SetEndDeviceNS> {
-    const receievePayload = {
-      'ids.application_ids.application_id': this.APPLICATION_ID,
-      'ids.join_eui': payload.end_device.ids.join_eui,
-      'ids.dev_eui': payload.end_device.ids.dev_eui,
-      'ids.device_id': payload.end_device.ids.device_id,
-      'version_ids.brand_id': payload.end_device.version_ids?.brand_id,
-      'version_ids.model_id': payload.end_device.version_ids?.model_id,
-      'version_ids.hardware_version': payload.end_device.version_ids?.hardware_version,
-      'version_ids.firmware_version': payload.end_device.version_ids?.firmware_version,
-      'version_ids.band_id': payload.end_device.version_ids?.band_id,
-      frequency_plan_id: payload.end_device.frequency_plan_id,
-      supports_join: payload.end_device.supports_join,
-      supports_class_c: payload.end_device.supports_class_c,
-      lorawan_version: payload.end_device.lorawan_version,
-      lorawan_phy_version: payload.end_device.lorawan_phy_version,
-      'mac_settings.class_c_timeout': payload.end_device.mac_settings?.class_c_timeout,
-      'mac_settings.supports_32_bit_f_cnt': payload.end_device.mac_settings?.supports_32_bit_f_cnt,
-    };
-
-    const extractPayload = JSON.parse(JSON.stringify(receievePayload));
-    const paths = Object.keys(extractPayload);
+    const paths = getAllKeys(payload);
 
     const apiPayload: SetEndDeviceNSPayload = {
       end_device: {
@@ -229,22 +188,7 @@ export class EndDevice extends SetConfig {
    * The response from the API.
    */
   setEndDeviceAS(payload: SetEndDeviceASUserPayload): Promise<SetEndDeviceAS> {
-    const receievePayload = {
-      'ids.application_ids.application_id': this.APPLICATION_ID,
-      'ids.join_eui': payload.end_device.ids.join_eui,
-      'ids.dev_eui': payload.end_device.ids.dev_eui,
-      'ids.device_id': payload.end_device.ids.device_id,
-      'version_ids.brand_id': payload.end_device.version_ids?.brand_id,
-      'version_ids.model_id': payload.end_device.version_ids?.model_id,
-      'version_ids.hardware_version': payload.end_device.version_ids?.hardware_version,
-      'version_ids.firmware_version': payload.end_device.version_ids?.firmware_version,
-      'version_ids.band_id': payload.end_device.version_ids?.band_id,
-      'formatters.up_formatter': payload.end_device.formatters?.up_formatter,
-      'formatters.down_formatter': payload.end_device.formatters?.down_formatter,
-    };
-
-    const extractPayload = JSON.parse(JSON.stringify(receievePayload));
-    const paths = Object.keys(extractPayload);
+    const paths = getAllKeys(payload);
 
     const apiPayload: SetEndDeviceASPayload = {
       end_device: {
@@ -358,160 +302,132 @@ export class EndDevice extends SetConfig {
     });
   }
 
-  // /**
-  //  * It updates the end device information for the application.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").PL-UpdateEndDevice}
-  //  * @param {PL-UpdateEndDevice} payload - PL-UpdateEndDevice
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").RESP-UpdateEndDevice}
-  //  * The response from the API.
-  //  */
-
   /**
    * It updates the end device information for the application.
    * @param {PL-UpdateEndDevice} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:UpdateEndDeviceRequest UpdateEndDevice}
    * @returns {RESP-UpdateEndDevice}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice UpdateEndDevice}
    */
-  updateEndDevice(payload: UpdateEndDevicePayload): Promise<UpdateEndDevice> {
-    // const receievePayload = {
-    //   'version_ids.brand_id': payload.brand_id,
-    //   'version_ids.model_id': payload.model_id,
-    //   'version_ids.hardware_version': payload.hardware_version ?? undefined,
-    //   'version_ids.firmware_version': payload.firmware_version,
-    //   'version_ids.band_id': payload.band_id,
-    //   'formatters.up_formatter': payload.up_formatter,
-    //   'formatters.up_formatter_parameter': payload.up_formatter_parameter,
-    //   'formatters.down_formatter': payload.down_formatter,
-    //   'formatters.down_formatter_parameter': payload.down_formatter_parameter,
-    //   name: payload.name,
-    //   description: payload.description,
-    //   attributes: payload.attributes,
-    //   network_server_address: payload.network_server_address,
-    //   application_server_address: payload.application_server_address,
-    //   join_server_address: payload.join_server_address,
-    //   'locations.latitude': payload.location_latitude,
-    //   'locations.longitude': payload.location_longitude,
-    //   'locations.altitude': payload.location_altitude,
-    //   supports_class_b: payload.supports_class_b,
-    //   supports_class_c: payload.supports_class_c,
-    //   lorawan_version: payload.lorawan_version,
-    //   lorawan_phy_version: payload.lorawan_phy_version,
-    //   frequency_plan_id: payload.frequency_plan_id,
-    //   resets_join_nonces: payload.resets_join_nonces,
-    //   'roots.root_keys.app_key.key': payload.app_key,
-    //   net_id: payload.net_id,
-    //   'mac_settings.status_time_periodicity': payload.status_time_periodicity,
-    //   'mac_settings.status_count_periodicity': payload.status_count_periodicity,
-    //   'mac_settins.adr.static.data_rate_index': payload.static_data_rate_index,
-    //   'mac_settings.adr.static.tx_power_index': payload.static_tx_power_index,
-    //   'mac_settings.adr.staic.nb_trans': payload.static_nb_trans,
-    //   'mac_settings.adr.dynamic.margin': payload.dynamic_margin,
-    //   'mac_settings.desired_rx1_delay.value': payload.desired_rx1_delay,
-    //   'mac_settings.desired_rx1_data_rate_offset.value': payload.desired_rx1_data_rate_offset,
-    //   'mac_settings.desired_rx2_data_rate_index.value': payload.desired_rx2_data_rate_index,
-    //   'mac_settings.desired_rx2_frequency.value': payload.desired_rx2_frequency,
-    //   'mac_settings.desired_max_duty_cycle.value': payload.desired_max_duty_cycle,
-    //   'mac_settings.supports_32_bit_f_cnt': payload.supports_32_bit_f_cnt,
-    //   'mac_settings.class_c_timeout': payload.class_c_timeout,
-    //   'mac_settings.factory_preset_frequencies': payload.factory_preset_frequencies,
-    //   'formatter_payload.up_formatter': payload.up_formatter,
-    //   'formatter_payload.up_formatter_parameter': payload.up_formatter_parameter,
-    //   'formatter_payload.down_formatter': payload.down_formatter,
-    //   'formatter_payload.down_formatter_parameter': payload.down_formatter_parameter,
-    //   'claim_authentication_code.value': payload.claiming_value,
-    //   'claim_authentication_code.valid_from': payload.claiming_valid_from,
-    //   'claim_authentication_code.valid_to': payload.claiming_valid_to,
-    // };
+  updateEndDevice(payload: UpdateEndDeviceUserPayload): Promise<UpdateEndDevice> {
+    const recpaths = getAllKeys(payload);
 
-    // const extractPayload = JSON.parse(JSON.stringify(receievePayload));
-    // const paths = Object.keys(extractPayload);
+    /*This function removes some keys which are not meant to be passed.*/
+    const filterKeys = (keys: string[]): string[] => {
+      var newArray = [];
+      for (var i = 0; i < keys.length; i++) {
+        if (
+          keys[i] !== 'ids.device_id' &&
+          keys[i] !== 'ids.application_ids.application_id' &&
+          keys[i] !== 'ids.dev_eui' &&
+          keys[i] !== 'ids.join_eui' &&
+          keys[i] !== 'ids.dev_addr'
+        ) {
+          newArray.push(keys[i]);
+        }
+      }
+      return newArray;
+    };
 
-    // const apiPayload: UpdateEndDevicePayload = {
-    //   end_device: {
-    //     ids: {
-    //       device_id: payload.device_id,
-    //       application_ids: {
-    //         application_id: this.APPLICATION_ID,
-    //       },
-    //       dev_eui: payload.dev_eui,
-    //       join_eui: payload.join_eui,
-    //     },
-    //     name: payload.name,
-    //     description: payload.description,
-    //     attributes: payload.attributes,
-    //     version_ids: {
-    //       brand_id: payload.brand_id,
-    //       model_id: payload.model_id,
-    //       hardware_version: payload.hardware_version,
-    //       firmware_version: payload.firmware_version,
-    //       band_id: payload.band_id,
-    //     },
-    //     network_server_address: payload.network_server_address,
-    //     network_server_kek_label: payload.network_server_kek_label,
-    //     application_server_address: payload.application_server_address,
-    //     application_server_kek_label: payload.application_server_kek_label,
-    //     application_server_id: payload.application_server_id,
-    //     join_server_address: payload.join_server_address,
-    //     locations: {
-    //       latitude: payload.location_latitude,
-    //       longitude: payload.location_longitude,
-    //       altitude: payload.location_altitude,
-    //       accuracy: payload.location_accuracy,
-    //     },
-    //     supports_class_b: payload.supports_class_b,
-    //     supports_class_c: payload.supports_class_c,
-    //     lorawan_version: payload.lorawan_version,
-    //     lorawan_phy_version: payload.lorawan_phy_version,
-    //     frequency_plan_id: payload.frequency_plan_id,
-    //     resets_join_nonces: payload.resets_join_nonces,
-    //     root_keys: {
-    //       app_key: {
-    //         key: payload.app_key,
-    //       },
-    //     },
-    //     net_id: payload.net_id,
-    //     mac_settings: {
-    //       status_count_periodicity: payload.status_count_periodicity,
-    //       status_time_periodicity: payload.status_time_periodicity,
-    //       adr: {
-    //         static: {
-    //           data_rate_index: payload.static_data_rate_index,
-    //           tx_power_index: payload.static_tx_power_index,
-    //           nb_trans: payload.static_nb_trans,
-    //         },
-    //         dynamic: { margin: payload.dynamic_margin },
-    //         disabled: payload.disabled,
-    //       },
-    //       desired_max_duty_cycle: payload.desired_max_duty_cycle,
-    //       supports_32_bit_f_cnt: payload.supports_32_bit_f_cnt,
-    //       desired_rx2_frequency: payload.desired_rx2_frequency,
-    //       desired_rx2_data_rate_index: payload.desired_rx2_data_rate_index,
-    //       desired_rx1_data_rate_offset: payload.desired_rx1_data_rate_offset,
-    //       desired_rx1_delay: payload.desired_rx1_delay,
-    //       class_c_timeout: payload.class_c_timeout,
-    //       factory_preset_frequencies: payload.factory_preset_frequencies,
-    //     },
-    //     formatters: {
-    //       up_formatter: payload.up_formatter,
-    //       up_formatter_parameter: payload.up_formatter_parameter,
-    //       down_formatter: payload.down_formatter,
-    //       down_formatter_parameter: payload.down_formatter_parameter,
-    //     },
-    //     claim_authentication_code: {
-    //       value: payload.claiming_value,
-    //       valid_from: payload.claiming_valid_from,
-    //       valid_to: payload.claiming_valid_to,
-    //     },
-    //   },
-    //   field_mask: {
-    //     paths: paths,
-    //   },
-    // };
+    const paths = filterKeys(recpaths);
+
+    const apiPayload: UpdateEndDevicePayload = {
+      end_device: {
+        ids: {
+          device_id: payload.end_device.ids.device_id,
+          application_ids: {
+            application_id: this.APPLICATION_ID,
+          },
+          dev_eui: payload.end_device.ids?.dev_eui,
+          join_eui: payload.end_device.ids?.join_eui,
+          dev_addr: payload.end_device.ids?.dev_addr,
+        },
+        name: payload.end_device.name,
+        description: payload.end_device.description,
+        attributes: payload.end_device.attributes,
+        version_ids: {
+          brand_id: payload.end_device.version_ids?.brand_id,
+          model_id: payload.end_device.version_ids?.model_id,
+          hardware_version: payload.end_device.version_ids?.hardware_version,
+          firmware_version: payload.end_device.version_ids?.firmware_version,
+          band_id: payload.end_device.version_ids?.band_id,
+        },
+        service_profile_id: payload.end_device.service_profile_id,
+        network_server_address: payload.end_device.network_server_address,
+        network_server_kek_label: payload.end_device.network_server_kek_label,
+        application_server_address: payload.end_device.application_server_address,
+        application_server_kek_label: payload.end_device.application_server_kek_label,
+        application_server_id: payload.end_device.application_server_id,
+        join_server_address: payload.end_device.join_server_address,
+        locations: payload.end_device.locations,
+        picture: {
+          embedded: {
+            mime_type: payload.end_device.picture?.embedded?.mime_type,
+            data: payload.end_device.picture?.embedded?.data,
+          },
+          sizes: payload.end_device.picture?.sizes,
+        },
+        supports_class_b: payload.end_device.supports_class_b,
+        supports_class_c: payload.end_device.supports_class_c,
+        lorawan_version: payload.end_device.lorawan_version,
+        lorawan_phy_version: payload.end_device.lorawan_phy_version,
+        frequency_plan_id: payload.end_device.frequency_plan_id,
+        min_frequency: payload.end_device.min_frequency,
+        max_frequency: payload.end_device.max_frequency,
+        supports_join: payload.end_device.supports_join,
+        resets_join_nonces: payload.end_device.resets_join_nonces,
+        root_keys: {
+          root_key_id: payload.end_device.root_keys?.root_key_id,
+          app_key: payload.end_device.root_keys?.app_key,
+          nwk_key: payload.end_device.root_keys?.app_key,
+        },
+        net_id: payload.end_device.net_id,
+        mac_settings: payload.end_device.mac_settings,
+        mac_state: payload.end_device.mac_state,
+        pending_mac_state: payload.end_device.mac_state,
+        session: payload.end_device.session,
+        pending_session: payload.end_device.session,
+        last_dev_nonce: payload.end_device.last_dev_nonce,
+        used_dev_nonces: payload.end_device.used_dev_nonces,
+        last_join_nonce: payload.end_device.last_join_nonce,
+        last_rj_count_0: payload.end_device.last_rj_count_0,
+        last_rj_count_1: payload.end_device.last_rj_count_1,
+        last_dev_status_received_at: payload.end_device.last_dev_status_received_at,
+        power_state: payload.end_device.power_state,
+        battery_percentage: payload.end_device.battery_percentage,
+        downlink_margin: payload.end_device.downlink_margin,
+        queued_application_downlinks: payload.end_device.queued_application_downlinks,
+        formatters: {
+          up_formatter: payload.end_device.formatters?.up_formatter,
+          up_formatter_parameter: payload.end_device.formatters?.up_formatter_parameter,
+          down_formatter: payload.end_device.formatters?.down_formatter,
+          down_formatter_parameter: payload.end_device.formatters?.down_formatter_parameter,
+        },
+        provisioner_id: payload.end_device.provisioner_id,
+        provisioning_data: payload.end_device.provisioning_data,
+        multicast: payload.end_device.multicast,
+        claim_authentication_code: {
+          value: payload.end_device.claim_authentication_code?.value,
+          valid_from: payload.end_device.claim_authentication_code?.valid_from,
+          valid_to: payload.end_device.claim_authentication_code?.valid_to,
+        },
+        skip_payload_crypto: payload.end_device.skip_payload_crypto,
+        skip_payload_crypto_override: payload.end_device.skip_payload_crypto_override,
+        serial_number: payload.end_device.serial_number,
+        lora_alliance_profile_ids: {
+          vendor_id: payload.end_device.lora_alliance_profile_ids?.vendor_id,
+          vendor_profile_id: payload.end_device.lora_alliance_profile_ids?.vendor_profile_id,
+        },
+      },
+      field_mask: {
+        paths: paths,
+      },
+    };
+
     return this.API.send({
       method: 'PUT',
       url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.end_device.ids.device_id}`,
       headers: this.headers,
-      data: payload,
+      data: apiPayload,
     });
   }
 
@@ -576,6 +492,35 @@ export class EndDevice extends SetConfig {
       url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
       headers: this.headers,
       data: {},
+    });
+  }
+
+  downlinkQueue(payload: downlinkQueueUserPayload): Promise<any> {
+    const getBase64 = (type: string, payload: any) => {
+      if (type === 'string') {
+        const encoded: string = Buffer.from(payload, 'utf8').toString('base64');
+        return encoded;
+      } else if (type === 'decimal') {
+        const encoded: string = payload.toString('base64');
+        return encoded;
+      }
+    };
+    const mssgPayload = getBase64(payload.payload_type, payload.payload);
+
+    const apiPayload: downlinkQueuePush = {
+      downlinks: [
+        {
+          f_port: payload.port_no,
+          frm_payload: mssgPayload,
+          confirmed: payload.confirmed_downlink,
+        },
+      ],
+    };
+    return this.API.send({
+      method: 'POST',
+      url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}/down/${payload.request_type}`,
+      headers: this.headers,
+      data: apiPayload,
     });
   }
 }
