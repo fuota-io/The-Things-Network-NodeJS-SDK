@@ -953,7 +953,7 @@ export interface downlinkQueueUserPayload {
   confirmed_downlink: boolean;
 }
 
-export interface downlinkQueuePush {
+export interface downlinkQueue {
   end_device_ids?: {
     device_id?: string;
     application_ids?: { application_id?: string };
@@ -980,4 +980,25 @@ export interface downlinkQueuePush {
     priority?: string;
     correlation_ids?: string[];
   }[];
+}
+
+export interface subscribeDownLinkEventPayload {
+  device_id: string;
+  down_type: string;
+  host: string;
+  port: number;
+  username: string;
+  callback_downlink_event: (data: any) => void;
+  callback_subscribe_error: (data: any) => void;
+  callback_subscribe_disconnect: (data: any) => void;
+}
+
+export interface subscribeUpLinkEventPayload {
+  device_id: string;
+  host: string;
+  port: number;
+  username: string;
+  callback_downlink_event: (data: any) => void;
+  callback_subscribe_error: (data: any) => void;
+  callback_subscribe_disconnect: (data: any) => void;
 }

@@ -44,9 +44,9 @@ export class Organization extends SetConfig {
 
   /**
    * It creates an application for the organization.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateApplication}
-   * @param {PL-CreateApplication} payload - PL-CreateApplication
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateApplication}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateApplication}
+   * @param {Input-CreateApplication} payload - Input-CreateApplication
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateApplication}
    * The response from the API.
    */
   createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication> {
@@ -67,7 +67,7 @@ export class Organization extends SetConfig {
 
   /**
    * It returns the list of applications that have been created by the organization.
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetApplicationList}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetApplicationList}
    * The response from the API.
    */
   getApplicationList(): Promise<GetApplicationList> {
@@ -81,9 +81,9 @@ export class Organization extends SetConfig {
 
   /**
    * It creates an api key for the organization.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateAPIKeyForOrg}
-   * @param {PL-CreateAPIKeyForOrg} payload - PL-CreateAPIKeyForOrg
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateAPIKey}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateAPIKeyForOrg}
+   * @param {Input-CreateAPIKeyForOrg} payload - Input-CreateAPIKeyForOrg
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
    * The response from the API.
    */
   createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
@@ -103,9 +103,9 @@ export class Organization extends SetConfig {
 
   /**
    * It returns the list of api keys that have been created by the organization.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-GetAPIKeyList}
-   * @param {PL-GetAPIKeyList} payload - PL-GetAPIKeyList
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyList}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyList}
+   * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyList}
    * The response from the API.
    */
   getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
@@ -119,9 +119,9 @@ export class Organization extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-GetAPIKeyInfo}
-   * @param {PL-GetAPIKeyInfo} payload - PL-GetAPIKeyInfo
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyInfo}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyInfo}
+   * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyInfo}
    * The response from the API.
    */
   getAPIKeyInfo(payload: GetAPIKeyInfoUserPayload): Promise<GetAPIKeyInfo> {
@@ -135,9 +135,9 @@ export class Organization extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-UpdateAPIKeyOfOrg}
-   * @param {PL-UpdateAPIKeyOfOrg} payload - PL-UpdateAPIKeyOfOrg
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-UpdateAPIKey}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-UpdateAPIKeyOfOrg}
+   * @param {Input-UpdateAPIKeyOfOrg} payload - Input-UpdateAPIKeyOfOrg
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-UpdateAPIKey}
    * The response from the API.
    */
   updateAPIKey(payload: UpdateAPIKeyUserPayload): Promise<UpdateAPIKey> {
@@ -172,9 +172,9 @@ export class Organization extends SetConfig {
 
   /**
    * It returns rights of the collaborator (member) of the application.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-GetCollaboratorInfo}
-   * @param {PL-GetCollaboratorInfo} payload - PL-GetCollaboratorInfo
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetCollaboratorInfo}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetCollaboratorInfo}
+   * @param {Input-GetCollaboratorInfo} payload - Input-GetCollaboratorInfo
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetCollaboratorInfo}
    * The response from the API.
    */
   getCollaboratorInfo(payload: GetCollaboratorInfoUserPayload): Promise<GetCollaboratorInfo> {
@@ -188,9 +188,9 @@ export class Organization extends SetConfig {
 
   /**
    * It sets the rights of a collaborator (member) on the application.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-SetCollaborator}
-   * @param {PL-SetCollaborator} payload - PL-SetCollaborator
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-EmptyPayload}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-SetCollaborator}
+   * @param {Input-SetCollaborator} payload - Input-SetCollaborator
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
    * The response from the API.
    */
   setCollaborator(payload: SetCollaboratorUserPayload): Promise<any> {

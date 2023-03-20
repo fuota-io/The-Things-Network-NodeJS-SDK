@@ -40,12 +40,18 @@ export class User extends SetConfig {
 
   /**
    * It creates an application for the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateApplication}
-   * @param {PL-CreateApplication} payload - PL-CreateApplication
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateApplication}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateApplication}
+   * @param {Input-CreateApplication} payload - Input-CreateApplication
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateApplication}
    * The response from the API.
    * @example
-   * globalNS.method1(5, 10);
+   * const createApplicationPayloadForUser = {
+      application_id: 'meet59',
+      name: 'meet',
+      description: '',  };
+   *
+   * const user = new User('meetsavaj', config);
+   * const response = await user.createApplication(createApplicationPayloadForUser);
    */
   createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication> {
     const apiPayload: CreateApplicationPayload = {
@@ -65,7 +71,7 @@ export class User extends SetConfig {
 
   /**
    * It returns the list of applications that have been created by the user.
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetApplicationList}
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetApplicationList}
    * The response from the API.
    */
   getApplicationList(): Promise<GetApplicationList> {
@@ -79,9 +85,9 @@ export class User extends SetConfig {
 
   /**
    * It creates an api key for the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-CreateAPIKeyForUser}
-   * @param {PL-CreateAPIKeyForUser} payload - PL-CreateAPIKeyForUser
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-CreateAPIKey}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateAPIKeyForUser}
+   * @param {Input-CreateAPIKeyForUser} payload - Input-CreateAPIKeyForUser
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
    * The response from the API.
    */
   createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
@@ -102,8 +108,8 @@ export class User extends SetConfig {
   /**
    * It returns the list of api keys that have been created by the user.
    * @type {import("../dist/Interfaces/Doc Common/docApp.interface").cGetAPIKeyList}
-   * @param {PL-GetAPIKeyList} payload - PL-GetAPIKeyList
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyList}
+   * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyList}
    * The response from the API.
    */
   getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
@@ -117,9 +123,9 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-GetAPIKeyInfo}
-   * @param {PL-GetAPIKeyInfo} payload - PL-GetAPIKeyInfo
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-GetAPIKeyInfo}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyInfo}
+   * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyInfo}
    * The response from the API.
    */
   getAPIKeyInfo(payload: GetAPIKeyInfoUserPayload): Promise<GetAPIKeyInfo> {
@@ -133,9 +139,9 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").PL-UpdateAPIKeyOfUser}
-   * @param {PL-UpdateAPIKeyOfUser} payload - PL-UpdateAPIKeyOfUser
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").RESP-UpdateAPIKey}
+   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-UpdateAPIKeyOfUser}
+   * @param {Input-UpdateAPIKeyOfUser} payload - Input-UpdateAPIKeyOfUser
+   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-UpdateAPIKey}
    * The response from the API.
    */
   updateAPIKey(payload: UpdateAPIKeyUserPayload): Promise<UpdateAPIKey> {

@@ -5,6 +5,7 @@
  * @prop {string} NETWORK_SERVER Network Server
  * @prop {string} APPLICATION_SERVER Application Server
  * @prop {string} JOIN_SERVER Join Server
+ * @prop {string} [TENANT_ID] TENANT_ID Tenant Id
  */
 
 /**
@@ -16,14 +17,14 @@
  */
 
 /**
- * @typedef {Object} PL-CreateApplication
+ * @typedef {Object} Input-CreateApplication
  * @prop {string} application_id Application Id
- * @prop {string} name Application Name
- * @prop {string} description Application Description
+ * @prop {string} [name] Application Name
+ * @prop {string} [description] Application Description
  */
 
 /**
- * @typedef {Object} RESP-CreateApplication
+ * @typedef {Object} Output-CreateApplication
  * @prop {Object} ids Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
@@ -42,20 +43,20 @@
  */
 
 /**
- * @typedef {Object} RESP-GetApplicationList
+ * @typedef {Object} Output-GetApplicationList
  * @prop {Object[]} application Application List
  */
 
 /**
- * @typedef {Object} PL-CreateAPIKeyForUser
- * @prop {string} email User Email Address
+ * @typedef {Object} Input-CreateAPIKeyForUser
+ * @prop {string} [email] User Email Address
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} RESP-CreateAPIKey
+ * @typedef {Object} Output-CreateAPIKey
  * @prop {string} id API Key Id
  * @prop {string} key API Key
  * @prop {string} name API Key Name
@@ -66,24 +67,24 @@
  */
 
 /**
- * @typedef {Object} PL-GetAPIKeyList
- * @prop {string} order Order
- * @prop {number} limit Limit
- * @prop {number} page Page
+ * @typedef {Object} Input-GetAPIKeyList
+ * @prop {string} [order] Order
+ * @prop {number} [limit] Limit
+ * @prop {number} [page] Page
  */
 
 /**
- * @typedef {Object} RESP-GetAPIKeyList
+ * @typedef {Object} Output-GetAPIKeyList
  * @prop {Object[]} api_keys API Key List
  */
 
 /**
- * @typedef {Object} PL-GetAPIKeyInfo
+ * @typedef {Object} Input-GetAPIKeyInfo
  * @prop {string} key_id API Key Id
  */
 
 /**
- * @typedef {Object} RESP-GetAPIKeyInfo
+ * @typedef {Object} Output-GetAPIKeyInfo
  * @prop {string} id API Key Id
  * @prop {string} key API Key
  * @prop {string} name API Key Name
@@ -94,16 +95,16 @@
  */
 
 /**
- * @typedef {Object} PL-UpdateAPIKeyOfUser
- * @prop {string} email Email Address Of User
+ * @typedef {Object} Input-UpdateAPIKeyOfUser
+ * @prop {string} [email] Email Address Of User
  * @prop {string} api_key_id API Key Id
- * @prop {string} api_key_name API Key Name
- * @prop {string[]} api_key_rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {string} [api_key_name] API Key Name
+ * @prop {string[]} [api_key_rights] API Key Rights
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} RESP-UpdateAPIKey
+ * @typedef {Object} Output-UpdateAPIKey
  * @prop {string} id API Key Id
  * @prop {string} key API Key
  * @prop {string} name API Key Name
@@ -114,45 +115,45 @@
  */
 
 /**
- * @typedef {Object} PL-CreateAPIKeyForOrg
+ * @typedef {Object} Input-CreateAPIKeyForOrg
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} PL-UpdateAPIKeyOfOrg
+ * @typedef {Object} Input-UpdateAPIKeyOfOrg
  * @prop {string} api_key_id API Key Id
- * @prop {string} api_key_name API Key Name
- * @prop {string[]} api_key_rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {string} [api_key_name] API Key Name
+ * @prop {string[]} [api_key_rights] API Key Rights
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} PL-GetCollaboratorInfo
+ * @typedef {Object} Input-GetCollaboratorInfo
  * @prop {string} user_id User Id
  */
 
 /**
- * @typedef {Object} RESP-GetCollaboratorInfo
+ * @typedef {Object} Output-GetCollaboratorInfo
  * @prop {Object} ids User Id and Email
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} PL-SetCollaborator
+ * @typedef {Object} Input-SetCollaborator
  * @prop {string} user_id User Id
- * @prop {string} email User Email Address
+ * @prop {string} [email] User Email Address
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} RESP-EmptyPayload
+ * @typedef {Object} Output-EmptyPayload
  * @prop {Object} Object Empty Object
  */
 
 /**
- * @typedef {Object} RESP-GetApplication
+ * @typedef {Object} Output-GetApplication
  * @prop {Object} ids Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
@@ -171,14 +172,14 @@
  */
 
 /**
- * @typedef {Object} PL-UpdateApplication
- * @prop {string} name Application Name
- * @prop {string} description Application Description
- * @prop {Object} attributes Application Attributes
+ * @typedef {Object} Input-UpdateApplication
+ * @prop {string} [name] Application Name
+ * @prop {string} [description] Application Description
+ * @prop {Object} [attributes] Application Attributes
  */
 
 /**
- * @typedef {Object} RESP-UpdateApplication
+ * @typedef {Object} Output-UpdateApplication
  * @prop {Object} ids Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
@@ -197,7 +198,7 @@
  */
 
 /**
- * @typedef {Object} RESP-SearchApplication
+ * @typedef {Object} Output-SearchApplication
  * @prop {Object} ids Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
@@ -216,68 +217,68 @@
  */
 
 /**
- * @typedef {Object} RESP-GetApplicationRight
+ * @typedef {Object} Output-GetApplicationRight
  * @prop {string[]} rights Application Rights
  */
 
 /**
- * @typedef {Object} PL-CreateAPIKeyForApplication
+ * @typedef {Object} Input-CreateAPIKeyForApplication
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} PL-UpdateAPIKeyOfApplication
+ * @typedef {Object} Input-UpdateAPIKeyOfApplication
  * @prop {string} api_key_id API Key Id
- * @prop {string} api_key_name API Key Name
- * @prop {string[]} api_key_rights API Key Rights
- * @prop {timestamp} expires_at API Key Expires At
+ * @prop {string} [api_key_name] API Key Name
+ * @prop {string[]} [api_key_rights] API Key Rights
+ * @prop {timestamp} [expires_at] API Key Expires At
  */
 
 /**
- * @typedef {Object} PL-GetCollaboratorInfoOfUser
+ * @typedef {Object} Input-GetCollaboratorInfoOfUser
  * @prop {string} user_id User Id
  */
 
 /**
- * @typedef {Object} RESP-GetCollaboratorInfoOfUser
+ * @typedef {Object} Output-GetCollaboratorInfoOfUser
  * @prop {Object} ids User Id and Email
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} PL-GetCollaboratorInfoOfOrg
+ * @typedef {Object} Input-GetCollaboratorInfoOfOrg
  * @prop {string} organization_id Organization Id
  */
 
 /**
- * @typedef {Object} RESP-GetCollaboratorInfoOfOrg
+ * @typedef {Object} Output-GetCollaboratorInfoOfOrg
  * @prop {Object} ids Organization Id
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} PL-SetCollaboratorOfUser
+ * @typedef {Object} Input-SetCollaboratorOfUser
  * @prop {string} user_id User Id
- * @prop {string} email User Email Address
+ * @prop {string} [email] User Email Address
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} PL-SetCollaboratorOfOrg
+ * @typedef {Object} Input-SetCollaboratorOfOrg
  * @prop {string} organization_id Organization Id
  * @prop {string[]} rights Collaborator Rights
  */
 
 /**
- * @typedef {Object} PL-GetCollabortorList
- * @prop {string} order Order
- * @prop {number} limit Limit
- * @prop {number} page Page
+ * @typedef {Object} Input-GetCollabortorList
+ * @prop {string} [order] Order
+ * @prop {number} [limit] Limit
+ * @prop {number} [page] Page
  */
 
 /**
- * @typedef {Object} RESP-GetCollabortorList
+ * @typedef {Object} Output-GetCollabortorList
  * @prop {Object} collaborators Ids and Rights
  */

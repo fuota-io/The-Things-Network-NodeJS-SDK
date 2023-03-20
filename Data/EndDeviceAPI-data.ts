@@ -1,3 +1,8 @@
+import {
+  subscribeDownLinkEventPayload,
+  subscribeUpLinkEventPayload,
+} from '../Interfaces/Device/device.interface';
+
 export const config_T = {
   IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
   NETWORK_SERVER: 'https://nam1.cloud.thethings.network/api/v3/ns',
@@ -150,25 +155,47 @@ export const configDownlink = {
   TENANT_ID: 'oxit',
 };
 
+var x = new Uint8Array(2);
+x[0] = 17;
+
 export const downlinkQueuePushUserPayload = {
   device_id: 'cgr-otaa-08ac',
-  payload: 12,
-  payload_type: 'decimal',
+  payload: 'hello',
+  payload_type: 'string',
   port_no: 10,
   request_type: 'push',
   confirmed_downlink: false,
 };
 
-// export const downlinkQueuePushUserPayload = {
-//   end_device_ids: {
-//     device_id: 'cgr-otaa-08ac',
-//     application_ids: { application_id: 'stratis-thermostat' },
-//   },
-//   downlinks: [
-//     {
-//       f_port: 10,
-//       frm_payload: 'MQ==',
-//       confirmed: false,
-//     },
-//   ],
-// };
+export const subscribeDownLinkEventUserPayload: subscribeDownLinkEventPayload = {
+  device_id: 'cgr-otaa-08ac',
+  down_type: '#',
+  host: 'nam1.cloud.thethings.industries',
+  port: 1883,
+  username: 'stratis-thermostat@oxit',
+  callback_downlink_event: (data) => {
+    console.log('downlinkEvent', data.toString('utf8'));
+  },
+  callback_subscribe_disconnect: (data) => {
+    console.log('subscribeDisconnect', data.toString('utf8'));
+  },
+  callback_subscribe_error: (data) => {
+    console.log('subscribeError', data.toString('utf8'));
+  },
+};
+
+export const subscribeUpLinkEventUserPayload: subscribeUpLinkEventPayload = {
+  device_id: 'cgr-otaa-08ac',
+  host: 'nam1.cloud.thethings.industries',
+  port: 1883,
+  username: 'stratis-thermostat@oxit',
+  callback_downlink_event: (data) => {
+    console.log('downlinkEvent', data.toString('utf8'));
+  },
+  callback_subscribe_disconnect: (data) => {
+    console.log('subscribeDisconnect', data.toString('utf8'));
+  },
+  callback_subscribe_error: (data) => {
+    console.log('subscribeError', data.toString('utf8'));
+  },
+};

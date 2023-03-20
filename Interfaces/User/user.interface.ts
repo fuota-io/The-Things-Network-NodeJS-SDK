@@ -1,14 +1,14 @@
 export interface CreateApplicationUserPayload {
   application_id: string;
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
 }
 
 export interface CreateApplicationPayload {
   application: {
     ids: { application_id: string };
-    name: string;
-    description: string;
+    name?: string;
+    description?: string;
   };
   // collaborator: {
   //     user_ids: { user_id: string, email: string },

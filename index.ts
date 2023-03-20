@@ -46,7 +46,7 @@ export class SetConfig {
    * of the config object to the class properties.
    * @constructor
    * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
-   * @param {Config} config - Config
+   * @param {config} config - Config
    */
   constructor(config: Config) {
     this.IDENTITY_SERVER = config.IDENTITY_SERVER;
@@ -65,19 +65,4 @@ export class SetConfig {
     const headers = { AUTHORIZATION: `Bearer ${this.API_KEY}` };
     return headers;
   }
-}
-
-//************** To Extract Nested Object Keys ******************
-//***************************************************************
-export function getAllKeys(obj: { [x: string]: any }): string[] {
-  let keys = [];
-  for (let key in obj) {
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      keys.push(...getAllKeys(obj[key]).map((subKey: string) => `${key}.${subKey}`));
-    } else {
-      keys.push(key);
-    }
-  }
-  const newKeys = keys.toString().replaceAll('end_device.', '').split(',');
-  return newKeys;
 }

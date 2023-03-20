@@ -43,7 +43,9 @@
     "documentation": "^14.0.1",
     "jsdoc": "^4.0.2",
     "jsdoc-import-typedef": "^4.0.0-dev",
+    "mqtt": "^4.3.7",
     "node": "^19.6.0",
-    "taffydb": "^2.7.3"
+    "taffydb": "^2.7.3",
+    "typedoc": "^0.23.28"
   }
 }

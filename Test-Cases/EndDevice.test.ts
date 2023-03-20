@@ -15,6 +15,8 @@ import {
   deleteEndDeviceASUserPayload,
   configDownlink,
   downlinkQueuePushUserPayload,
+  subscribeDownLinkEventUserPayload,
+  subscribeUpLinkEventUserPayload,
 } from '../Data/EndDeviceAPI-data';
 
 // const device = new EndDevice('meet59', config_T);
@@ -439,18 +441,31 @@ import {
 //   });
 // });
 
-describe('DownlinkQueue Push', () => {
-  test('DownlinkQueue Push Successfully', async () => {
-    const device = new EndDevice('stratis-thermostat', configDownlink);
-    const response = await device.downlinkQueue(downlinkQueuePushUserPayload);
-    expect(response).not.toBeNull;
-  });
-});
-
-// describe('DownlinkQueue Push', () => {
-//   test('DownlinkQueue Push Successfully', async () => {
+// describe('DownlinkQueue Push/Replace', () => {
+//   test('DownlinkQueue Push/Replace Successfully', async () => {
 //     const device = new EndDevice('stratis-thermostat', configDownlink);
-//     const response = await device.downlinkQueueReplace(downlinkQueuePushUserPayload);
+//     const response = await device.downlinkQueue(downlinkQueuePushUserPayload);
+//     expect(response).not.toBeNull;
+//   });
+// });
+
+// const device = new EndDevice('stratis-thermostat', configDownlink);
+// const downEvent = device.subscribeDownLinkEvent(subscribeDownLinkEventUserPayload);
+// const upEvent = device.subscribeUpLinkEvent(subscribeUpLinkEventUserPayload);
+// device.unsubscribeEvent(downEvent);
+
+// describe('SubscribeDownlink', () => {
+//   test('SubscribeDownlink Successfully', async () => {
+//     const device = new EndDevice('stratis-thermostat', configDownlink);
+//     const response = await device.subscribeDownLinkEvent(subscribeDwonLinkEventUserPayload);
+//     expect(response).not.toBeNull;
+//   });
+// });
+
+// describe('UnsubscribeDownlink', () => {
+//   test('UnsubscribeDownlink Successfully', async () => {
+//     const device = new EndDevice('stratis-thermostat', configDownlink);
+//     const response = await device.unsubscribeDownLinkEvent();
 //     expect(response).not.toBeNull;
 //   });
 // });

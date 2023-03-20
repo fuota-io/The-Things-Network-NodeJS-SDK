@@ -11,4 +11,5 @@ export interface Config {
   NETWORK_SERVER: string;
   APPLICATION_SERVER: string;
   JOIN_SERVER: string;
+  TENANT_ID?: string;
 }
