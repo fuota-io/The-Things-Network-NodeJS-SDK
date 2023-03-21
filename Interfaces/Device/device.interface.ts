@@ -944,6 +944,10 @@ export interface deleteEndDeviceNSUserPayload extends deleteEndDeviceISUserPaylo
 
 export interface deleteEndDeviceASUserPayload extends deleteEndDeviceISUserPayload {}
 
+export interface issueDevEUI {
+  dev_eui: string;
+}
+
 export interface downlinkQueueUserPayload {
   device_id: string;
   payload: any;

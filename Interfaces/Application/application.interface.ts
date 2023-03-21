@@ -9,8 +9,8 @@ export interface GetApplicationPayload {
 }
 
 export interface GetApplication {
-  ids: {
-    application_id: string;
+  ids?: {
+    application_id?: string;
   };
   created_at?: any;
   updated_at?: any;
@@ -75,14 +75,13 @@ export interface GetApplicationRight {
   rights: string[];
 }
 
-export interface CreateAPIKeyUserPayload {
-  name: string;
-  rights: string[];
-  expires_at?: any;
-}
+// export interface CreateAPIKeyUserPayload {
+//   name: string;
+//   rights: string[];
+//   expires_at?: any;
+// }
 
 export interface CreateAPIKeyPayload {
-  application_ids: { application_id: string };
   name: string;
   rights: string[];
   expires_at?: any;
@@ -142,7 +141,6 @@ export interface UpdateAPIKeyUserPayload {
 }
 
 export interface UpdateAPIKeyPayload {
-  application_ids: { application_id: string };
   api_key: {
     id: string;
     name?: string;
@@ -223,7 +221,6 @@ export interface SetCollaboratorUserPayloadForUser {
 }
 
 export interface SetCollaboratorPayloadForUser {
-  application_ids: { application_id: string };
   collaborator: {
     ids: {
       user_ids: { user_id: string; email?: string };
@@ -238,7 +235,6 @@ export interface SetCollaboratorUserPayloadForOrg {
 }
 
 export interface SetCollaboratorPayloadForOrg {
-  application_ids: { application_id: string };
   collaborator: {
     ids: {
       organization_ids: { organization_id: string };

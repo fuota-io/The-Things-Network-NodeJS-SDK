@@ -9,9 +9,6 @@ export class APICall {
   /**
    * It takes in an object with a url, method, data, and headers property, and returns a promise that
    * resolves to the data from the response, or rejects with the error from the response.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").ApiConnectionOptions}
-   * @param {ApiConnectionOptions} params - ApiConnectionOptions
-   * @returns The response.data is being returned.
    */
   async send(params: ApiConnectionOptions) {
     return axios(params.url, {
@@ -42,11 +39,9 @@ export class SetConfig {
   API_KEY: string;
 
   /**
-   * The above function is a constructor function that takes in a config object and assigns the values
-   * of the config object to the class properties.
-   * @constructor
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
-   * @param {config} config - Config
+   * The above function is a constructor function that takes a config object as a parameter and assigns
+   * the values of the config object to the class properties.
+   * @param {Config} config - Config
    */
   constructor(config: Config) {
     this.IDENTITY_SERVER = config.IDENTITY_SERVER;

@@ -5,7 +5,6 @@ import {
   CreateApplication,
   CreateApplicationUserPayload,
   GetApplicationList,
-  CreateAPIKeyUserPayload,
   CreateAPIKey,
   CreateAPIKeyPayload,
   GetAPIKeyListUserPayload,
@@ -15,6 +14,9 @@ import {
   UpdateAPIKeyUserPayload,
   UpdateAPIKey,
   UpdateAPIKeyPayload,
+  CreateGatewayUserPayload,
+  CreateGateway,
+  GetGatewayList,
 } from '../Interfaces/User/user.interface';
 
 /**
@@ -30,8 +32,8 @@ export class User extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class
    * @param {string} userID - The user ID of the user you want to get the profile of.
-   * @param {Config} config - Config - This is the configuration object that is passed to the
-   * constructor of the base class.
+   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
+   * @param {Config} config - Config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(userID: string, config: Config) {
     super(config);
@@ -90,18 +92,17 @@ export class User extends SetConfig {
    * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
    * The response from the API.
    */
-  createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
-    const apiPayload: CreateAPIKeyPayload = {
-      user_ids: { user_id: this.USER_ID, email: payload.email },
-      name: payload.name,
-      rights: payload.rights,
-      expires_at: payload.expires_at,
-    };
+  createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey> {
+    // const apiPayload: CreateAPIKeyPayload = {
+    //   name: payload.name,
+    //   rights: payload.rights,
+    //   expires_at: payload.expires_at,
+    // };
     return this.API.send({
       method: 'POST',
       url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/api-keys`,
       headers: this.headers,
-      data: apiPayload,
+      data: payload,
     });
   }
 
@@ -155,7 +156,6 @@ export class User extends SetConfig {
     const paths = Object.keys(extractPayload);
 
     const apiPayload: UpdateAPIKeyPayload = {
-      user_ids: { user_id: this.USER_ID, email: payload.email },
       api_key: {
         id: payload.api_key_id,
         name: payload.api_key_name,
@@ -171,6 +171,35 @@ export class User extends SetConfig {
       url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/api-keys/${payload.api_key_id}`,
       headers: this.headers,
       data: apiPayload,
+    });
+  }
+
+  /**
+   * It creates a gateway for the user.
+   * @param {Input-CreateGateway} payload - {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:CreateGatewayRequest CreateGateway}
+   * @returns {Output-CreateGateway}
+   * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateway CreateGateway}
+   */
+  createGateway(payload: CreateGatewayUserPayload): Promise<CreateGateway> {
+    return this.API.send({
+      method: 'POST',
+      url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/gateways`,
+      headers: this.headers,
+      data: payload,
+    });
+  }
+
+  /**
+   * It returns the list of gateways that have been created by the user.
+   * @returns {Output-GetGatewayList}
+   * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
+   */
+  getGatewayList(): Promise<GetGatewayList> {
+    return this.API.send({
+      method: 'GET',
+      url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/gateways`,
+      headers: this.headers,
+      data: {},
     });
   }
 }

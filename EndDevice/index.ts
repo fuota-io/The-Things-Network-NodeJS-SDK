@@ -30,6 +30,7 @@ import {
   subscribeDownLinkEventPayload,
   subscribeUpLinkEventPayload,
   deleteEndDeviceISUserPayload,
+  issueDevEUI,
 } from '../Interfaces/Device/device.interface';
 
 /**
@@ -47,7 +48,8 @@ export class EndDevice extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class.
    * @param {string} applicationID - The ID of the application you want to use.
-   * @param {Config} config - Config
+   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
+   * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(applicationID: string, config: Config) {
     super(config);
@@ -379,6 +381,7 @@ export class EndDevice extends SetConfig {
    */
   updateEndDevice(payload: UpdateEndDeviceUserPayload): Promise<UpdateEndDevice> {
     const recpaths = getAllKeys(payload);
+    const newKeys = recpaths.toString().replaceAll('end_device.', '').split(',');
 
     /*This function removes some keys which are not meant to be passed.*/
     const filterKeys = (keys: string[]): string[] => {
@@ -397,7 +400,7 @@ export class EndDevice extends SetConfig {
       return newArray;
     };
 
-    const paths = filterKeys(recpaths);
+    const paths = filterKeys(newKeys);
 
     const apiPayload: UpdateEndDevicePayload = {
       end_device: {
@@ -587,6 +590,20 @@ export class EndDevice extends SetConfig {
     return this.API.send({
       method: 'DELETE',
       url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+      headers: this.headers,
+      data: {},
+    });
+  }
+
+  /**
+   * It returns DevEUIs that are available for use.
+   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-IssueDevEUI}
+   * The response from the API.
+   */
+  issueDevEUI(): Promise<issueDevEUI> {
+    return this.API.send({
+      method: 'POST',
+      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/dev-eui`,
       headers: this.headers,
       data: {},
     });

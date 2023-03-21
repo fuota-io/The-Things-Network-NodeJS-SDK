@@ -11,7 +11,6 @@ import {
   GetApplicationRight,
   CreateAPIKeyPayload,
   CreateAPIKey,
-  CreateAPIKeyUserPayload,
   GetAPIKeyListUserPayload,
   GetAPIKeyList,
   GetAPIKeyInfoUserPayload,
@@ -44,7 +43,8 @@ export class Application extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class
    * @param {string} applicationID - The ID of the application you want to use.
-   * @param {Config} config - Config
+   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
+   * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(applicationID: string, config: Config) {
     super(config);
@@ -96,7 +96,6 @@ export class Application extends SetConfig {
 
     const apiPayload: UpdateApplicationPayload = {
       application: {
-        ids: { application_id: this.APPLICATION_ID },
         name: payload.name,
         description: payload.description,
         attributes: payload.attributes,
@@ -190,18 +189,17 @@ export class Application extends SetConfig {
    * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
    * The response from the API.
    */
-  createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
-    const apiPayload: CreateAPIKeyPayload = {
-      application_ids: { application_id: this.APPLICATION_ID },
-      name: payload.name,
-      rights: payload.rights,
-      expires_at: payload.expires_at,
-    };
+  createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey> {
+    // const apiPayload: CreateAPIKeyPayload = {
+    //   name: payload.name,
+    //   rights: payload.rights,
+    //   expires_at: payload.expires_at,
+    // };
     return this.API.send({
       method: 'POST',
       url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/api-keys`,
       headers: this.headers,
-      data: apiPayload,
+      data: payload,
     });
   }
 
@@ -255,7 +253,6 @@ export class Application extends SetConfig {
     const paths = Object.keys(extractPayload);
 
     const apiPayload: UpdateAPIKeyPayload = {
-      application_ids: { application_id: this.APPLICATION_ID },
       api_key: {
         id: payload.api_key_id,
         name: payload.api_key_name,
@@ -319,7 +316,6 @@ export class Application extends SetConfig {
    */
   setCollaboratorOfUser(payload: SetCollaboratorUserPayloadForUser): Promise<any> {
     const apiPayload: SetCollaboratorPayloadForUser = {
-      application_ids: { application_id: this.APPLICATION_ID },
       collaborator: {
         ids: {
           user_ids: { user_id: payload.user_id, email: payload.email },
@@ -344,7 +340,6 @@ export class Application extends SetConfig {
    */
   setCollaboratorOfOrg(payload: SetCollaboratorUserPayloadForOrg): Promise<any> {
     const apiPayload: SetCollaboratorPayloadForOrg = {
-      application_ids: { application_id: this.APPLICATION_ID },
       collaborator: {
         ids: {
           organization_ids: { organization_id: payload.organization_id },

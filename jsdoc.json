@@ -5,7 +5,7 @@
       "dist/Organization/index.js",
       "dist/Application/index.js",
       "dist/EndDevice/index.js",
-      "dist/index.js",
+      "dist/Gateway/index.js",
       "dist/Interfaces/Doc Common/docApp.interface.js",
       "dist/Interfaces/Doc Common/docEndDevice.interface.js"
     ]

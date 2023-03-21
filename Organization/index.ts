@@ -5,7 +5,6 @@ import {
   CreateApplication,
   CreateApplicationUserPayload,
   GetApplicationList,
-  CreateAPIKeyUserPayload,
   CreateAPIKey,
   CreateAPIKeyPayload,
   GetAPIKeyListUserPayload,
@@ -19,6 +18,9 @@ import {
   GetCollaboratorInfoUserPayload,
   SetCollaboratorUserPayload,
   SetCollaboratorPayload,
+  CreateGatewayUserPayload,
+  CreateGateway,
+  GetGatewayList,
 } from '../Interfaces/Organization/organization.interface';
 
 /**
@@ -34,8 +36,8 @@ export class Organization extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class
    * @param {string} organizationID - The ID of the organization you want to get the list of users from.
-   * @param {Config} config - Config - This is the configuration object that is passed to the
-   * constructor of the base class.
+   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
+   * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(organizationID: string, config: Config) {
     super(config);
@@ -86,18 +88,17 @@ export class Organization extends SetConfig {
    * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
    * The response from the API.
    */
-  createAPIKey(payload: CreateAPIKeyUserPayload): Promise<CreateAPIKey> {
-    const apiPayload: CreateAPIKeyPayload = {
-      organization_ids: { organization_id: this.ORGANIZATION_ID },
-      name: payload.name,
-      rights: payload.rights,
-      expires_at: payload.expires_at,
-    };
+  createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey> {
+    // const apiPayload: CreateAPIKeyPayload = {
+    //   name: payload.name,
+    //   rights: payload.rights,
+    //   expires_at: payload.expires_at,
+    // };
     return this.API.send({
       method: 'POST',
       url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/api-keys`,
       headers: this.headers,
-      data: apiPayload,
+      data: payload,
     });
   }
 
@@ -151,7 +152,6 @@ export class Organization extends SetConfig {
     const paths = Object.keys(extractPayload);
 
     const apiPayload: UpdateAPIKeyPayload = {
-      organization_ids: { organization_id: this.ORGANIZATION_ID },
       api_key: {
         id: payload.api_key_id,
         name: payload.api_key_name,
@@ -195,7 +195,6 @@ export class Organization extends SetConfig {
    */
   setCollaborator(payload: SetCollaboratorUserPayload): Promise<any> {
     const apiPayload: SetCollaboratorPayload = {
-      organization_ids: { organization_id: this.ORGANIZATION_ID },
       collaborator: {
         ids: {
           user_ids: { user_id: payload.user_id, email: payload.email },
@@ -208,6 +207,34 @@ export class Organization extends SetConfig {
       url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/collaborators`,
       headers: this.headers,
       data: apiPayload,
+    });
+  }
+  /**
+   * It creates a gateway for the organization.
+   * @param {Input-CreateGateway} payload - {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:CreateGatewayRequest CreateGateway}
+   * @returns {Output-CreateGateway}
+   * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateway CreateGateway}
+   */
+  createGateway(payload: CreateGatewayUserPayload): Promise<CreateGateway> {
+    return this.API.send({
+      method: 'POST',
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/gateways`,
+      headers: this.headers,
+      data: payload,
+    });
+  }
+
+  /**
+   * It returns the list of gateways that have been created by the organization.
+   * @returns {Output-GetGatewayList}
+   * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
+   */
+  getGatewayList(): Promise<GetGatewayList> {
+    return this.API.send({
+      method: 'GET',
+      url: `${this.IDENTITY_SERVER}/organizations/${this.ORGANIZATION_ID}/gateways`,
+      headers: this.headers,
+      data: {},
     });
   }
 }

@@ -294,6 +294,11 @@
  */
 
 /**
+ * @typedef {Object} Output-IssueDevEUI
+ * @prop {string} dev_eui - The dev eui of the end device.
+ */
+
+/**
  * @typedef {Object} Input-DownlinkQueue
  * @property {string} device_id - The device ID of the end device.
  * @property {string | byteArray} payload - The payload of the downlink queue.

@@ -1,19 +1,11 @@
 /**
  * @typedef {Object} Config
- * @prop {string} IDENTITY_SERVER Identity Server
  * @prop {string} API_KEY API Key
+ * @prop {string} IDENTITY_SERVER Identity Server
  * @prop {string} NETWORK_SERVER Network Server
  * @prop {string} APPLICATION_SERVER Application Server
  * @prop {string} JOIN_SERVER Join Server
  * @prop {string} [TENANT_ID] TENANT_ID Tenant Id
- */
-
-/**
- * @typedef {Object} ApiConnectionOptions
- * @prop {string} url URL
- * @prop {string} method Method
- * @prop {Object} headers Headers
- * @prop {string} data Data
  */
 
 /**
@@ -49,7 +41,6 @@
 
 /**
  * @typedef {Object} Input-CreateAPIKeyForUser
- * @prop {string} [email] User Email Address
  * @prop {string} name API Key Name
  * @prop {string[]} rights API Key Rights
  * @prop {timestamp} [expires_at] API Key Expires At
@@ -96,7 +87,6 @@
 
 /**
  * @typedef {Object} Input-UpdateAPIKeyOfUser
- * @prop {string} [email] Email Address Of User
  * @prop {string} api_key_id API Key Id
  * @prop {string} [api_key_name] API Key Name
  * @prop {string[]} [api_key_rights] API Key Rights
@@ -281,4 +271,9 @@
 /**
  * @typedef {Object} Output-GetCollabortorList
  * @prop {Object} collaborators Ids and Rights
+ */
+
+/**
+ * @typedef {Object} Output-GetGatewayRight
+ * @prop {string[]} rights Gateway Rights
  */

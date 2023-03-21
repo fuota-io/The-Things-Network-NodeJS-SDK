@@ -441,6 +441,14 @@ import {
 //   });
 // });
 
+// describe('IssueDevEUI', () => {
+//   test('IssueDevEUI Successfully', async () => {
+//     const response = await device.issueDevEUI();
+//     console.log('response: ', response);
+//     expect(response).not.toBeNull;
+//   });
+// });
+
 // describe('DownlinkQueue Push/Replace', () => {
 //   test('DownlinkQueue Push/Replace Successfully', async () => {
 //     const device = new EndDevice('stratis-thermostat', configDownlink);

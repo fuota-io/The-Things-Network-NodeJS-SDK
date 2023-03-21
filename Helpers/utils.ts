@@ -22,6 +22,5 @@ export function getAllKeys(obj: { [x: string]: any }): string[] {
       keys.push(key);
     }
   }
-  const newKeys = keys.toString().replaceAll('end_device.', '').split(',');
-  return newKeys;
+  return keys;
 }

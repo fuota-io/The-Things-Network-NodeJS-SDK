@@ -1,8 +1,7 @@
 import { Application } from '../Application/index';
 import { Organization } from '../Organization/index';
 import { User } from '../User/index';
-// import { Device } from './Device/index';
-// import { Gateway } from './Gateway/index';
+
 import {
   config_T,
   config_F,
@@ -44,7 +43,20 @@ import {
   setCollaboratorPayloadForOrg_T,
   setCollaboratorPayloadForOrg_F,
   getCollaboratorListUserPayload,
+  createGatewayPayload,
+  updateGatewayPayload,
+  createAPIKeyPayloadForGateway,
+  getAPIKeyListForGateway,
+  getAPIKeyInfoPayloadForGateway_T,
+  getAPIKeyInfoPayloadForGateway_F,
+  updateAPIKeyUserPayloadForGateway_T,
+  updateAPIKeyUserPayloadForGateway_F,
+  setCollaboratorPayloadForGateway_User_T,
+  setCollaboratorPayloadForGateway_User_F,
+  setCollaboratorPayloadForGateway_Org_T,
+  setCollaboratorPayloadForGateway_Org_F,
 } from '../Data/AppAPI-data';
+import { Gateway } from '../Gateway';
 
 const app = new Application('meet59', config_T);
 const user = new User('meetsavaj', config_T);
@@ -123,14 +135,14 @@ describe('Application (Org) Creation Errors', () => {
 describe('Get an Application by ID', () => {
   test('Get An Application Successfully', async () => {
     const response = await app.getApplicationInfo();
-    expect(response.ids.application_id).toBe(getApplicationPayload_T.application_id);
+    expect(response.ids?.application_id).toBe(getApplicationPayload_T.application_id);
   });
 });
 
 describe('Get Application Errors', () => {
   test('Application ID Not Matching', async () => {
     const response = await app.getApplicationInfo();
-    expect(response.ids.application_id).not.toBe(getApplicationPayload_F.application_id);
+    expect(response.ids?.application_id).not.toBe(getApplicationPayload_F.application_id);
   });
 });
 
@@ -158,7 +170,7 @@ describe('List Applications (Org)', () => {
 describe('Update Application', () => {
   test('Application Updated Successfully', async () => {
     const response = await app.updateApplication(updateApplicationPayload_T);
-    expect(response.ids.application_id).toBe('meet59');
+    expect(response.ids?.application_id).toBe('meet59');
     expect(response.name).toBe(updateApplicationPayload_T.name);
     expect(response.attributes).toEqual(updateApplicationPayload_T.attributes);
   });

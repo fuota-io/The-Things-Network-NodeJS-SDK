@@ -1,3 +1,5 @@
+import { UpdateGatewayUserPayload } from '../Interfaces/Gateway/gateway.interface';
+
 export const config_T = {
   IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
   NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
@@ -307,4 +309,106 @@ export const getCollaboratorListUserPayload = {
 
 export const issueDevEUIPayload = {
   application_id: 'meet50',
+};
+
+export const createGatewayPayload = {
+  gateway: {
+    ids: { gateway_id: 'eui-ee34634e6ada3425', eui: 'EE34634E6ADA3425' },
+    name: 'gateway',
+    description: 'ssdsdad',
+    gateway_server_address: 'nam1.cloud.thethings.network',
+    frequency_plan_id: 'US_902_928_FSB_3',
+    status_public: true,
+    location_public: true,
+    enforce_duty_cycle: true,
+    schedule_anytime_delay: '0.530s',
+    require_authenticated_connection: true,
+  },
+};
+
+export const updateGatewayPayload = {
+  gateway: {
+    // attributes: {
+    //   dfhdf: 'dfhdfh',
+    // },
+    description: 'fghfh',
+  },
+};
+
+export const createAPIKeyPayloadForGateway = {
+  name: 'meet',
+  rights: [
+    'RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE',
+    'RIGHT_APPLICATION_DEVICES_WRITE_KEYS',
+    'RIGHT_APPLICATION_DEVICES_READ',
+  ],
+  expires_at: null,
+};
+
+export const getAPIKeyListForGateway = {
+  order: '',
+  limit: 0,
+  page: 0,
+};
+
+export const getAPIKeyInfoPayloadForGateway_T = {
+  key_id: '2YCXSFCMCADRZZKHVH723AE7K7SGA365KJS374I',
+};
+
+export const getAPIKeyInfoPayloadForGateway_F = {
+  key_id: '2YCXSFCMCADRZZKHVH723AE7K7SGA365KJS374',
+};
+
+export const updateAPIKeyUserPayloadForGateway_T = {
+  api_key_id: '2YCXSFCMCADRZZKHVH723AE7K7SGA365KJS374I',
+  api_key_name: 'meet',
+  api_key_rights: ['RIGHT_APPLICATION_ALL'],
+  expires_at: null,
+};
+
+export const updateAPIKeyUserPayloadForGateway_F = {
+  api_key_id: '2YCXSFCMCADRZZKHVH723AE7K7SGA365KJS374',
+  api_key_name: 'meet',
+  api_key_rights: ['RIGHT_APPLICATION_ALL'],
+  expires_at: null,
+};
+
+export const getCollaboratorInfoPayloadForGateway_User_T = {
+  user_id: 'meetsavaj',
+  email: '',
+};
+
+export const getCollaboratorInfoPayloadForGateway_User_F = {
+  user_id: 'meetsava',
+  email: '',
+};
+
+export const getCollaboratorInfoPayloadForGateway_Org_T = {
+  organization_id: 'organ1',
+};
+
+export const getCollaboratorInfoPayloadForGateway_Org_F = {
+  organization_id: 'orgsdbh',
+};
+
+export const setCollaboratorPayloadForGateway_User_T = {
+  user_id: 'meetsavaj',
+  email: '',
+  rights: ['RIGHT_ALL'],
+};
+
+export const setCollaboratorPayloadForGateway_User_F = {
+  user_id: 'meetsava',
+  email: '',
+  rights: ['RIGHT_ALL'],
+};
+
+export const setCollaboratorPayloadForGateway_Org_T = {
+  organization_id: 'organ4',
+  rights: ['RIGHT_APPLICATION_ALL'],
+};
+
+export const setCollaboratorPayloadForGateway_Org_F = {
+  organization_id: 'organ4asfas',
+  rights: ['RIGHT_APPLICATION_ALL'],
 };
