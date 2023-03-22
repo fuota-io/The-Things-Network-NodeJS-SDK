@@ -40,6 +40,7 @@ import { getAllKeys } from '../Helpers/utils';
 export class Gateway extends SetConfig {
   private GATEWAY_ID: string;
   private API: APICall = new APICall();
+  private paths: string[] = [];
 
   /**
    * The constructor function is a special function that is called when an object is created from a
@@ -89,12 +90,16 @@ export class Gateway extends SetConfig {
    */
   updateGateway(payload: UpdateGatewayUserPayload): Promise<UpdateGateway> {
     const recpaths = getAllKeys(payload);
-    const paths = recpaths.toString().replaceAll('gateway.', '').split(',');
-    // const paths = temp
-    //   .toString()
-    //   .replace(/\attributes.$/, '')
-    //   .split(',');
-    // console.log('paths: ', paths);
+    const tempArr = recpaths.toString().replaceAll('gateway.', '').split(',');
+    const tempPaths = tempArr.filter((el) => el.includes('attributes.'));
+
+    if (tempPaths.length != 0) {
+      this.paths = tempArr.toString().replaceAll(tempPaths.toString(), 'attributes').split(',');
+    } else {
+      this.paths = tempArr;
+    }
+
+    const paths = this.paths;
 
     const apiPayload: UpdateGatewayPayload = {
       gateway: {

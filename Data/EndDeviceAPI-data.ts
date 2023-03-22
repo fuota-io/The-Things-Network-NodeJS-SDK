@@ -134,6 +134,9 @@ export const updateEndDeviceUserPayload = {
     network_server_address: 'nam1.cloud.thethings.network',
     application_server_address: 'nam1.cloud.thethings.network',
     join_server_address: 'nam1.cloud.thethings.network',
+    attributes: {
+      hello: 'device',
+    },
   },
 };
 

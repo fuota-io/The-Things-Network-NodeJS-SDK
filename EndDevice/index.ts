@@ -43,6 +43,7 @@ export class EndDevice extends SetConfig {
   private API: APICall = new APICall();
   private topic: string | undefined;
   private conn: any | undefined;
+  private paths: string[] = [];
 
   /**
    * The constructor function is a special function that is called when an object is created from a
@@ -400,7 +401,16 @@ export class EndDevice extends SetConfig {
       return newArray;
     };
 
-    const paths = filterKeys(newKeys);
+    const tempArr = filterKeys(newKeys);
+    const tempPaths = tempArr.filter((el) => el.includes('attributes.'));
+
+    if (tempPaths.length != 0) {
+      this.paths = tempArr.toString().replaceAll(tempPaths.toString(), 'attributes').split(',');
+    } else {
+      this.paths = tempArr;
+    }
+
+    const paths = this.paths;
 
     const apiPayload: UpdateEndDevicePayload = {
       end_device: {

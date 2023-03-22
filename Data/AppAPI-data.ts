@@ -328,9 +328,9 @@ export const createGatewayPayload = {
 
 export const updateGatewayPayload = {
   gateway: {
-    // attributes: {
-    //   dfhdf: 'dfhdfh',
-    // },
+    attributes: {
+      dfhdf: 'dfhdfh',
+    },
     description: 'fghfh',
   },
 };
