@@ -17,13 +17,17 @@
   },
   "opts": {
     "template": "node_modules/clean-jsdoc-theme",
+    "readme": "./readme/readme.md",
     "recurse": true,
     "destination": "./docs/",
     "encoding": "utf8",
     "verbose": true,
     "theme_opts": {
       "default_theme": "dark",
-      "search": false
+      "search": true,
+      "title": "TTN-VruttiTech",
+      "base_url": "D:/Vrutti Tech/The Things Stack/fuota-things-stack-node-sdk/docs/",
+      "homepageTitle": "The Things Stack Docs"
     }
   },
   "markdown": {

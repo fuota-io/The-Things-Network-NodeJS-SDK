@@ -1,9 +1,3 @@
-/**
- * @file index.js is the root file for this example app
- * @author Brad Traversy
- * @see Demo <a href="https://traversymedia.com">Traversy Media</a>
- */
-
 import { APICall, SetConfig } from '../index';
 import { Config } from '../Interfaces/Config/config.interface';
 import {
