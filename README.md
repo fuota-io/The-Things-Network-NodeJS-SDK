@@ -106,10 +106,10 @@ org.createApplication(payload);
 
 ---
 
-For User Related Methods: [User](https://opensource.vruttitech.com/User.html)
-For Organization Related Methods: [Organization](https://opensource.vruttitech.com/Organization.html)
-For Application Related Methods: [Application](https://opensource.vruttitech.com/Application.html)
-For EndDevice Related Methods: [EndDevice](https://opensource.vruttitech.com/EndDevice.html)
+For User Related Methods: [User](https://opensource.vruttitech.com/User.html) <br>
+For Organization Related Methods: [Organization](https://opensource.vruttitech.com/Organization.html) <br>
+For Application Related Methods: [Application](https://opensource.vruttitech.com/Application.html) <br>
+For EndDevice Related Methods: [EndDevice](https://opensource.vruttitech.com/EndDevice.html) <br>
 For Gateway Related Methods: [Gateway](https://opensource.vruttitech.com/Gateway.html)
 
 ### 📖 More Examples
