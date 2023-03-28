@@ -1,41 +1,44 @@
 # <u>The Things Stack</u>
 
-<p>"Package" is use for "The Things Netowrk" to manage the applications, devices etc. Making it easy for the users to do all functionalitites by just using methods of this package.</p>
+"Package" is use for "The Things Netowrk" to manage the applications, devices etc. Making it easy for the users to do all functionalitites by just using methods of this package.
 
-### Get Started
+### 🚀 Get Started
 
-<hr style="border-top: 3px solid black;">
-<p>Ready to start using "Package"? Let's begin!</p>
+---
 
-### Installation
+Ready to start using "Package"? Let's begin!
 
-<hr style="border-top: 3px solid black;">
-<p>To install the latest version on npm globally:</p>
+### 🔧 Installation
+
+---
+
+To install the latest version on npm globally:
 
 > npm install -g "Package"
 
-<p>To install the latest version on npm locally and save it in your package's package.json file:</p>
+To install the latest version on npm locally and save it in your package's package.json file:
 
 > npm install --save-dev "Package"
 
-<p>To install the latest development version locally, without updating your project's package.json file:</p>
+To install the latest development version locally, without updating your project's package.json file:
 
 > npm install git+"link"
 
 <br>
 
-### How To Use It !!!
+### 💻 How To Use It !!!
 
-<hr style="border-top: 3px solid black;">
-<p>Let's say you want to create an application, it can be created for both <b>User</b> and <b>Organization...</b> <br><br>
+---
 
-<h4><u><b>For User:</b></u></h4>
-<p> 1. First import that particular class. <br>
-    2. Then set user ID and the configuration. <br>
-    3. Pass the payload in the method.
-</p>
+Let's say you want to create an application, it can be created for both **User** and **Organization...** <br><br>
 
-For more info, see this: <a href="https://opensource.vruttitech.com/User.html#createApplication">Create Application For User</a>
+#### <u>**For User :**</u>
+
+1. First import that particular class.
+2. Then set user ID and the configuration.
+3. Pass the payload in the method.
+
+For more info, see this: [Create Application For User](https://opensource.vruttitech.com/User.html#createApplication)
 
 ```
 import { User } from 'Package';
@@ -64,13 +67,13 @@ user.createApplication(payload);
 
 <br>
 
-<h4><u><b>For Organization:</b></u></h4>
-<p> 1. First import that particular class. <br>
-    2. Then set organization ID and the configuration. <br>
-    3. Pass the payload in the method.
-</p>
+#### <u>**For Organization:**</u>
 
-For more info, see this: <a href="https://opensource.vruttitech.com/Organization.html#createApplication">Create Application For Organization</a>
+1. First import that particular class.
+2. Then set organization ID and the configuration.
+3. Pass the payload in the method.
+
+For more info, see this: [Create Application For Organization](https://opensource.vruttitech.com/Organization.html#createApplication)
 
 ```
 import { Organization } from 'Package';
@@ -99,19 +102,23 @@ org.createApplication(payload);
 
 <br>
 
-### Explore Other Methods
+### 🎁 Explore Other Methods
 
-<hr style="border-top: 3px solid black;">
-<p>For User Related Methods: <a href="https://opensource.vruttitech.com/User.html">User</a><br>
-For Organization Related Methods: <a href="https://opensource.vruttitech.com/Organization.html">Organization</a><br>
-For Application Related Methods: <a href="https://opensource.vruttitech.com/Application.html">Application</a><br>
-For EndDevice Related Methods: <a href="https://opensource.vruttitech.com/EndDevice.html">EndDevice</a><br>
-For Gateway Related Methods: <a href="https://opensource.vruttitech.com/Gateway.html">Gateway</a><br></p><br>
+---
 
-### More Examples
+For User Related Methods: [User](https://opensource.vruttitech.com/User.html)
+For Organization Related Methods: [Organization](https://opensource.vruttitech.com/Organization.html)
+For Application Related Methods: [Application](https://opensource.vruttitech.com/Application.html)
+For EndDevice Related Methods: [EndDevice](https://opensource.vruttitech.com/EndDevice.html)
+For Gateway Related Methods: [Gateway](https://opensource.vruttitech.com/Gateway.html)
 
-<hr style="border-top: 3px solid black;">
-<p>1. To get the list of applications of both users and organizations.</p>
+### 📖 More Examples
+
+---
+
+<br>
+
+1. To get the list of applications of both users and organizations.
 
 ```
 import { Application } from 'Package';
@@ -131,7 +138,7 @@ app.getApplicationList();
 
 ```
 
-<p>2. To create an end-device in identity server.</p>
+2. To create an end-device in identity server.
 
 ```
 import { EndDevice } from 'Package';
@@ -175,7 +182,7 @@ device.createEndDeviceIS(payload)
 
 ```
 
-<p>3. To create a gateway for user.</p>
+3. To create a gateway for user.
 
 ```
 import { Gateway } from 'Package';
@@ -213,10 +220,13 @@ gateway.createGateway(payload);
 
 <br>
 
-### MQTT Features
+### 📨 MQTT Features
 
-<hr style="border-top: 3px solid black;">
-<p>1. To subscribe a downlink event.</p>
+---
+
+<br>
+
+1. To subscribe a downlink event.
 
 ```
 import { EndDevice } from 'Package';
@@ -249,7 +259,7 @@ device.subscribeDownLinkEvent(payload);
 
 ```
 
-<p>2. To unsubscribe an event.</p>
+2. To unsubscribe an event.
 
 ```
 import { EndDevice } from 'Package';
@@ -286,10 +296,11 @@ device.unsubscribeEvent(downevent);
 
 <br>
 
-### Benefits Of Using This Package
+### 🎯 Benefits Of Using This Package
 
-<hr style="border-top: 3px solid black;">
-<p>Once you create the instance of specific class and set the require parameters then you can explore all the methods belong to that class, it is that easy...</p>
+---
+
+Once you create the instance of specific class and set the require parameters then you can explore all the methods belong to that class, it is that easy...
 
 ```
 import { Application } from 'Package';
@@ -324,7 +335,8 @@ app.restoreApplication();
 
 <br>
 
-### License
+### 🔒 License
 
-<hr style="border-top: 3px solid black;">
-<p>!!!!!</p>
+---
+
+!!!!!
