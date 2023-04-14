@@ -73,7 +73,8 @@ export class EndDevice extends SetConfig {
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice CreateEndDeviceIS}
    */
   createEndDeviceIS(payload: CreateEndDeviceISUserPayload): Promise<CreateEndDeviceIS> {
-    const paths = getAllKeys(payload);
+    const recpaths = getAllKeys(payload);
+    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
 
     const apiPayload: CreateEndDeviceISPayload = {
       end_device: {
@@ -123,7 +124,8 @@ export class EndDevice extends SetConfig {
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice SetEndDeviceJS}
    */
   setEndDeviceJS(payload: SetEndDeviceJSUserPayload): Promise<SetEndDeviceJS> {
-    const paths = getAllKeys(payload);
+    const recpaths = getAllKeys(payload);
+    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
 
     const apiPayload: SetEndDeviceJSPayload = {
       end_device: {
@@ -170,7 +172,8 @@ export class EndDevice extends SetConfig {
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice SetEndDeviceNS}
    */
   setEndDeviceNS(payload: SetEndDeviceNSUserPayload): Promise<SetEndDeviceNS> {
-    const paths = getAllKeys(payload);
+    const recpaths = getAllKeys(payload);
+    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
 
     const apiPayload: SetEndDeviceNSPayload = {
       end_device: {
@@ -226,7 +229,8 @@ export class EndDevice extends SetConfig {
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice SetEndDeviceAS}
    */
   setEndDeviceAS(payload: SetEndDeviceASUserPayload): Promise<SetEndDeviceAS> {
-    const paths = getAllKeys(payload);
+    const recpaths = getAllKeys(payload);
+    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
 
     const apiPayload: SetEndDeviceASPayload = {
       end_device: {

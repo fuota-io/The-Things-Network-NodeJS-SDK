@@ -8,7 +8,7 @@
     "prepare": "npm run build",
     "build": "tsc && jsdoc -c jsdoc.json",
     "test": "jest",
-    "test:single": "jest ./Test-Cases/Gateway.test.ts",
+    "test:single": "jest ./Test-Cases/EndDevice.test.ts",
     "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
   "keywords": [],
