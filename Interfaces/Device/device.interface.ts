@@ -4,6 +4,7 @@ export interface CreateEndDeviceISUserPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
       };
@@ -27,6 +28,7 @@ export interface CreateEndDeviceISPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
       };
@@ -52,6 +54,7 @@ export interface CreateEndDeviceIS {
     join_eui: string;
     dev_eui: string;
     device_id: string;
+    dev_addr: string;
     application_ids: {
       application_id: string;
     };
@@ -156,8 +159,17 @@ export interface SetEndDeviceNSUserPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
+      };
+    };
+    session?: {
+      dev_addr?: string;
+      keys?: {
+        f_nwk_s_int_key?: {
+          key?: string;
+        };
       };
     };
   };
@@ -185,8 +197,17 @@ export interface SetEndDeviceNSPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
+      };
+    };
+    session?: {
+      dev_addr?: string;
+      keys?: {
+        f_nwk_s_int_key?: {
+          key?: string;
+        };
       };
     };
   };
@@ -200,6 +221,7 @@ export interface SetEndDeviceNS {
     join_eui: string;
     dev_eui: string;
     device_id: string;
+    dev_addr: string;
     application_ids: {
       application_id: string;
     };
@@ -222,6 +244,14 @@ export interface SetEndDeviceNS {
     class_c_timeout: string;
     supports_32_bit_f_cnt: boolean;
   };
+  session: {
+    dev_addr: string;
+    keys: {
+      f_nwk_s_int_key: {
+        key: string;
+      };
+    };
+  };
 }
 
 export interface SetEndDeviceASUserPayload {
@@ -241,8 +271,17 @@ export interface SetEndDeviceASUserPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
+      };
+    };
+    session?: {
+      dev_addr?: string;
+      keys?: {
+        app_s_key?: {
+          key?: string;
+        };
       };
     };
   };
@@ -265,8 +304,17 @@ export interface SetEndDeviceASPayload {
       join_eui: string;
       dev_eui: string;
       device_id: string;
+      dev_addr?: string;
       application_ids: {
         application_id: string;
+      };
+    };
+    session?: {
+      dev_addr?: string;
+      keys?: {
+        app_s_key?: {
+          key?: string;
+        };
       };
     };
   };
@@ -283,6 +331,7 @@ export interface SetEndDeviceAS {
     };
     dev_eui: string;
     join_eui: string;
+    dev_addr: string;
   };
   created_at: any;
   updated_at: any;
@@ -296,6 +345,14 @@ export interface SetEndDeviceAS {
   formatters: {
     up_formatter: string;
     down_formatter: string;
+  };
+  session: {
+    dev_addr: string;
+    keys: {
+      app_s_key: {
+        key?: string;
+      };
+    };
   };
 }
 

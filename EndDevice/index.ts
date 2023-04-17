@@ -82,6 +82,7 @@ export class EndDevice extends SetConfig {
           join_eui: payload.end_device.ids.join_eui,
           dev_eui: payload.end_device.ids.dev_eui,
           device_id: payload.end_device.ids.device_id,
+          dev_addr: payload.end_device.ids.dev_addr,
           application_ids: {
             application_id: this.APPLICATION_ID,
           },
@@ -197,8 +198,17 @@ export class EndDevice extends SetConfig {
           join_eui: payload.end_device.ids.join_eui,
           dev_eui: payload.end_device.ids.dev_eui,
           device_id: payload.end_device.ids.device_id,
+          dev_addr: payload.end_device.ids.dev_addr,
           application_ids: {
             application_id: this.APPLICATION_ID,
+          },
+        },
+        session: {
+          dev_addr: payload.end_device.session?.dev_addr,
+          keys: {
+            f_nwk_s_int_key: {
+              key: payload.end_device.session?.keys?.f_nwk_s_int_key?.key,
+            },
           },
         },
       },
@@ -249,8 +259,17 @@ export class EndDevice extends SetConfig {
           join_eui: payload.end_device.ids.join_eui,
           dev_eui: payload.end_device.ids.dev_eui,
           device_id: payload.end_device.ids.device_id,
+          dev_addr: payload.end_device.ids.dev_addr,
           application_ids: {
             application_id: this.APPLICATION_ID,
+          },
+        },
+        session: {
+          dev_addr: payload.end_device.session?.dev_addr,
+          keys: {
+            app_s_key: {
+              key: payload.end_device.session?.keys?.app_s_key?.key,
+            },
           },
         },
       },

@@ -444,7 +444,6 @@ describe('Delete EndDeviceAS Errors', () => {
 describe('IssueDevEUI', () => {
   test('IssueDevEUI Successfully', async () => {
     const response = await device.issueDevEUI();
-    console.log('response: ', response);
     expect(response).not.toBeNull;
   });
 });
