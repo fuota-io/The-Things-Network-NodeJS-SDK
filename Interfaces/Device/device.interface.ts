@@ -1,7 +1,7 @@
 export interface CreateEndDeviceISUserPayload {
   end_device: {
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;
@@ -25,7 +25,7 @@ export interface CreateEndDeviceISUserPayload {
 export interface CreateEndDeviceISPayload {
   end_device: {
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;
@@ -156,7 +156,7 @@ export interface SetEndDeviceNSUserPayload {
       supports_32_bit_f_cnt?: boolean;
     };
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;
@@ -194,7 +194,7 @@ export interface SetEndDeviceNSPayload {
       supports_32_bit_f_cnt?: boolean;
     };
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;
@@ -268,7 +268,7 @@ export interface SetEndDeviceASUserPayload {
       down_formatter?: string;
     };
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;
@@ -301,7 +301,7 @@ export interface SetEndDeviceASPayload {
       down_formatter?: string;
     };
     ids: {
-      join_eui: string;
+      join_eui?: string;
       dev_eui: string;
       device_id: string;
       dev_addr?: string;

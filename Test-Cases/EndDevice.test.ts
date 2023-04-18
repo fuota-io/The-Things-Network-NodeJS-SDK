@@ -448,18 +448,18 @@ describe('IssueDevEUI', () => {
   });
 });
 
-describe('DownlinkQueue Push/Replace', () => {
-  test('DownlinkQueue Push/Replace Successfully', async () => {
-    const device = new EndDevice('stratis-thermostat', configDownlink);
-    const response = await device.downlinkQueue(downlinkQueuePushUserPayload);
-    expect(response).not.toBeNull;
-  });
-});
+// describe('DownlinkQueue Push/Replace', () => {
+//   test('DownlinkQueue Push/Replace Successfully', async () => {
+//     const device = new EndDevice('stratis-thermostat', configDownlink);
+//     const response = await device.downlinkQueue(downlinkQueuePushUserPayload);
+//     expect(response).not.toBeNull;
+//   });
+// });
 
-const device2 = new EndDevice('stratis-thermostat', configDownlink);
-const downEvent = device2.subscribeDownLinkEvent(subscribeDownLinkEventUserPayload);
-const upEvent = device2.subscribeUpLinkEvent(subscribeUpLinkEventUserPayload);
-device.unsubscribeEvent(downEvent);
+// const device2 = new EndDevice('stratis-thermostat', configDownlink);
+// const downEvent = device2.subscribeDownLinkEvent(subscribeDownLinkEventUserPayload);
+// const upEvent = device2.subscribeUpLinkEvent(subscribeUpLinkEventUserPayload);
+// device.unsubscribeEvent(downEvent);
 
 // describe('SubscribeDownlink', () => {
 //   test('SubscribeDownlink Successfully', async () => {

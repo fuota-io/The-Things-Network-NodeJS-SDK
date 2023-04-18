@@ -174,7 +174,9 @@ export class EndDevice extends SetConfig {
    */
   setEndDeviceNS(payload: SetEndDeviceNSUserPayload): Promise<SetEndDeviceNS> {
     const recpaths = getAllKeys(payload);
-    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
+    const tempPaths = recpaths.toString().replaceAll('end_device.', '').split(',');
+    const items = ['ids.dev_addr'];
+    const paths = tempPaths.filter((item) => !items.includes(item));
 
     const apiPayload: SetEndDeviceNSPayload = {
       end_device: {
@@ -240,7 +242,9 @@ export class EndDevice extends SetConfig {
    */
   setEndDeviceAS(payload: SetEndDeviceASUserPayload): Promise<SetEndDeviceAS> {
     const recpaths = getAllKeys(payload);
-    const paths = recpaths.toString().replaceAll('end_device.', '').split(',');
+    const tempPaths = recpaths.toString().replaceAll('end_device.', '').split(',');
+    const items = ['ids.dev_addr'];
+    const paths = tempPaths.filter((item) => !items.includes(item));
 
     const apiPayload: SetEndDeviceASPayload = {
       end_device: {
