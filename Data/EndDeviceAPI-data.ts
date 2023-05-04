@@ -76,6 +76,7 @@ export const setEndDeviceNSUserPayload = {
     frequency_plan_id: 'AS_920_923_TTN_JP_3_LAND_MOBILE',
     supports_join: true,
     supports_class_c: true,
+    multicast: true,
     lorawan_version: 'MAC_V1_0_3',
     lorawan_phy_version: 'PHY_V1_0_3_REV_A',
     mac_settings: {
