@@ -190,7 +190,7 @@ export class EndDevice extends SetConfig {
         frequency_plan_id: payload.end_device.frequency_plan_id,
         supports_join: payload.end_device.supports_join,
         supports_class_c: payload.end_device.supports_class_c,
-        multicast: payload.end_device.multicast,
+        multicast: payload.end_device?.multicast,
         lorawan_version: payload.end_device.lorawan_version,
         lorawan_phy_version: payload.end_device.lorawan_phy_version,
         mac_settings: {

@@ -149,7 +149,7 @@ export interface SetEndDeviceNSUserPayload {
     frequency_plan_id: string;
     supports_join: boolean;
     supports_class_c: boolean;
-    multicast: boolean;
+    multicast?: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
     mac_settings?: {
@@ -188,7 +188,7 @@ export interface SetEndDeviceNSPayload {
     frequency_plan_id: string;
     supports_join: boolean;
     supports_class_c: boolean;
-    multicast: boolean;
+    multicast?: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
     mac_settings?: {
