@@ -37,7 +37,7 @@ export interface GetApplication {
 }
 
 export interface GetApplicationList {
-  application: {
+  applications: {
     ids: { application_id: string };
     created_at: string;
     updated_at: string;
