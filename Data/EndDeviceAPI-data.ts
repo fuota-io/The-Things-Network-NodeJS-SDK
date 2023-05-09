@@ -150,7 +150,7 @@ export const deleteEndDeviceNSUserPayload = { device_id: 'eui-70b3d57ed005b59e' 
 export const deleteEndDeviceASUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 
 export const configDownlink = {
-  IDENTITY_SERVER: 'https://eu1.nam1.cloud.thethings.industries/api/v3',
+  IDENTITY_SERVER: 'https://oxit.eu1.cloud.thethings.industries/api/v3',
   NETWORK_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/ns',
   APPLICATION_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/as',
   JOIN_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/js',
