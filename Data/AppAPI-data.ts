@@ -19,7 +19,7 @@ export const config_F = {
 };
 
 export const createApplicationPayloadForUser_T = {
-  application_id: 'meet59',
+  application_id: 'meetx',
   name: 'meet',
   description: '',
   // collaborator: {
@@ -28,7 +28,7 @@ export const createApplicationPayloadForUser_T = {
 };
 
 export const createApplicationPayloadForUser_F = {
-  application_id: 'meet59',
+  application_id: 'meet68',
   name: 'meet',
   description: '',
   // collaborator: {
@@ -37,7 +37,7 @@ export const createApplicationPayloadForUser_F = {
 };
 
 export const createApplicationPayloadForOrg_T = {
-  application_id: 'meet59',
+  application_id: 'meety',
   name: 'meet',
   description: '',
 
@@ -47,7 +47,7 @@ export const createApplicationPayloadForOrg_T = {
 };
 
 export const createApplicationPayloadForOrg_F = {
-  application_id: 'meet59',
+  application_id: 'meet68',
   name: 'meet',
   description: '',
 
@@ -57,20 +57,20 @@ export const createApplicationPayloadForOrg_F = {
 };
 
 export const getApplicationPayload_T = {
-  application_id: 'meet59',
+  application_id: 'meet69',
 };
 
 export const getApplicationPayload_F = {
   application_id: 'meet60',
 };
 
-// export const getApplicationListPayloadForUser = {
-//   user_id: 'meetsavaj',
-// };
+export const getApplicationListPayloadForUser = {
+  user_id: 'meetsavaj',
+};
 
-// export const getApplicationListPayloadForOrg = {
-//   organization_id: 'organ1',
-// };
+export const getApplicationListPayloadForOrg = {
+  organization_id: 'organ1',
+};
 
 export const updateApplicationPayload_T = {
   name: 'meet',
@@ -84,21 +84,21 @@ export const updateApplicationPayload_F = {
   attributes: { hello: 'world', hello2: 'world2' },
 };
 
-// export const deleteApplicationPayload = {
-//   application_id: 'meet59',
-// };
+export const deleteApplicationPayload = {
+  application_id: 'meet68',
+};
 
-// export const restoreApplicationPayload = {
-//   application_id: 'meet59',
-// };
+export const restoreApplicationPayload = {
+  application_id: 'meet68',
+};
 
-// export const purgeApplicationPayload = {
-//   application_id: 'meet59',
-// };
+export const purgeApplicationPayload = {
+  application_id: 'meet68',
+};
 
-// export const getApplicationRightUserPayload = {
-//   application_id: 'meet59',
-// };
+export const getApplicationRightUserPayload = {
+  application_id: 'meet68',
+};
 
 export const createAPIKeyPayloadForApplication = {
   name: 'meet',
@@ -150,7 +150,7 @@ export const getAPIKeyListForOrg = {
 };
 
 export const getAPIKeyInfoPayloadForApplication_T = {
-  key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7VI',
+  key_id: 'LF3NHTHJ5CHL5QT2XP3KTBZRETK2QUKHAW7METY',
 };
 
 export const getAPIKeyInfoPayloadForApplication_F = {
@@ -174,7 +174,7 @@ export const getAPIKeyInfoPayloadForOrganization_F = {
 };
 
 export const updateAPIKeyUserPayloadForApplication_T = {
-  api_key_id: '6KOWWPN5CEA7QYVMWPFNNWZO3XZQRCJ3W2KK7VI',
+  api_key_id: 'LF3NHTHJ5CHL5QT2XP3KTBZRETK2QUKHAW7METY',
   api_key_name: 'meet',
   api_key_rights: [
     'RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE',
@@ -308,7 +308,7 @@ export const getCollaboratorListUserPayload = {
 };
 
 export const issueDevEUIPayload = {
-  application_id: 'meet50',
+  application_id: 'meet69',
 };
 
 export const createGatewayPayload = {

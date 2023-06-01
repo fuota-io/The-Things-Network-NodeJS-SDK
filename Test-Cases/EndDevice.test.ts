@@ -19,12 +19,12 @@ import {
   subscribeUpLinkEventUserPayload,
 } from '../Data/EndDeviceAPI-data';
 
-const device = new EndDevice('meet59', config_T);
+const device = new EndDevice('meet69', config_T);
 
 describe('No Config Errors', () => {
   test('Correct User ID', async () => {
-    const appFailed = new EndDevice('meet59', config_T);
-    expect(appFailed).toHaveProperty('APPLICATION_ID', 'meet59');
+    const appFailed = new EndDevice('meet69', config_T);
+    expect(appFailed).toHaveProperty('APPLICATION_ID', 'meet69');
   });
 
   test('API Key Given', async () => {
@@ -39,7 +39,7 @@ describe('No Config Errors', () => {
 describe('Config Errors', () => {
   test('User ID', async () => {
     const appFailed = new EndDevice('meethgsvbdgas', config_F);
-    expect(appFailed).not.toHaveProperty('APPLICATION_ID', 'meet59');
+    expect(appFailed).not.toHaveProperty('APPLICATION_ID', 'meet69');
   });
 
   test('API Key Missing', async () => {

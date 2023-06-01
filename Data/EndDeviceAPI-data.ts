@@ -28,7 +28,7 @@ export const createEndDeviceISUserPayload = {
       dev_eui: '70B3D57ED005B59E',
       device_id: 'eui-70b3d57ed005b59e',
       application_ids: {
-        application_id: 'meet59',
+        application_id: 'meet69',
       },
     },
     version_ids: {
@@ -51,7 +51,7 @@ export const setEndDeviceJSUserPayload = {
       dev_eui: '70B3D57ED005B59E',
       device_id: 'eui-70b3d57ed005b59e',
       application_ids: {
-        application_id: 'meet59',
+        application_id: 'meet69',
       },
     },
     network_server_address: 'nam1.cloud.thethings.network',
@@ -88,7 +88,7 @@ export const setEndDeviceNSUserPayload = {
       dev_eui: '70B3D57ED005B59E',
       device_id: 'eui-70b3d57ed005b59e',
       application_ids: {
-        application_id: 'meet59',
+        application_id: 'meet69',
       },
     },
   },
@@ -112,7 +112,7 @@ export const setEndDeviceASUserPayload = {
       dev_eui: '70B3D57ED005B59E',
       device_id: 'eui-70b3d57ed005b59e',
       application_ids: {
-        application_id: 'meet59',
+        application_id: 'meet69',
       },
     },
   },

@@ -58,7 +58,7 @@ import {
 } from '../Data/AppAPI-data';
 import { Gateway } from '../Gateway';
 
-const app = new Application('meet59', config_T);
+const app = new Application('meet69', config_T);
 const user = new User('meetsavaj', config_T);
 const org = new Organization('organ1', config_T);
 
@@ -170,7 +170,7 @@ describe('List Applications (Org)', () => {
 describe('Update Application', () => {
   test('Application Updated Successfully', async () => {
     const response = await app.updateApplication(updateApplicationPayload_T);
-    expect(response.ids?.application_id).toBe('meet59');
+    expect(response.ids?.application_id).toBe('meet69');
     expect(response.name).toBe(updateApplicationPayload_T.name);
     expect(response.attributes).toEqual(updateApplicationPayload_T.attributes);
   });
@@ -178,7 +178,7 @@ describe('Update Application', () => {
 
 describe('Delete Application', () => {
   test('Application Deleted Successfully', async () => {
-    const app = new Application('meet5', config_T);
+    const app = new Application('meet69', config_T);
     const response = await app.deleteApplication();
     expect(response).not.toBeNull;
   });
@@ -197,7 +197,7 @@ describe('Delete Application Errors', () => {
 
   test('Application Has Devices', async () => {
     try {
-      const app = new Application('meet59', config_T);
+      const app = new Application('meet68', config_T);
       const response = await app.deleteApplication();
       expect(response).toBeUndefined();
     } catch (error: any) {
@@ -208,7 +208,7 @@ describe('Delete Application Errors', () => {
 
 describe('Restore Application', () => {
   test('Application Restored Successfully', async () => {
-    const app = new Application('meet5', config_T);
+    const app = new Application('meet69', config_T);
     const response = await app.restoreApplication();
     expect(response).not.toBeNull;
   });
@@ -217,7 +217,7 @@ describe('Restore Application', () => {
 describe('Restore Application Errors', () => {
   test('Application ID Already Present', async () => {
     try {
-      const app = new Application('meet59', config_T);
+      const app = new Application('meet69', config_T);
       await app.restoreApplication();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 5);
@@ -236,7 +236,7 @@ describe('Restore Application Errors', () => {
 
 describe('Purge Application', () => {
   test('Purge Application Successfully', async () => {
-    const app = new Application('meet59', config_T);
+    const app = new Application('meet69', config_T);
     const response = await app.purgeApplication();
     expect(response).not.toBeNull;
   });
@@ -245,7 +245,7 @@ describe('Purge Application', () => {
 describe('Purge Application Errors', () => {
   test('Applications May Only Be Purged By Admins', async () => {
     try {
-      const app = new Application('meet59', config_T);
+      const app = new Application('meet69', config_T);
       await app.purgeApplication();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
@@ -645,7 +645,7 @@ describe('Get Collaborator (Org) Errors', () => {
 
 describe('Set Collaborator (App-User)', () => {
   test('Set Collaborator Successfully', async () => {
-    const app = new Application('meet50', config_T);
+    const app = new Application('meet69', config_T);
     const response = await app.setCollaboratorOfUser(setCollaboratorPayloadForApplication_User_T);
     expect(response).toBeDefined();
   });
@@ -674,7 +674,7 @@ describe('Set Collaborator Errors (App-User)', () => {
 
 describe('Set Collaborator (App-Org)', () => {
   test('Set Collaborator Successfully', async () => {
-    const app = new Application('meet50', config_T);
+    const app = new Application('meet69', config_T);
     const response = await app.setCollaboratorOfOrg(setCollaboratorPayloadForApplication_Org_T);
     expect(response).toBeDefined();
   });
