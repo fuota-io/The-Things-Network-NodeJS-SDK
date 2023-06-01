@@ -38,7 +38,7 @@ Let's say you want to create an application, it can be created for both **User**
 2. Then set user ID and the configuration.
 3. Pass the payload in the method.
 
-For more info, see this: [Create Application For User](https://opensource.vruttitech.com/User.html#createApplication)
+For more info, see this: [Create Application For User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html#createApplication)
 
 ```
 import { User } from 'Package';
@@ -73,7 +73,7 @@ user.createApplication(payload);
 2. Then set organization ID and the configuration.
 3. Pass the payload in the method.
 
-For more info, see this: [Create Application For Organization](https://opensource.vruttitech.com/Organization.html#createApplication)
+For more info, see this: [Create Application For Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html#createApplication)
 
 ```
 import { Organization } from 'Package';
@@ -106,11 +106,11 @@ org.createApplication(payload);
 
 ---
 
-For User Related Methods: [User](https://opensource.vruttitech.com/User.html) <br>
-For Organization Related Methods: [Organization](https://opensource.vruttitech.com/Organization.html) <br>
-For Application Related Methods: [Application](https://opensource.vruttitech.com/Application.html) <br>
-For EndDevice Related Methods: [EndDevice](https://opensource.vruttitech.com/EndDevice.html) <br>
-For Gateway Related Methods: [Gateway](https://opensource.vruttitech.com/Gateway.html)
+For User Related Methods: [User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html) <br>
+For Organization Related Methods: [Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html) <br>
+For Application Related Methods: [Application](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Application.html) <br>
+For EndDevice Related Methods: [EndDevice](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/EndDevice.html) <br>
+For Gateway Related Methods: [Gateway](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Gateway.html)
 
 ### 📖 More Examples
 
