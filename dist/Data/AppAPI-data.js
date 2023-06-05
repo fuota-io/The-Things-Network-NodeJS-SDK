@@ -3,17 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateGatewayPayload = exports.createGatewayPayload = exports.issueDevEUIPayload = exports.getCollaboratorListUserPayload = exports.setCollaboratorPayloadForOrg_F = exports.setCollaboratorPayloadForOrg_T = exports.setCollaboratorPayloadForApplication_Org_F = exports.setCollaboratorPayloadForApplication_Org_T = exports.setCollaboratorPayloadForApplication_User_F = exports.setCollaboratorPayloadForApplication_User_T = exports.getCollaboratorInfoPayloadForOrg_F = exports.getCollaboratorInfoPayloadForOrg_T = exports.getCollaboratorInfoPayloadForApplication_Org_F = exports.getCollaboratorInfoPayloadForApplication_Org_T = exports.getCollaboratorInfoPayloadForApplication_User_F = exports.getCollaboratorInfoPayloadForApplication_User_T = exports.updateAPIKeyUserPayloadForOrg_F = exports.updateAPIKeyUserPayloadForOrg_T = exports.updateAPIKeyUserPayloadForUser_F = exports.updateAPIKeyUserPayloadForUser_T = exports.updateAPIKeyUserPayloadForApplication_F = exports.updateAPIKeyUserPayloadForApplication_T = exports.getAPIKeyInfoPayloadForOrganization_F = exports.getAPIKeyInfoPayloadForOrganization_T = exports.getAPIKeyInfoPayloadForUser_F = exports.getAPIKeyInfoPayloadForUser_T = exports.getAPIKeyInfoPayloadForApplication_F = exports.getAPIKeyInfoPayloadForApplication_T = exports.getAPIKeyListForOrg = exports.getAPIKeyListForUser = exports.getAPIKeyListForApplication = exports.createAPIKeyPayloadForOrg = exports.createAPIKeyPayloadForUser = exports.createAPIKeyPayloadForApplication = exports.getApplicationRightUserPayload = exports.purgeApplicationPayload = exports.restoreApplicationPayload = exports.deleteApplicationPayload = exports.updateApplicationPayload_F = exports.updateApplicationPayload_T = exports.getApplicationListPayloadForOrg = exports.getApplicationListPayloadForUser = exports.getApplicationPayload_F = exports.getApplicationPayload_T = exports.createApplicationPayloadForOrg_F = exports.createApplicationPayloadForOrg_T = exports.createApplicationPayloadForUser_F = exports.createApplicationPayloadForUser_T = exports.config_F = exports.config_T = void 0;
 exports.setCollaboratorPayloadForGateway_Org_F = exports.setCollaboratorPayloadForGateway_Org_T = exports.setCollaboratorPayloadForGateway_User_F = exports.setCollaboratorPayloadForGateway_User_T = exports.getCollaboratorInfoPayloadForGateway_Org_F = exports.getCollaboratorInfoPayloadForGateway_Org_T = exports.getCollaboratorInfoPayloadForGateway_User_F = exports.getCollaboratorInfoPayloadForGateway_User_T = exports.updateAPIKeyUserPayloadForGateway_F = exports.updateAPIKeyUserPayloadForGateway_T = exports.getAPIKeyInfoPayloadForGateway_F = exports.getAPIKeyInfoPayloadForGateway_T = exports.getAPIKeyListForGateway = exports.createAPIKeyPayloadForGateway = void 0;
 exports.config_T = {
-    IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-    NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-    APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-    JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+    IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+    NETWORK_SERVER: 'nam1.cloud.thethings.network',
+    APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+    JOIN_SERVER: 'nam1.cloud.thethings.network',
     API_KEY: 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ',
 };
 exports.config_F = {
-    IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-    NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-    APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-    JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+    IDENTITY_SERVER: 'eu1.cloud.thethings.network/api/v3',
+    NETWORK_SERVER: 'nam1.cloud.thethings.network',
+    APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+    JOIN_SERVER: 'nam1.cloud.thethings.network',
     API_KEY: 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTH',
 };
 exports.createApplicationPayloadForUser_T = {

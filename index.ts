@@ -37,18 +37,19 @@ export class SetConfig {
   NETWORK_SERVER: string;
   APPLICATION_SERVER: string;
   API_KEY: string;
-
+  TENANT_ID: string | undefined;
   /**
    * The above function is a constructor function that takes a config object as a parameter and assigns
    * the values of the config object to the class properties.
    * @param {Config} config - Config
    */
   constructor(config: Config) {
-    this.IDENTITY_SERVER = config.IDENTITY_SERVER;
-    this.JOIN_SERVER = config.JOIN_SERVER;
-    this.APPLICATION_SERVER = config.APPLICATION_SERVER;
-    this.NETWORK_SERVER = config.NETWORK_SERVER;
+    this.IDENTITY_SERVER = `https://${config.IDENTITY_SERVER}/api/v3`;
+    this.JOIN_SERVER = `https://${config.JOIN_SERVER}/api/v3/js`;
+    this.APPLICATION_SERVER = `https://${config.APPLICATION_SERVER}/api/v3/as`;
+    this.NETWORK_SERVER = `https://${config.NETWORK_SERVER}/api/v3/ns`;
     this.API_KEY = config.API_KEY;
+    this.TENANT_ID = config.TENANT_ID;
   }
 
   /**

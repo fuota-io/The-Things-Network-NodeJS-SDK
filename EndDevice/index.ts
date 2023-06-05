@@ -39,7 +39,6 @@ import {
  */
 export class EndDevice extends SetConfig {
   private APPLICATION_ID: string;
-  private TENANT_ID: string | undefined;
   private API: APICall = new APICall();
   private topic: string | undefined;
   private conn: any | undefined;
@@ -55,7 +54,6 @@ export class EndDevice extends SetConfig {
   constructor(applicationID: string, config: Config) {
     super(config);
     this.APPLICATION_ID = applicationID;
-    this.TENANT_ID = config.TENANT_ID;
   }
 
   // /**

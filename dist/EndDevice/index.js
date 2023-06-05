@@ -22,7 +22,6 @@ class EndDevice extends index_1.SetConfig {
         this.API = new index_1.APICall();
         this.paths = [];
         this.APPLICATION_ID = applicationID;
-        this.TENANT_ID = config.TENANT_ID;
     }
     // /**
     //  * It creates an end device for the application.

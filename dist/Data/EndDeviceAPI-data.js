@@ -2,17 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.subscribeUpLinkEventUserPayload = exports.subscribeDownLinkEventUserPayload = exports.downlinkQueuePushUserPayload = exports.configDownlink = exports.deleteEndDeviceASUserPayload = exports.deleteEndDeviceNSUserPayload = exports.deleteEndDeviceJSUserPayload = exports.deleteEndDeviceISUserPayload = exports.updateEndDeviceUserPayload = exports.getEndDeviceInfoUserPayload_F = exports.getEndDeviceInfoUserPayload_T = exports.setEndDeviceASUserPayload = exports.setEndDeviceNSUserPayload = exports.setEndDeviceJSUserPayload = exports.createEndDeviceISUserPayload = exports.config_F = exports.config_T = void 0;
 exports.config_T = {
-    IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-    NETWORK_SERVER: 'https://nam1.cloud.thethings.network/api/v3/ns',
-    APPLICATION_SERVER: 'https://nam1.cloud.thethings.network/api/v3/as',
-    JOIN_SERVER: 'https://nam1.cloud.thethings.network/api/v3/js',
+    IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+    NETWORK_SERVER: 'nam1.cloud.thethings.network',
+    APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+    JOIN_SERVER: 'nam1.cloud.thethings.network',
     API_KEY: 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ',
 };
 exports.config_F = {
-    IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-    NETWORK_SERVER: 'https://nam1.cloud.thethings.network/api/v3/ns',
-    APPLICATION_SERVER: 'https://nam1.cloud.thethings.network/api/v3/as',
-    JOIN_SERVER: 'https://nam1.cloud.thethings.network/api/v3/js',
+    IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+    NETWORK_SERVER: 'nam1.cloud.thethings.network',
+    APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+    JOIN_SERVER: 'nam1.cloud.thethings.network',
     API_KEY: 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTH',
 };
 exports.createEndDeviceISUserPayload = {
@@ -133,10 +133,10 @@ exports.deleteEndDeviceJSUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 exports.deleteEndDeviceNSUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 exports.deleteEndDeviceASUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 exports.configDownlink = {
-    IDENTITY_SERVER: 'https://oxit.eu1.cloud.thethings.industries/api/v3',
-    NETWORK_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/ns',
-    APPLICATION_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/as',
-    JOIN_SERVER: 'https://oxit.nam1.cloud.thethings.industries/api/v3/js',
+    IDENTITY_SERVER: 'oxit.eu1.cloud.thethings.industries',
+    NETWORK_SERVER: 'oxit.nam1.cloud.thethings.industries',
+    APPLICATION_SERVER: 'oxit.nam1.cloud.thethings.industries',
+    JOIN_SERVER: 'oxit.nam1.cloud.thethings.industries',
     API_KEY: 'NNSXS.IY3KRIWPL4CDGVSTHFRIZQ73MW3HBBTLB5JCFMI.4NOQAD7BKYPE4LPJD6KKYM4DG2W4EXWFNH6HUMQ2GRDUVGWKCBPA',
     TENANT_ID: 'oxit',
 };

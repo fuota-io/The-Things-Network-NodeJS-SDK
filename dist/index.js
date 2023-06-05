@@ -53,11 +53,12 @@ class SetConfig {
      * @param {Config} config - Config
      */
     constructor(config) {
-        this.IDENTITY_SERVER = config.IDENTITY_SERVER;
-        this.JOIN_SERVER = config.JOIN_SERVER;
-        this.APPLICATION_SERVER = config.APPLICATION_SERVER;
-        this.NETWORK_SERVER = config.NETWORK_SERVER;
+        this.IDENTITY_SERVER = `https://${config.IDENTITY_SERVER}/api/v3`;
+        this.JOIN_SERVER = `https://${config.JOIN_SERVER}/api/v3/js`;
+        this.APPLICATION_SERVER = `https://${config.APPLICATION_SERVER}/api/v3/as`;
+        this.NETWORK_SERVER = `https://${config.NETWORK_SERVER}/api/v3/ns`;
         this.API_KEY = config.API_KEY;
+        this.TENANT_ID = config.TENANT_ID;
     }
     /**
      * The headers function returns an object with a key of AUTHORIZATION and a value of Bearer + the

@@ -7,7 +7,6 @@ import { CreateEndDeviceIS, SetEndDeviceJS, SetEndDeviceJSUserPayload, SetEndDev
  */
 export declare class EndDevice extends SetConfig {
     private APPLICATION_ID;
-    private TENANT_ID;
     private API;
     private topic;
     private conn;

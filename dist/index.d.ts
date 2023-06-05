@@ -22,6 +22,7 @@ export declare class SetConfig {
     NETWORK_SERVER: string;
     APPLICATION_SERVER: string;
     API_KEY: string;
+    TENANT_ID: string | undefined;
     /**
      * The above function is a constructor function that takes a config object as a parameter and assigns
      * the values of the config object to the class properties.
