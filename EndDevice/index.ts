@@ -710,7 +710,9 @@ export class EndDevice extends SetConfig {
   subscribeDownLinkEvent(payload: subscribeDownLinkEventPayload): Promise<any> {
     this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}`;
+    this.topic = payload.device_id ? 
+    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` : 
+    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
 
     this.conn.client.on('connect', () => {
       this.conn.client.subscribe([this.topic], () => {
@@ -741,7 +743,9 @@ export class EndDevice extends SetConfig {
   subscribeUpLinkEvent(payload: subscribeUpLinkEventPayload): Promise<any> {
     this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up`;
+    this.topic = payload.device_id ? 
+    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` : 
+    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
 
     this.conn.client.on('connect', () => {
       this.conn.client.subscribe([this.topic], () => {

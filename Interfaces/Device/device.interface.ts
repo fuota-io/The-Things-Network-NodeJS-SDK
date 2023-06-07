@@ -1048,7 +1048,7 @@ export interface downlinkQueue {
 }
 
 export interface subscribeDownLinkEventPayload {
-  device_id: string;
+  device_id?: string;
   down_type: string;
   host: string;
   port: number;
@@ -1059,7 +1059,7 @@ export interface subscribeDownLinkEventPayload {
 }
 
 export interface subscribeUpLinkEventPayload {
-  device_id: string;
+  device_id?: string;
   host: string;
   port: number;
   username: string;

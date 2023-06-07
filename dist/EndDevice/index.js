@@ -635,7 +635,9 @@ class EndDevice extends index_1.SetConfig {
      */
     subscribeDownLinkEvent(payload) {
         this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-        this.topic = `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}`;
+        this.topic = payload.device_id ?
+            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
+            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
         this.conn.client.on('connect', () => {
             this.conn.client.subscribe([this.topic], () => {
                 // console.log(`Subscribe to topic '${topic}'`);
@@ -660,14 +662,16 @@ class EndDevice extends index_1.SetConfig {
      */
     subscribeUpLinkEvent(payload) {
         this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-        this.topic = `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up`;
+        this.topic = payload.device_id ?
+            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
+            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
         this.conn.client.on('connect', () => {
             this.conn.client.subscribe([this.topic], () => {
                 // console.log(`Subscribe to topic '${topic}'`);
             });
         });
         this.conn.client.on('message', (topic, mqtt_payload) => {
-            payload.callback_downlink_event(mqtt_payload);
+            payload.callback_uplink_event(mqtt_payload);
         });
         return this.conn.client;
         // conn.client.on('error', (error: any) => {

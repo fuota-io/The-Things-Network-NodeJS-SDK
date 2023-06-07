@@ -151,7 +151,7 @@ exports.downlinkQueuePushUserPayload = {
     confirmed_downlink: false,
 };
 exports.subscribeDownLinkEventUserPayload = {
-    device_id: 'cgr-otaa-08ac',
+    device_id: 'eui-62af62f0385b5257',
     down_type: '#',
     host: 'nam1.cloud.thethings.industries',
     port: 1883,
@@ -167,11 +167,11 @@ exports.subscribeDownLinkEventUserPayload = {
     },
 };
 exports.subscribeUpLinkEventUserPayload = {
-    device_id: 'cgr-otaa-08ac',
+    device_id: 'eui-62af62f0385b5257',
     host: 'nam1.cloud.thethings.industries',
     port: 1883,
     username: 'stratis-thermostat@oxit',
-    callback_downlink_event: (data) => {
+    callback_uplink_event: (data) => {
         console.log('downlinkEvent', data.toString('utf8'));
     },
     callback_subscribe_disconnect: (data) => {
