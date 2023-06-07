@@ -750,7 +750,7 @@ export class EndDevice extends SetConfig {
     });
 
     this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
-      payload.callback_downlink_event(mqtt_payload);
+      payload.callback_uplink_event(mqtt_payload);
     });
 
     return this.conn.client;

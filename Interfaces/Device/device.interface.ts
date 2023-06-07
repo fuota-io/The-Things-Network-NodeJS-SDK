@@ -1063,7 +1063,7 @@ export interface subscribeUpLinkEventPayload {
   host: string;
   port: number;
   username: string;
-  callback_downlink_event: (data: any) => void;
+  callback_uplink_event: (data: any) => void;
   callback_subscribe_error: (data: any) => void;
   callback_subscribe_disconnect: (data: any) => void;
 }

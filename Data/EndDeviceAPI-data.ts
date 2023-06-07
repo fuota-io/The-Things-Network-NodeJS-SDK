@@ -193,7 +193,7 @@ export const subscribeUpLinkEventUserPayload: subscribeUpLinkEventPayload = {
   host: 'nam1.cloud.thethings.industries',
   port: 1883,
   username: 'stratis-thermostat@oxit',
-  callback_downlink_event: (data) => {
+  callback_uplink_event: (data) => {
     console.log('downlinkEvent', data.toString('utf8'));
   },
   callback_subscribe_disconnect: (data) => {
