@@ -148,7 +148,8 @@ export interface SetEndDeviceNSUserPayload {
     };
     frequency_plan_id: string;
     supports_join: boolean;
-    supports_class_c: boolean;
+    supports_class_c?: boolean;
+    supports_class_b?: boolean;
     multicast?: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
@@ -173,6 +174,14 @@ export interface SetEndDeviceNSUserPayload {
         };
       };
     };
+    mac_state: {
+      current_parameters: {
+        rx2_data_rate_index: number;
+      },
+      desired_parameters: {
+        rx2_data_rate_index: number;
+      }
+    }
   };
 }
 
@@ -187,7 +196,8 @@ export interface SetEndDeviceNSPayload {
     };
     frequency_plan_id: string;
     supports_join: boolean;
-    supports_class_c: boolean;
+    supports_class_c?: boolean;
+    supports_class_b?: boolean;
     multicast?: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
@@ -212,6 +222,14 @@ export interface SetEndDeviceNSPayload {
         };
       };
     };
+    mac_state: {
+      current_parameters: {
+        rx2_data_rate_index: number;
+      },
+      desired_parameters: {
+        rx2_data_rate_index: number;
+      }
+    }
   };
   field_mask: {
     paths: string[];
@@ -240,6 +258,7 @@ export interface SetEndDeviceNS {
   frequency_plan_id: string;
   supports_join: boolean;
   supports_class_c: boolean;
+  supports_class_b: boolean;
   multicast: boolean;
   lorawan_version: string;
   lorawan_phy_version: string;
@@ -255,6 +274,14 @@ export interface SetEndDeviceNS {
       };
     };
   };
+  mac_state: {
+    current_parameters: {
+      rx2_data_rate_index: number;
+    },
+    desired_parameters: {
+      rx2_data_rate_index: number;
+    }
+  }
 }
 
 export interface SetEndDeviceASUserPayload {
@@ -999,11 +1026,11 @@ export interface deleteEndDeviceISUserPayload {
   device_id: string;
 }
 
-export interface deleteEndDeviceJSUserPayload extends deleteEndDeviceISUserPayload {}
+export interface deleteEndDeviceJSUserPayload extends deleteEndDeviceISUserPayload { }
 
-export interface deleteEndDeviceNSUserPayload extends deleteEndDeviceISUserPayload {}
+export interface deleteEndDeviceNSUserPayload extends deleteEndDeviceISUserPayload { }
 
-export interface deleteEndDeviceASUserPayload extends deleteEndDeviceISUserPayload {}
+export interface deleteEndDeviceASUserPayload extends deleteEndDeviceISUserPayload { }
 
 export interface issueDevEUI {
   dev_eui: string;

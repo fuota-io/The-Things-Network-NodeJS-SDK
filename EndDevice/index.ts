@@ -188,6 +188,7 @@ export class EndDevice extends SetConfig {
         frequency_plan_id: payload.end_device.frequency_plan_id,
         supports_join: payload.end_device.supports_join,
         supports_class_c: payload.end_device.supports_class_c,
+        supports_class_b: payload.end_device.supports_class_b,
         multicast: payload.end_device?.multicast,
         lorawan_version: payload.end_device.lorawan_version,
         lorawan_phy_version: payload.end_device.lorawan_phy_version,
@@ -210,6 +211,14 @@ export class EndDevice extends SetConfig {
             f_nwk_s_int_key: {
               key: payload.end_device.session?.keys?.f_nwk_s_int_key?.key,
             },
+          },
+        },
+        mac_state: {
+          current_parameters: {
+            rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
+          },
+          desired_parameters: {
+            rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
           },
         },
       },
@@ -710,9 +719,9 @@ export class EndDevice extends SetConfig {
   subscribeDownLinkEvent(payload: subscribeDownLinkEventPayload): Promise<any> {
     this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = payload.device_id ? 
-    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` : 
-    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
+    this.topic = payload.device_id ?
+      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
+      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
 
     this.conn.client.on('connect', () => {
       this.conn.client.subscribe([this.topic], () => {
@@ -743,9 +752,9 @@ export class EndDevice extends SetConfig {
   subscribeUpLinkEvent(payload: subscribeUpLinkEventPayload): Promise<any> {
     this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = payload.device_id ? 
-    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` : 
-    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
+    this.topic = payload.device_id ?
+      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
+      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
 
     this.conn.client.on('connect', () => {
       this.conn.client.subscribe([this.topic], () => {
