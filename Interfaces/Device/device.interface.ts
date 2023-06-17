@@ -1042,6 +1042,7 @@ export interface downlinkQueueUserPayload {
   payload_type: string;
   port_no: number;
   request_type: string;
+  gateway_id: string[];
   confirmed_downlink: boolean;
 }
 
@@ -1053,7 +1054,7 @@ export interface downlinkQueue {
     join_eui?: string;
     dev_addr?: string;
   };
-  downlinks?: {
+  downlinks: {
     session_key_id?: string;
     f_port: number;
     f_cnt?: number;

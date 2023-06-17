@@ -674,6 +674,22 @@ export class EndDevice extends SetConfig {
       ],
     };
 
+    let gateways: any[] = [];
+
+    for (let i = 0; i < payload.gateway_id.length; i++) {
+      gateways.push({
+        gateway_ids: {
+          gateway_id: payload.gateway_id[i],
+        },
+      });
+    }
+
+    if (payload.gateway_id) {
+      apiPayload.downlinks[0].class_b_c = {
+        gateways: gateways,
+      }
+    }
+
     return this.API.send({
       method: 'POST',
       url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}/down/${payload.request_type}`,
