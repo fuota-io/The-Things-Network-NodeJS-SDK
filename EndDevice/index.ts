@@ -676,15 +676,16 @@ export class EndDevice extends SetConfig {
 
     let gateways: any[] = [];
 
-    for (let i = 0; i < payload.gateway_id.length; i++) {
-      gateways.push({
-        gateway_ids: {
-          gateway_id: payload.gateway_id[i],
-        },
-      });
-    }
-
     if (payload.gateway_id) {
+
+      for (let i = 0; i < payload.gateway_id.length; i++) {
+        gateways.push({
+          gateway_ids: {
+            gateway_id: payload.gateway_id[i],
+          },
+        });
+      }
+
       apiPayload.downlinks[0].class_b_c = {
         gateways: gateways,
       }

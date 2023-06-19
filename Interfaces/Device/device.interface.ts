@@ -1042,7 +1042,7 @@ export interface downlinkQueueUserPayload {
   payload_type: string;
   port_no: number;
   request_type: string;
-  gateway_id: string[];
+  gateway_id?: string[];
   confirmed_downlink: boolean;
 }
 
