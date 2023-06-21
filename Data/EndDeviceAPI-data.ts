@@ -91,6 +91,14 @@ export const setEndDeviceNSUserPayload = {
         application_id: 'meet69',
       },
     },
+    mac_state: {
+      current_parameters: {
+        rx2_data_rate_index: '12',
+      },
+      desired_parameters: {
+        rx2_data_rate_index: '12',
+      }
+    }
   },
 };
 
