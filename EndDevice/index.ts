@@ -205,14 +205,6 @@ export class EndDevice extends SetConfig {
             application_id: this.APPLICATION_ID,
           },
         },
-        mac_state: {
-          current_parameters: {
-            rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
-          },
-          desired_parameters: {
-            rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
-          },
-        },
       },
       field_mask: {
         paths: paths,
@@ -228,7 +220,18 @@ export class EndDevice extends SetConfig {
           },
         },
       };
+
+      const mac_state = {
+        current_parameters: {
+          rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
+        },
+        desired_parameters: {
+          rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
+        },
+      };
+
       apiPayload.end_device.session = session;
+      apiPayload.end_device.mac_state = mac_state;
     }
 
     return this.API.send({

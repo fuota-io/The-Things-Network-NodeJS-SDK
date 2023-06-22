@@ -222,7 +222,7 @@ export interface SetEndDeviceNSPayload {
         };
       };
     };
-    mac_state: {
+    mac_state?: {
       current_parameters: {
         rx2_data_rate_index: string;
       },
