@@ -223,10 +223,10 @@ export class EndDevice extends SetConfig {
 
       const mac_state = {
         current_parameters: {
-          rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
+          rx2_data_rate_index: payload.end_device.mac_state?.current_parameters?.rx2_data_rate_index,
         },
         desired_parameters: {
-          rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
+          rx2_data_rate_index: payload.end_device.mac_state?.current_parameters?.rx2_data_rate_index,
         },
       };
 

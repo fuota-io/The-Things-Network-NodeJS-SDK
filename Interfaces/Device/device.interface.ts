@@ -174,12 +174,12 @@ export interface SetEndDeviceNSUserPayload {
         };
       };
     };
-    mac_state: {
-      current_parameters: {
-        rx2_data_rate_index: string;
+    mac_state?: {
+      current_parameters?: {
+        rx2_data_rate_index?: string;
       },
-      desired_parameters: {
-        rx2_data_rate_index: string;
+      desired_parameters?: {
+        rx2_data_rate_index?: string;
       }
     }
   };
@@ -223,11 +223,11 @@ export interface SetEndDeviceNSPayload {
       };
     };
     mac_state?: {
-      current_parameters: {
-        rx2_data_rate_index: string;
+      current_parameters?: {
+        rx2_data_rate_index?: string;
       },
-      desired_parameters: {
-        rx2_data_rate_index: string;
+      desired_parameters?: {
+        rx2_data_rate_index?: string;
       }
     }
   };
