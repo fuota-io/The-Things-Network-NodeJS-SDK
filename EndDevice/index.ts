@@ -205,14 +205,6 @@ export class EndDevice extends SetConfig {
             application_id: this.APPLICATION_ID,
           },
         },
-        session: {
-          dev_addr: payload.end_device.session?.dev_addr,
-          keys: {
-            f_nwk_s_int_key: {
-              key: payload.end_device.session?.keys?.f_nwk_s_int_key?.key,
-            },
-          },
-        },
         mac_state: {
           current_parameters: {
             rx2_data_rate_index: payload.end_device.mac_state.current_parameters.rx2_data_rate_index,
@@ -226,6 +218,19 @@ export class EndDevice extends SetConfig {
         paths: paths,
       },
     };
+
+    if (payload.end_device.supports_join == false) {
+      const session = {
+        dev_addr: payload.end_device.session?.dev_addr,
+        keys: {
+          f_nwk_s_int_key: {
+            key: payload.end_device.session?.keys?.f_nwk_s_int_key?.key,
+          },
+        },
+      };
+      apiPayload.end_device.session = session;
+    }
+
     return this.API.send({
       method: 'PUT',
       url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.end_device.ids.device_id}`,
