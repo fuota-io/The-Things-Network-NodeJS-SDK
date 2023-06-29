@@ -397,11 +397,18 @@ export interface GetEndDeviceInfo {
       application_id: string;
     };
     dev_eui: string;
-    join_eui?: string;
-    dev_addr?: string;
+    join_eui: string;
+    dev_addr: string;
   };
   created_at: any;
   updated_at: any;
+  network_server_address: string,
+  application_server_address: string,
+  root_keys: {
+    app_key: {
+      key: string
+    }
+  }
 }
 
 export interface GetEndDeviceList {
