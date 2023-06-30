@@ -391,93 +391,6 @@ export interface GetEndDeviceInfoUserPayload {
 }
 
 export interface GetEndDeviceInfoIS {
-  name: string;
-  description: string;
-  version_ids: {
-    brand_id: string;
-    model_id: string;
-    hardware_version: string;
-    firmware_version: string;
-    band_id: string;
-  };
-  last_seen_at: any;
-  created_at: any;
-  updated_at: any;
-  network_server_address: string,
-  application_server_address: string,
-  join_server_address: string,
-  locations: {
-    [key: string]: {
-      latitude: number;
-      longitude: number;
-      altitude: number;
-      accuracy: number;
-      source: string;
-    };
-  };
-  claim_authentication_code: {
-    value: string;
-    valid_from: any;
-    valid_to: any;
-  };
-  attributes: {
-    [key: string]: string;
-  };
-}
-
-export interface GetEndDeviceInfoJS {
-  resets_join_nonces: boolean;
-  network_server_address: string;
-  application_server_address: string;
-  net_id: string;
-  application_server_id: string;
-  application_server_kek_label: string;
-  network_server_kek_label: string;
-  root_keys: {
-    app_key: {
-      key: string;
-    };
-  };
-}
-
-export interface GetEndDeviceInfoNS {
-  version_ids: {
-    brand_id: string;
-    model_id: string;
-    hardware_version: string;
-    firmware_version: string;
-    band_id: string;
-  };
-  frequency_plan_id: string;
-  mac_settings: MacSettings;
-  supports_class_b: boolean;
-  supports_class_c: boolean;
-  supports_join: boolean;
-  lorawan_version: string;
-  lorawan_phy_version: string;
-  multicast: boolean;
-  session: Session;
-  pending_session: Session;
-}
-
-export interface GetEndDeviceInfoAS {
-  version_ids: {
-    brand_id: string;
-    model_id: string;
-    hardware_version: string;
-    firmware_version: string;
-    band_id: string;
-  };
-  formatters: {
-    up_formatter: string;
-    down_formatter: string;
-  };
-  skip_payload_crypto_override: boolean;
-  session: Session;
-  pending_session: Session;
-}
-
-export interface GetEndDeviceInfo {
   ids: {
     device_id: string;
     application_ids: {
@@ -521,9 +434,87 @@ export interface GetEndDeviceInfo {
   };
 }
 
+export interface GetEndDeviceInfoJS {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+    dev_addr: string;
+  };
+  resets_join_nonces: boolean;
+  network_server_address: string;
+  application_server_address: string;
+  net_id: string;
+  application_server_id: string;
+  application_server_kek_label: string;
+  network_server_kek_label: string;
+  root_keys: {
+    app_key: {
+      key: string;
+    };
+  };
+}
+
+export interface GetEndDeviceInfoNS {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+    dev_addr: string;
+  };
+  version_ids: {
+    brand_id: string;
+    model_id: string;
+    hardware_version: string;
+    firmware_version: string;
+    band_id: string;
+  };
+  frequency_plan_id: string;
+  mac_settings: MacSettings;
+  supports_class_b: boolean;
+  supports_class_c: boolean;
+  supports_join: boolean;
+  lorawan_version: string;
+  lorawan_phy_version: string;
+  multicast: boolean;
+  session: Session;
+  pending_session: Session;
+}
+
+export interface GetEndDeviceInfoAS {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+    dev_addr: string;
+  };
+  version_ids: {
+    brand_id: string;
+    model_id: string;
+    hardware_version: string;
+    firmware_version: string;
+    band_id: string;
+  };
+  formatters: {
+    up_formatter: string;
+    down_formatter: string;
+  };
+  skip_payload_crypto_override: boolean;
+  session: Session;
+  pending_session: Session;
+}
 
 export interface GetEndDeviceList {
-  end_devices: GetEndDeviceInfo[];
+  end_devices: GetEndDeviceInfoIS[];
 }
 
 export interface ApplicationDownlink {
