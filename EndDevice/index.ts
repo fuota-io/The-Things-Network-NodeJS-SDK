@@ -16,7 +16,6 @@ import {
   SetEndDeviceAS,
   SetEndDeviceASPayload,
   GetEndDeviceInfoUserPayload,
-  GetEndDeviceInfo,
   GetEndDeviceList,
   UpdateEndDevicePayload,
   deleteEndDeviceASUserPayload,
@@ -31,6 +30,10 @@ import {
   subscribeUpLinkEventPayload,
   deleteEndDeviceISUserPayload,
   issueDevEUI,
+  GetEndDeviceInfoIS,
+  GetEndDeviceInfoJS,
+  GetEndDeviceInfoNS,
+  GetEndDeviceInfoAS,
 } from '../Interfaces/Device/device.interface';
 
 /**
@@ -319,10 +322,10 @@ export class EndDevice extends SetConfig {
    * @returns {Output-GetEndDeviceInfo}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice GetEndDeviceInfo}
    */
-  getEndDeviceInfoIS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfo> {
+  getEndDeviceInfoIS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfoIS> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
       headers: this.headers,
       data: {},
     });
@@ -342,10 +345,10 @@ export class EndDevice extends SetConfig {
    * @returns {Output-GetEndDeviceInfo}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice GetEndDeviceInfo}
    */
-  getEndDeviceInfoJS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfo> {
+  getEndDeviceInfoJS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfoJS> {
     return this.API.send({
       method: 'GET',
-      url: `${this.JOIN_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+      url: `${this.JOIN_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=resets_join_nonces,network_server_address,application_server_address,net_id,application_server_id,application_server_kek_label,network_server_kek_label,root_keys`,
       headers: this.headers,
       data: {},
     });
@@ -365,10 +368,10 @@ export class EndDevice extends SetConfig {
    * @returns {Output-GetEndDeviceInfo}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice GetEndDeviceInfo}
    */
-  getEndDeviceInfoNS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfo> {
+  getEndDeviceInfoNS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfoNS> {
     return this.API.send({
       method: 'GET',
-      url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+      url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=version_ids,frequency_plan_id,mac_settings,supports_class_b,supports_class_c,supports_join,lorawan_version,lorawan_phy_version,multicast,session,pending_session`,
       headers: this.headers,
       data: {},
     });
@@ -388,10 +391,10 @@ export class EndDevice extends SetConfig {
    * @returns {Output-GetEndDeviceInfo}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice GetEndDeviceInfo}
    */
-  getEndDeviceInfoAS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfo> {
+  getEndDeviceInfoAS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfoAS> {
     return this.API.send({
       method: 'GET',
-      url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+      url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=version_ids,formatters,skip_payload_crypto_override,session,pending_session`,
       headers: this.headers,
       data: {},
     });
@@ -411,7 +414,7 @@ export class EndDevice extends SetConfig {
   getEndDeviceList(): Promise<GetEndDeviceList> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices`,
+      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
       headers: this.headers,
       data: {},
     });
