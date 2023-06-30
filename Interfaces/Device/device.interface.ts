@@ -411,8 +411,8 @@ export interface GetEndDeviceInfoIS {
       latitude: number;
       longitude: number;
       altitude: number;
-      accuracy?: number;
-      source?: string;
+      accuracy: number;
+      source: string;
     };
   };
   claim_authentication_code: {
@@ -477,8 +477,53 @@ export interface GetEndDeviceInfoAS {
   pending_session: Session;
 }
 
+export interface GetEndDeviceInfo {
+  ids: {
+    device_id: string;
+    application_ids: {
+      application_id: string;
+    };
+    dev_eui: string;
+    join_eui: string;
+    dev_addr: string;
+  };
+  name: string;
+  description: string;
+  version_ids: {
+    brand_id: string;
+    model_id: string;
+    hardware_version: string;
+    firmware_version: string;
+    band_id: string;
+  };
+  last_seen_at: any;
+  created_at: any;
+  updated_at: any;
+  network_server_address: string,
+  application_server_address: string,
+  join_server_address: string,
+  locations: {
+    [key: string]: {
+      latitude: number;
+      longitude: number;
+      altitude: number;
+      accuracy: number;
+      source: string;
+    };
+  };
+  claim_authentication_code: {
+    value: string;
+    valid_from: any;
+    valid_to: any;
+  };
+  attributes: {
+    [key: string]: string;
+  };
+}
+
+
 export interface GetEndDeviceList {
-  end_devices: GetEndDeviceInfoIS[];
+  end_devices: GetEndDeviceInfo[];
 }
 
 export interface ApplicationDownlink {
