@@ -16,7 +16,7 @@ export class Mqtt {
     this.username = username;
     this.api_key = api_key;
     this.clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
-    this.connectUrl = `mqtt://${this.host}:${this.port}`;
+    this.connectUrl = `mqtts://${this.host}:${this.port}`;
     this.password = this.api_key;
 
     this.client = mqtt.connect(this.connectUrl, {
