@@ -76,7 +76,7 @@ export class Gateway extends SetConfig {
   getGatewayList(): Promise<GetGatewayList> {
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/gateways`,
+      url: `${this.IDENTITY_SERVER}/gateways?field_mask=name`,
       headers: this.headers,
       data: {},
     });
