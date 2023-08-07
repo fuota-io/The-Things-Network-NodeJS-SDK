@@ -756,22 +756,22 @@ export class EndDevice extends SetConfig {
         this.conn.client.subscribe([this.topic], () => {
           // console.log(`Subscribe to topic '${topic}'`);
         });
-        const clientObj = {
-          client: this.conn.client,
-          topic: this.topic,
-        };
-        resolve(clientObj);
       });
 
       this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
         payload.callback_downlink_event(mqtt_payload);
       });
 
+      const clientObj = {
+        client: this.conn.client,
+        topic: this.topic,
+      };
+      resolve(clientObj);
+
       // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
       //   payload.callback_subscribe_disconnect(mqtt_payload);
       // });
 
-      return this.conn.client;
       // conn.client.on('error', (error: any) => {
       //   payload.callback_subscribe_error(error);
       // });
@@ -796,18 +796,19 @@ export class EndDevice extends SetConfig {
         this.conn.client.subscribe([this.topic], () => {
           // console.log(`Subscribe to topic '${topic}'`);
         });
-        const clientObj = {
-          client: this.conn.client,
-          topic: this.topic,
-        };
-        resolve(clientObj);
       });
 
       this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
         payload.callback_uplink_event(mqtt_payload);
       });
 
-      return this.conn.client;
+      const clientObj = {
+        client: this.conn.client,
+        topic: this.topic,
+      };
+      
+      resolve(clientObj);
+
       // conn.client.on('error', (error: any) => {
       //   payload.callback_subscribe_error(error);
       // });
