@@ -745,30 +745,37 @@ export class EndDevice extends SetConfig {
    * @returns It shows the downlink event to the user.
    */
   subscribeDownLinkEvent(payload: subscribeDownLinkEventPayload): Promise<any> {
-    this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+    return new Promise((resolve) => {
+      this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = payload.device_id ?
-      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
-      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
+      this.topic = payload.device_id ?
+        `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
+        `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
 
-    this.conn.client.on('connect', () => {
-      this.conn.client.subscribe([this.topic], () => {
-        // console.log(`Subscribe to topic '${topic}'`);
+      this.conn.client.on('connect', () => {
+        this.conn.client.subscribe([this.topic], () => {
+          // console.log(`Subscribe to topic '${topic}'`);
+        });
+        const clientObj = {
+          client: this.conn.client,
+          topic: this.topic,
+        };
+        resolve(clientObj);
       });
+
+      this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
+        payload.callback_downlink_event(mqtt_payload);
+      });
+
+      // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
+      //   payload.callback_subscribe_disconnect(mqtt_payload);
+      // });
+
+      return this.conn.client;
+      // conn.client.on('error', (error: any) => {
+      //   payload.callback_subscribe_error(error);
+      // });
     });
-
-    this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
-      payload.callback_downlink_event(mqtt_payload);
-    });
-
-    // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
-    //   payload.callback_subscribe_disconnect(mqtt_payload);
-    // });
-
-    return this.conn.client;
-    // conn.client.on('error', (error: any) => {
-    //   payload.callback_subscribe_error(error);
-    // });
   }
 
   /**
@@ -778,41 +785,46 @@ export class EndDevice extends SetConfig {
    * @returns It shows the uplink event to the user.
    */
   subscribeUpLinkEvent(payload: subscribeUpLinkEventPayload): Promise<any> {
-    this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+    return new Promise((resolve) => {
+      this.conn = new Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
 
-    this.topic = payload.device_id ?
-      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
-      `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
+      this.topic = payload.device_id ?
+        `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
+        `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
 
-    this.conn.client.on('connect', () => {
-      this.conn.client.subscribe([this.topic], () => {
-        // console.log(`Subscribe to topic '${topic}'`);
+      this.conn.client.on('connect', () => {
+        this.conn.client.subscribe([this.topic], () => {
+          // console.log(`Subscribe to topic '${topic}'`);
+        });
+        const clientObj = {
+          client: this.conn.client,
+          topic: this.topic,
+        };
+        resolve(clientObj);
       });
+
+      this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
+        payload.callback_uplink_event(mqtt_payload);
+      });
+
+      return this.conn.client;
+      // conn.client.on('error', (error: any) => {
+      //   payload.callback_subscribe_error(error);
+      // });
+
+      // conn.client.on('disconnect', () => {
+      //   payload.callback_subscribe_disconnect(topic);
+      // });
     });
-
-    this.conn.client.on('message', (topic: any, mqtt_payload: any) => {
-      payload.callback_uplink_event(mqtt_payload);
-    });
-
-    return this.conn.client;
-    // conn.client.on('error', (error: any) => {
-    //   payload.callback_subscribe_error(error);
-    // });
-
-    // conn.client.on('disconnect', () => {
-    //   payload.callback_subscribe_disconnect(topic);
-    // });
   }
 
   /**
    * It unsubscribes event topic.
    * @param {mqtt_connection_object} payload - MQTT Connection Object
    */
-  unsubscribeEvent(client: any) {
-    client.on('connect', () => {
-      client.unsubscribe(this.topic, (error: any) => {
-        console.log('unsubscribeDownLinkEvent', error);
-      });
+  unsubscribeEvent(client: any, topic: string) {
+    client.unsubscribe(topic, (error: any) => {
+      console.log('unsubscribeDownLinkEvent', error);
     });
   }
 }
