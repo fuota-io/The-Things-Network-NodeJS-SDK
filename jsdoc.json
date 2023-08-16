@@ -1,0 +1,37 @@
+{
+  "source": {
+    "include": [
+      "dist/User/index.js",
+      "dist/Organization/index.js",
+      "dist/Application/index.js",
+      "dist/EndDevice/index.js",
+      "dist/Gateway/index.js",
+      "dist/Interfaces/Doc Common/docApp.interface.js",
+      "dist/Interfaces/Doc Common/docEndDevice.interface.js"
+    ]
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "template": "node_modules/clean-jsdoc-theme",
+    "readme": "./readme/readme.md",
+    "recurse": true,
+    "destination": "./docs/",
+    "encoding": "utf8",
+    "verbose": true,
+    "theme_opts": {
+      "default_theme": "dark",
+      "search": true,
+      "title": "TTN-VruttiTech",
+      "base_url": "D:/Vrutti Tech/The Things Stack/fuota-things-stack-node-sdk/docs/",
+      "homepageTitle": "The Things Stack Docs"
+    }
+  },
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  }
+}
