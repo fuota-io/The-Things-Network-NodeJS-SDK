@@ -32,7 +32,6 @@ export class User extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class
    * @param {string} userID - The user ID of the user you want to get the profile of.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
    * @param {Config} config - Config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(userID: string, config: Config) {
@@ -42,18 +41,9 @@ export class User extends SetConfig {
 
   /**
    * It creates an application for the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateApplication}
    * @param {Input-CreateApplication} payload - Input-CreateApplication
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateApplication}
+   * @returns {Output-CreateApplication} 
    * The response from the API.
-   * @example
-   * const createApplicationPayloadForUser = {
-      application_id: 'meet59',
-      name: 'meet',
-      description: '',  };
-   *
-   * const user = new User('meetsavaj', config);
-   * const response = await user.createApplication(createApplicationPayloadForUser);
    */
   createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication> {
     const apiPayload: CreateApplicationPayload = {
@@ -73,7 +63,7 @@ export class User extends SetConfig {
 
   /**
    * It returns the list of applications that have been created by the user.
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetApplicationList}
+   * @returns {Output-GetApplicationList}
    * The response from the API.
    */
   getApplicationList(): Promise<GetApplicationList> {
@@ -87,9 +77,8 @@ export class User extends SetConfig {
 
   /**
    * It creates an api key for the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateAPIKeyForUser}
    * @param {Input-CreateAPIKeyForUser} payload - Input-CreateAPIKeyForUser
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
+   * @returns {Output-CreateAPIKey}
    * The response from the API.
    */
   createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey> {
@@ -108,9 +97,8 @@ export class User extends SetConfig {
 
   /**
    * It returns the list of api keys that have been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").cGetAPIKeyList}
    * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyList}
+   * @returns {Output-GetAPIKeyList}
    * The response from the API.
    */
   getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
@@ -124,9 +112,8 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyInfo}
    * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyInfo}
+   * @returns {Output-GetAPIKeyInfo}
    * The response from the API.
    */
   getAPIKeyInfo(payload: GetAPIKeyInfoUserPayload): Promise<GetAPIKeyInfo> {
@@ -140,9 +127,8 @@ export class User extends SetConfig {
 
   /**
    * It returns the information of the api key that has been created by the user.
-   * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-UpdateAPIKeyOfUser}
    * @param {Input-UpdateAPIKeyOfUser} payload - Input-UpdateAPIKeyOfUser
-   * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-UpdateAPIKey}
+   * @returns {Output-UpdateAPIKey}
    * The response from the API.
    */
   updateAPIKey(payload: UpdateAPIKeyUserPayload): Promise<UpdateAPIKey> {

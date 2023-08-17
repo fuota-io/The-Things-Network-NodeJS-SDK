@@ -14,7 +14,6 @@ class EndDevice extends index_1.SetConfig {
      * The constructor function is a special function that is called when an object is created from a
      * class.
      * @param {string} applicationID - The ID of the application you want to use.
-     * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
      * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
      */
     constructor(applicationID, config) {
@@ -25,9 +24,8 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It creates an end device for the application.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-CreateEndDeviceIS}
     //  * @param {Input-CreateEndDeviceIS} payload - Input-CreateEndDeviceIS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-CreateEndDeviceIS}
+    //  * @returns {Output-CreateEndDeviceIS}
     //  * The response from the API.
     //  */
     /**
@@ -75,9 +73,8 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It sets an end device for the application in the Join Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceJS}
     //  * @param {Input-SetEndDeviceJS} payload - Input-SetEndDeviceJS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceJS}
+    //  * @returns {Output-SetEndDeviceJS}
     //  * The response from the API.
     //  */
     /**
@@ -120,9 +117,8 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It sets an end device for the application in the Network Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceNS}
     //  * @param {Input-SetEndDeviceNS} payload - Input-SetEndDeviceNS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceNS}
+    //  * @returns {Output-SetEndDeviceNS}
     //  * The response from the API.
     //  */
     /**
@@ -132,7 +128,7 @@ class EndDevice extends index_1.SetConfig {
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevice SetEndDeviceNS}
      */
     setEndDeviceNS(payload) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
         const recpaths = (0, utils_1.getAllKeys)(payload);
         const tempPaths = recpaths.toString().replaceAll('end_device.', '').split(',');
         const items = ['ids.dev_addr'];
@@ -149,6 +145,7 @@ class EndDevice extends index_1.SetConfig {
                 frequency_plan_id: payload.end_device.frequency_plan_id,
                 supports_join: payload.end_device.supports_join,
                 supports_class_c: payload.end_device.supports_class_c,
+                supports_class_b: payload.end_device.supports_class_b,
                 multicast: (_f = payload.end_device) === null || _f === void 0 ? void 0 : _f.multicast,
                 lorawan_version: payload.end_device.lorawan_version,
                 lorawan_phy_version: payload.end_device.lorawan_phy_version,
@@ -165,19 +162,31 @@ class EndDevice extends index_1.SetConfig {
                         application_id: this.APPLICATION_ID,
                     },
                 },
-                session: {
-                    dev_addr: (_j = payload.end_device.session) === null || _j === void 0 ? void 0 : _j.dev_addr,
-                    keys: {
-                        f_nwk_s_int_key: {
-                            key: (_m = (_l = (_k = payload.end_device.session) === null || _k === void 0 ? void 0 : _k.keys) === null || _l === void 0 ? void 0 : _l.f_nwk_s_int_key) === null || _m === void 0 ? void 0 : _m.key,
-                        },
-                    },
-                },
             },
             field_mask: {
                 paths: paths,
             },
         };
+        if (payload.end_device.supports_join == false) {
+            const session = {
+                dev_addr: (_j = payload.end_device.session) === null || _j === void 0 ? void 0 : _j.dev_addr,
+                keys: {
+                    f_nwk_s_int_key: {
+                        key: (_m = (_l = (_k = payload.end_device.session) === null || _k === void 0 ? void 0 : _k.keys) === null || _l === void 0 ? void 0 : _l.f_nwk_s_int_key) === null || _m === void 0 ? void 0 : _m.key,
+                    },
+                },
+            };
+            const mac_state = {
+                current_parameters: {
+                    rx2_data_rate_index: (_p = (_o = payload.end_device.mac_state) === null || _o === void 0 ? void 0 : _o.current_parameters) === null || _p === void 0 ? void 0 : _p.rx2_data_rate_index,
+                },
+                desired_parameters: {
+                    rx2_data_rate_index: (_r = (_q = payload.end_device.mac_state) === null || _q === void 0 ? void 0 : _q.current_parameters) === null || _r === void 0 ? void 0 : _r.rx2_data_rate_index,
+                },
+            };
+            apiPayload.end_device.session = session;
+            apiPayload.end_device.mac_state = mac_state;
+        }
         return this.API.send({
             method: 'PUT',
             url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.end_device.ids.device_id}`,
@@ -187,9 +196,8 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It sets an end device for the application in the Application Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceAS}
     //  * @param {Input-SetEndDeviceAS} payload - Input-SetEndDeviceAS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceAS}
+    //  * @returns {Output-SetEndDeviceAS}
     //  * The response from the API.
     //  */
     /**
@@ -248,9 +256,8 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It returns the end device information for the application in the Identity Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
     //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+    //  * @returns {Output-GetEndDeviceInfo}
     //  * The response from the API.
     //  */
     /**
@@ -262,16 +269,15 @@ class EndDevice extends index_1.SetConfig {
     getEndDeviceInfoIS(payload) {
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
             headers: this.headers,
             data: {},
         });
     }
     // /**
     //  * It returns the end device information for the application in the Join Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
     //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+    //  * @returns {Output-GetEndDeviceInfo}
     //  * The response from the API.
     //  */
     /**
@@ -283,16 +289,15 @@ class EndDevice extends index_1.SetConfig {
     getEndDeviceInfoJS(payload) {
         return this.API.send({
             method: 'GET',
-            url: `${this.JOIN_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+            url: `${this.JOIN_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=resets_join_nonces,network_server_address,application_server_address,net_id,application_server_id,application_server_kek_label,network_server_kek_label,root_keys`,
             headers: this.headers,
             data: {},
         });
     }
     // /**
     //  * It returns the end device information for the application in the Network Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
     //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+    //  * @returns {Output-GetEndDeviceInfo}
     //  * The response from the API.
     //  */
     /**
@@ -304,16 +309,15 @@ class EndDevice extends index_1.SetConfig {
     getEndDeviceInfoNS(payload) {
         return this.API.send({
             method: 'GET',
-            url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+            url: `${this.NETWORK_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=version_ids,frequency_plan_id,mac_settings,supports_class_b,supports_class_c,supports_join,lorawan_version,lorawan_phy_version,multicast,session,pending_session`,
             headers: this.headers,
             data: {},
         });
     }
     // /**
     //  * It returns the end device information for the application in the Application Server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
     //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+    //  * @returns {Output-GetEndDeviceInfo}
     //  * The response from the API.
     //  */
     /**
@@ -325,14 +329,14 @@ class EndDevice extends index_1.SetConfig {
     getEndDeviceInfoAS(payload) {
         return this.API.send({
             method: 'GET',
-            url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}`,
+            url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}?field_mask=version_ids,formatters,skip_payload_crypto_override,session,pending_session`,
             headers: this.headers,
             data: {},
         });
     }
     // /**
     //  * It returns the list of end devices for the application in the Identity Server.
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceList}
+    //  * @returns {Output-GetEndDeviceList}
     //  * The response from the API.
     //  */
     /**
@@ -343,7 +347,7 @@ class EndDevice extends index_1.SetConfig {
     getEndDeviceList() {
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices`,
+            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
             headers: this.headers,
             data: {},
         });
@@ -482,15 +486,14 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It deletes the end device in the identity server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceIS}
     //  * @param {Input-DeleteEndDeviceIS} payload - Input-DeleteEndDeviceIS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+    //  * @returns {Output-EmptyPayload}
     //  * The response from the API.
     //  */
     /**
      * It deletes the end device in the identity server.
      * @param {Input-DeleteEndDeviceIS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceIS}
-     * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     deleteEndDeviceIS(payload) {
@@ -503,15 +506,14 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It deletes the end device in the join server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceJS}
     //  * @param {Input-DeleteEndDeviceJS} payload - Input-DeleteEndDeviceJS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+    //  * @returns {Output-EmptyPayload}
     //  * The response from the API.
     //  */
     /**
      * It deletes the end device in the join server.
      * @param {Input-DeleteEndDeviceJS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceJS}
-     * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     deleteEndDeviceJS(payload) {
@@ -524,15 +526,14 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It deletes the end device in the network server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceNS}
     //  * @param {Input-DeleteEndDeviceNS} payload - Input-DeleteEndDeviceNS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+    //  * @returns {Output-EmptyPayload}
     //  * The response from the API.
     //  */
     /**
      * It deletes the end device in the network server.
      * @param {Input-DeleteEndDeviceNS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceNS}
-     * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     deleteEndDeviceNS(payload) {
@@ -545,15 +546,14 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It deletes the end device in the application server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceAS}
     //  * @param {Input-DeleteEndDeviceAS} payload - Input-DeleteEndDeviceAS
-    //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+    //  * @returns {Output-EmptyPayload}
     //  * The response from the API.
     //  */
     /**
      * It deletes the end device in the application server.
      * @param {Input-DeleteEndDeviceAS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceAS}
-     * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     deleteEndDeviceAS(payload) {
@@ -566,7 +566,7 @@ class EndDevice extends index_1.SetConfig {
     }
     /**
      * It returns DevEUIs that are available for use.
-     * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-IssueDevEUI}
+     * @returns {Output-IssueDevEUI}
      * The response from the API.
      */
     issueDevEUI() {
@@ -579,9 +579,7 @@ class EndDevice extends index_1.SetConfig {
     }
     /**
      * It push or replace the downlink queue in the application server.
-     * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DownlinkQueue}
      * @param {Input-DownlinkQueue} payload - Input-DownlinkQueue
-     * @returns It push or replace the downlink queue in the application server.
      */
     downlinkQueue(payload) {
         /* Converting the payload into a base64 string. */
@@ -595,6 +593,19 @@ class EndDevice extends index_1.SetConfig {
                 },
             ],
         };
+        let gateways = [];
+        if (payload.gateway_id) {
+            for (let i = 0; i < payload.gateway_id.length; i++) {
+                gateways.push({
+                    gateway_ids: {
+                        gateway_id: payload.gateway_id[i],
+                    },
+                });
+            }
+            apiPayload.downlinks[0].class_b_c = {
+                gateways: gateways,
+            };
+        }
         return this.API.send({
             method: 'POST',
             url: `${this.APPLICATION_SERVER}/applications/${this.APPLICATION_ID}/devices/${payload.device_id}/down/${payload.request_type}`,
@@ -604,7 +615,6 @@ class EndDevice extends index_1.SetConfig {
     }
     // /**
     //  * It simulate the uplink queue in the application server.
-    //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-UplinkQueue}
     //  * @param {Input-UplinkQueue} payload - Input-UplinkQueue
     //  * @returns It simulate the uplink queue in the application server.
     //  */
@@ -629,67 +639,75 @@ class EndDevice extends index_1.SetConfig {
     // }
     /**
      * It subscribes downlink event topic.
-     * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SubscribeDownLinkEvent}
      * @param {Input-SubscribeDownLinkEvent} payload - Input-SubscribeDownLinkEvent
-     * @returns It shows the downlink event to the user.
+     * @returns {Output-SubscribeDownLinkEvent} It returns client object and topic.
      */
     subscribeDownLinkEvent(payload) {
-        this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-        this.topic = payload.device_id ?
-            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
-            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
-        this.conn.client.on('connect', () => {
-            this.conn.client.subscribe([this.topic], () => {
-                // console.log(`Subscribe to topic '${topic}'`);
+        return new Promise((resolve) => {
+            this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+            this.topic = payload.device_id ?
+                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
+                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
+            this.conn.client.on('connect', () => {
+                this.conn.client.subscribe([this.topic], () => {
+                    // console.log(`Subscribe to topic '${topic}'`);
+                });
             });
+            this.conn.client.on('message', (topic, mqtt_payload) => {
+                payload.callback_downlink_event(mqtt_payload);
+            });
+            const clientObj = {
+                client: this.conn.client,
+                topic: this.topic,
+            };
+            resolve(clientObj);
+            // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
+            //   payload.callback_subscribe_disconnect(mqtt_payload);
+            // });
+            // conn.client.on('error', (error: any) => {
+            //   payload.callback_subscribe_error(error);
+            // });
         });
-        this.conn.client.on('message', (topic, mqtt_payload) => {
-            payload.callback_downlink_event(mqtt_payload);
-        });
-        // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
-        //   payload.callback_subscribe_disconnect(mqtt_payload);
-        // });
-        return this.conn.client;
-        // conn.client.on('error', (error: any) => {
-        //   payload.callback_subscribe_error(error);
-        // });
     }
     /**
      * It subscribes uplink event topic.
-     * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SubscribeUpLinkEvent}
      * @param {Input-SubscribeUpLinkEvent} payload - Input-SubscribeUpLinkEvent
-     * @returns It shows the uplink event to the user.
+     * @returns {Output-SubscribeUpLinkEvent} It returns client object and topic.
      */
     subscribeUpLinkEvent(payload) {
-        this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-        this.topic = payload.device_id ?
-            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
-            `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
-        this.conn.client.on('connect', () => {
-            this.conn.client.subscribe([this.topic], () => {
-                // console.log(`Subscribe to topic '${topic}'`);
+        return new Promise((resolve) => {
+            this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+            this.topic = payload.device_id ?
+                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
+                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
+            this.conn.client.on('connect', () => {
+                this.conn.client.subscribe([this.topic], () => {
+                    // console.log(`Subscribe to topic '${topic}'`);
+                });
             });
+            this.conn.client.on('message', (topic, mqtt_payload) => {
+                payload.callback_uplink_event(mqtt_payload);
+            });
+            const clientObj = {
+                client: this.conn.client,
+                topic: this.topic,
+            };
+            resolve(clientObj);
+            // conn.client.on('error', (error: any) => {
+            //   payload.callback_subscribe_error(error);
+            // });
+            // conn.client.on('disconnect', () => {
+            //   payload.callback_subscribe_disconnect(topic);
+            // });
         });
-        this.conn.client.on('message', (topic, mqtt_payload) => {
-            payload.callback_uplink_event(mqtt_payload);
-        });
-        return this.conn.client;
-        // conn.client.on('error', (error: any) => {
-        //   payload.callback_subscribe_error(error);
-        // });
-        // conn.client.on('disconnect', () => {
-        //   payload.callback_subscribe_disconnect(topic);
-        // });
     }
     /**
      * It unsubscribes event topic.
      * @param {mqtt_connection_object} payload - MQTT Connection Object
      */
-    unsubscribeEvent(client) {
-        client.on('connect', () => {
-            client.unsubscribe(this.topic, (error) => {
-                console.log('unsubscribeDownLinkEvent', error);
-            });
+    unsubscribeEvent(client, topic) {
+        client.unsubscribe(topic, (error) => {
+            console.log('unsubscribeDownLinkEvent', error);
         });
     }
 }

@@ -81,6 +81,14 @@ export declare const setEndDeviceNSUserPayload: {
                 application_id: string;
             };
         };
+        mac_state: {
+            current_parameters: {
+                rx2_data_rate_index: string;
+            };
+            desired_parameters: {
+                rx2_data_rate_index: string;
+            };
+        };
     };
 };
 export declare const setEndDeviceASUserPayload: {

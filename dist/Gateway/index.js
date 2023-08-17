@@ -13,7 +13,6 @@ class Gateway extends index_1.SetConfig {
      * The constructor function is a special function that is called when an object is created from a
      * class
      * @param {string} gatewayID - The ID of the gateway you want to get the list of users from.
-     * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
      * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
      */
     constructor(gatewayID, config) {
@@ -43,7 +42,7 @@ class Gateway extends index_1.SetConfig {
     getGatewayList() {
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/gateways`,
+            url: `${this.IDENTITY_SERVER}/gateways?field_mask=name`,
             headers: this.headers,
             data: {},
         });
@@ -124,7 +123,7 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It deletes the gateway.
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     deleteGateway() {
@@ -137,7 +136,7 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It restores the gateway.
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     restoreGateway() {
@@ -150,7 +149,7 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It purges the gateway.
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     purgeGateway() {
@@ -163,7 +162,7 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It searches the gateway.
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-SearchGateway}
+     * @returns {Output-SearchGateway}
      * The response from the API.
      */
     searchGateway() {
@@ -176,7 +175,7 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns the gateway rights.
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetGatewayRight}
+     * @returns {Output-GetGatewayRight}
      * The response from the API.
      */
     getGatewayRight() {
@@ -189,9 +188,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It creates an API key for the gateway.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-CreateAPIKeyForUser}
      * @param {Input-CreateAPIKeyForUser} payload - Input-CreateAPIKeyForUser
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-CreateAPIKey}
+     * @returns {Output-CreateAPIKey}
      * The response from the API.
      */
     createAPIKey(payload) {
@@ -209,9 +207,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns the list of API keys for the gateway.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyList}
      * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyList}
+     * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
     getAPIKeyList(payload) {
@@ -224,9 +221,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns the API key information for the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetAPIKeyInfo}
      * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetAPIKeyInfo}
+     * @returns {Output-GetAPIKeyInfo}
      * The response from the API.
      */
     getAPIKeyInfo(payload) {
@@ -239,9 +235,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns the information of the api key that has been created by the user.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-UpdateAPIKeyOfApplication}
      * @param {Input-UpdateAPIKeyOfApplication} payload - Input-UpdateAPIKeyOfApplication
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-UpdateAPIKey}
+     * @returns {Output-UpdateAPIKey}
      * The response from the API.
      */
     updateAPIKey(payload) {
@@ -272,9 +267,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns rights of the collaborator (member) of the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetCollaboratorInfoOfUser}
      * @param {Input-GetCollaboratorInfoOfUser} payload - Input-GetCollaboratorInfoOfUser
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetCollaboratorInfoOfUser}
+     * @returns {Output-GetCollaboratorInfoOfUser}
      * The response from the API.
      */
     getCollaboratorInfoOfUser(payload) {
@@ -287,9 +281,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns rights of the collaborator (member) of the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetCollaboratorInfoOfOrg}
      * @param {Input-GetCollaboratorInfoOfOrg} payload - Input-GetCollaboratorInfoOfOrg
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetCollaboratorInfoOfOrg}
+     * @returns {Output-GetCollaboratorInfoOfOrg}
      * The response from the API.
      */
     getCollaboratorInfoOfOrg(payload) {
@@ -302,9 +295,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It sets the rights of a collaborator (member) on the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-SetCollaboratorOfUser}
      * @param {Input-SetCollaboratorOfUser} payload - Input-SetCollaboratorOfUser
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     setCollaboratorOfUser(payload) {
@@ -325,9 +317,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It sets the rights of a collaborator (member) on the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-SetCollaboratorOfOrg}
      * @param {Input-SetCollaboratorOfOrg} payload - Input-SetCollaboratorOfOrg
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-EmptyPayload}
+     * @returns {Output-EmptyPayload}
      * The response from the API.
      */
     setCollaboratorOfOrg(payload) {
@@ -348,9 +339,8 @@ class Gateway extends index_1.SetConfig {
     }
     /**
      * It returns the list of API keys for the application.
-     * @type {import("../dist/Interfaces/Doc Common/docApp.interface").Input-GetCollabortorList}
      * @param {Input-GetCollabortorList} payload - Input-GetCollabortorList
-     * @returns {import("../dist/Interfaces/Doc Common/docApp.interface").Output-GetCollabortorList}
+     * @returns {Output-GetCollabortorList}
      * The response from the API.
      */
     getCollaboratorList(payload) {

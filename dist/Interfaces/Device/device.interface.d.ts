@@ -2,7 +2,7 @@ export interface CreateEndDeviceISUserPayload {
     end_device: {
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -25,7 +25,7 @@ export interface CreateEndDeviceISPayload {
     end_device: {
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -145,7 +145,8 @@ export interface SetEndDeviceNSUserPayload {
         };
         frequency_plan_id: string;
         supports_join: boolean;
-        supports_class_c: boolean;
+        supports_class_c?: boolean;
+        supports_class_b?: boolean;
         multicast?: boolean;
         lorawan_version: string;
         lorawan_phy_version: string;
@@ -155,7 +156,7 @@ export interface SetEndDeviceNSUserPayload {
         };
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -168,6 +169,14 @@ export interface SetEndDeviceNSUserPayload {
                 f_nwk_s_int_key?: {
                     key?: string;
                 };
+            };
+        };
+        mac_state?: {
+            current_parameters?: {
+                rx2_data_rate_index?: string;
+            };
+            desired_parameters?: {
+                rx2_data_rate_index?: string;
             };
         };
     };
@@ -183,7 +192,8 @@ export interface SetEndDeviceNSPayload {
         };
         frequency_plan_id: string;
         supports_join: boolean;
-        supports_class_c: boolean;
+        supports_class_c?: boolean;
+        supports_class_b?: boolean;
         multicast?: boolean;
         lorawan_version: string;
         lorawan_phy_version: string;
@@ -193,7 +203,7 @@ export interface SetEndDeviceNSPayload {
         };
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -206,6 +216,14 @@ export interface SetEndDeviceNSPayload {
                 f_nwk_s_int_key?: {
                     key?: string;
                 };
+            };
+        };
+        mac_state?: {
+            current_parameters?: {
+                rx2_data_rate_index?: string;
+            };
+            desired_parameters?: {
+                rx2_data_rate_index?: string;
             };
         };
     };
@@ -235,6 +253,7 @@ export interface SetEndDeviceNS {
     frequency_plan_id: string;
     supports_join: boolean;
     supports_class_c: boolean;
+    supports_class_b: boolean;
     multicast: boolean;
     lorawan_version: string;
     lorawan_phy_version: string;
@@ -248,6 +267,14 @@ export interface SetEndDeviceNS {
             f_nwk_s_int_key: {
                 key: string;
             };
+        };
+    };
+    mac_state: {
+        current_parameters: {
+            rx2_data_rate_index: number;
+        };
+        desired_parameters: {
+            rx2_data_rate_index: number;
         };
     };
 }
@@ -266,7 +293,7 @@ export interface SetEndDeviceASUserPayload {
         };
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -298,7 +325,7 @@ export interface SetEndDeviceASPayload {
         };
         ids: {
             join_eui?: string;
-            dev_eui: string;
+            dev_eui?: string;
             device_id: string;
             dev_addr?: string;
             application_ids: {
@@ -353,21 +380,127 @@ export interface SetEndDeviceAS {
 export interface GetEndDeviceInfoUserPayload {
     device_id: string;
 }
-export interface GetEndDeviceInfo {
+export interface GetEndDeviceInfoIS {
     ids: {
         device_id: string;
         application_ids: {
             application_id: string;
         };
         dev_eui: string;
-        join_eui?: string;
-        dev_addr?: string;
+        join_eui: string;
+        dev_addr: string;
     };
+    name: string;
+    description: string;
+    version_ids: {
+        brand_id: string;
+        model_id: string;
+        hardware_version: string;
+        firmware_version: string;
+        band_id: string;
+    };
+    last_seen_at: any;
     created_at: any;
     updated_at: any;
+    network_server_address: string;
+    application_server_address: string;
+    join_server_address: string;
+    locations: {
+        [key: string]: {
+            latitude: number;
+            longitude: number;
+            altitude: number;
+            accuracy: number;
+            source: string;
+        };
+    };
+    claim_authentication_code: {
+        value: string;
+        valid_from: any;
+        valid_to: any;
+    };
+    attributes: {
+        [key: string]: string;
+    };
+}
+export interface GetEndDeviceInfoJS {
+    ids: {
+        device_id: string;
+        application_ids: {
+            application_id: string;
+        };
+        dev_eui: string;
+        join_eui: string;
+        dev_addr: string;
+    };
+    resets_join_nonces: boolean;
+    network_server_address: string;
+    application_server_address: string;
+    net_id: string;
+    application_server_id: string;
+    application_server_kek_label: string;
+    network_server_kek_label: string;
+    root_keys: {
+        app_key: {
+            key: string;
+        };
+    };
+}
+export interface GetEndDeviceInfoNS {
+    ids: {
+        device_id: string;
+        application_ids: {
+            application_id: string;
+        };
+        dev_eui: string;
+        join_eui: string;
+        dev_addr: string;
+    };
+    version_ids: {
+        brand_id: string;
+        model_id: string;
+        hardware_version: string;
+        firmware_version: string;
+        band_id: string;
+    };
+    frequency_plan_id: string;
+    mac_settings: MacSettings;
+    supports_class_b: boolean;
+    supports_class_c: boolean;
+    supports_join: boolean;
+    lorawan_version: string;
+    lorawan_phy_version: string;
+    multicast: boolean;
+    session: Session;
+    pending_session: Session;
+}
+export interface GetEndDeviceInfoAS {
+    ids: {
+        device_id: string;
+        application_ids: {
+            application_id: string;
+        };
+        dev_eui: string;
+        join_eui: string;
+        dev_addr: string;
+    };
+    version_ids: {
+        brand_id: string;
+        model_id: string;
+        hardware_version: string;
+        firmware_version: string;
+        band_id: string;
+    };
+    formatters: {
+        up_formatter: string;
+        down_formatter: string;
+    };
+    skip_payload_crypto_override: boolean;
+    session: Session;
+    pending_session: Session;
 }
 export interface GetEndDeviceList {
-    end_devices: [GetEndDeviceInfo];
+    end_devices: GetEndDeviceInfoIS[];
 }
 export interface ApplicationDownlink {
     session_key_id?: string;
@@ -1172,6 +1305,7 @@ export interface downlinkQueueUserPayload {
     payload_type: string;
     port_no: number;
     request_type: string;
+    gateway_id?: string[];
     confirmed_downlink: boolean;
 }
 export interface downlinkQueue {
@@ -1184,7 +1318,7 @@ export interface downlinkQueue {
         join_eui?: string;
         dev_addr?: string;
     };
-    downlinks?: {
+    downlinks: {
         session_key_id?: string;
         f_port: number;
         f_cnt?: number;

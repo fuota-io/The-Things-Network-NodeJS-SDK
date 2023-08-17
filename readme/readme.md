@@ -1,4 +1,4 @@
-# <u>The Things Stack</u>
+# <u>The Things Network</u>
 
 "Package" is use for "The Things Netowrk" to manage the applications, devices etc. Making it easy for the users to do all functionalitites by just using methods of this package.
 
@@ -11,10 +11,6 @@ Ready to start using "Package"? Let's begin!
 ### 🔧 Installation
 
 ---
-
-To install the latest version on npm globally:
-
-> npm install -g "Package"
 
 To install the latest version on npm locally and save it in your package's package.json file:
 
