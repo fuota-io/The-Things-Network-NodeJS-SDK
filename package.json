@@ -1,7 +1,10 @@
 {
   "name": "thethingsnetwork",
   "version": "1.0.0",
-  "description": "",
+  "homepage": "https://",
+  "description": "The user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.",
+  "author": "fuota",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "docs": "jsdoc -c jsdoc.json",
@@ -33,11 +36,9 @@
     "application server",
     "network server"
   ],
-  "author": "fuota",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/fuota-io/The-Things-Network-NodeJS-SDK.git"
+    "url": "https://github.com/fuota-io/The-Things-Network-NodeJS-SDK.git"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
