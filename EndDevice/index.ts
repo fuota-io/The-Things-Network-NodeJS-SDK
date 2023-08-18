@@ -51,7 +51,6 @@ export class EndDevice extends SetConfig {
    * The constructor function is a special function that is called when an object is created from a
    * class.
    * @param {string} applicationID - The ID of the application you want to use.
-   * @type {import("../dist/Interfaces/Doc Common/doc.interface").Config}
    * @param {Config} config - This is the configuration object that is passed to the constructor of the base class.
    */
   constructor(applicationID: string, config: Config) {
@@ -61,9 +60,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It creates an end device for the application.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-CreateEndDeviceIS}
   //  * @param {Input-CreateEndDeviceIS} payload - Input-CreateEndDeviceIS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-CreateEndDeviceIS}
+  //  * @returns {Output-CreateEndDeviceIS}
   //  * The response from the API.
   //  */
 
@@ -113,9 +111,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It sets an end device for the application in the Join Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceJS}
   //  * @param {Input-SetEndDeviceJS} payload - Input-SetEndDeviceJS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceJS}
+  //  * @returns {Output-SetEndDeviceJS}
   //  * The response from the API.
   //  */
 
@@ -161,9 +158,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It sets an end device for the application in the Network Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceNS}
   //  * @param {Input-SetEndDeviceNS} payload - Input-SetEndDeviceNS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceNS}
+  //  * @returns {Output-SetEndDeviceNS}
   //  * The response from the API.
   //  */
 
@@ -247,9 +243,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It sets an end device for the application in the Application Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SetEndDeviceAS}
   //  * @param {Input-SetEndDeviceAS} payload - Input-SetEndDeviceAS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-SetEndDeviceAS}
+  //  * @returns {Output-SetEndDeviceAS}
   //  * The response from the API.
   //  */
 
@@ -310,9 +305,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It returns the end device information for the application in the Identity Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
   //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+  //  * @returns {Output-GetEndDeviceInfo}
   //  * The response from the API.
   //  */
 
@@ -333,9 +327,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It returns the end device information for the application in the Join Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
   //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+  //  * @returns {Output-GetEndDeviceInfo}
   //  * The response from the API.
   //  */
 
@@ -356,9 +349,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It returns the end device information for the application in the Network Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
   //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+  //  * @returns {Output-GetEndDeviceInfo}
   //  * The response from the API.
   //  */
 
@@ -379,9 +371,8 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It returns the end device information for the application in the Application Server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-GetEndDeviceInfo}
   //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceInfo}
+  //  * @returns {Output-GetEndDeviceInfo}
   //  * The response from the API.
   //  */
 
@@ -402,7 +393,7 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It returns the list of end devices for the application in the Identity Server.
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-GetEndDeviceList}
+  //  * @returns {Output-GetEndDeviceList}
   //  * The response from the API.
   //  */
 
@@ -561,16 +552,15 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It deletes the end device in the identity server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceIS}
   //  * @param {Input-DeleteEndDeviceIS} payload - Input-DeleteEndDeviceIS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+  //  * @returns {Output-EmptyPayload}
   //  * The response from the API.
   //  */
 
   /**
    * It deletes the end device in the identity server.
    * @param {Input-DeleteEndDeviceIS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceIS}
-   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+   * @returns {Output-EmptyPayload}
    * The response from the API.
    */
   deleteEndDeviceIS(payload: deleteEndDeviceISUserPayload): Promise<any> {
@@ -584,16 +574,15 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It deletes the end device in the join server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceJS}
   //  * @param {Input-DeleteEndDeviceJS} payload - Input-DeleteEndDeviceJS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+  //  * @returns {Output-EmptyPayload}
   //  * The response from the API.
   //  */
 
   /**
    * It deletes the end device in the join server.
    * @param {Input-DeleteEndDeviceJS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceJS}
-   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+   * @returns {Output-EmptyPayload}
    * The response from the API.
    */
   deleteEndDeviceJS(payload: deleteEndDeviceJSUserPayload): Promise<any> {
@@ -607,16 +596,15 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It deletes the end device in the network server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceNS}
   //  * @param {Input-DeleteEndDeviceNS} payload - Input-DeleteEndDeviceNS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+  //  * @returns {Output-EmptyPayload}
   //  * The response from the API.
   //  */
 
   /**
    * It deletes the end device in the network server.
    * @param {Input-DeleteEndDeviceNS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceNS}
-   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+   * @returns {Output-EmptyPayload}
    * The response from the API.
    */
   deleteEndDeviceNS(payload: deleteEndDeviceNSUserPayload): Promise<any> {
@@ -630,16 +618,15 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It deletes the end device in the application server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DeleteEndDeviceAS}
   //  * @param {Input-DeleteEndDeviceAS} payload - Input-DeleteEndDeviceAS
-  //  * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+  //  * @returns {Output-EmptyPayload}
   //  * The response from the API.
   //  */
 
   /**
    * It deletes the end device in the application server.
    * @param {Input-DeleteEndDeviceAS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceAS}
-   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-EmptyPayload}
+   * @returns {Output-EmptyPayload}
    * The response from the API.
    */
   deleteEndDeviceAS(payload: deleteEndDeviceASUserPayload): Promise<any> {
@@ -653,7 +640,7 @@ export class EndDevice extends SetConfig {
 
   /**
    * It returns DevEUIs that are available for use.
-   * @returns {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Output-IssueDevEUI}
+   * @returns {Output-IssueDevEUI}
    * The response from the API.
    */
   issueDevEUI(): Promise<issueDevEUI> {
@@ -667,9 +654,7 @@ export class EndDevice extends SetConfig {
 
   /**
    * It push or replace the downlink queue in the application server.
-   * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-DownlinkQueue}
    * @param {Input-DownlinkQueue} payload - Input-DownlinkQueue
-   * @returns It push or replace the downlink queue in the application server.
    */
   downlinkQueue(payload: downlinkQueueUserPayload): Promise<any> {
     /* Converting the payload into a base64 string. */
@@ -712,7 +697,6 @@ export class EndDevice extends SetConfig {
 
   // /**
   //  * It simulate the uplink queue in the application server.
-  //  * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-UplinkQueue}
   //  * @param {Input-UplinkQueue} payload - Input-UplinkQueue
   //  * @returns It simulate the uplink queue in the application server.
   //  */
@@ -740,9 +724,8 @@ export class EndDevice extends SetConfig {
 
   /**
    * It subscribes downlink event topic.
-   * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SubscribeDownLinkEvent}
    * @param {Input-SubscribeDownLinkEvent} payload - Input-SubscribeDownLinkEvent
-   * @returns It shows the downlink event to the user.
+   * @returns {Output-SubscribeDownLinkEvent} It returns client object and topic.
    */
   subscribeDownLinkEvent(payload: subscribeDownLinkEventPayload): Promise<any> {
     return new Promise((resolve) => {
@@ -780,9 +763,8 @@ export class EndDevice extends SetConfig {
 
   /**
    * It subscribes uplink event topic.
-   * @type {import("../dist/Interfaces/Doc Common/docEndDevice.interface").Input-SubscribeUpLinkEvent}
    * @param {Input-SubscribeUpLinkEvent} payload - Input-SubscribeUpLinkEvent
-   * @returns It shows the uplink event to the user.
+   * @returns {Output-SubscribeUpLinkEvent} It returns client object and topic.
    */
   subscribeUpLinkEvent(payload: subscribeUpLinkEventPayload): Promise<any> {
     return new Promise((resolve) => {

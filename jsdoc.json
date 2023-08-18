@@ -6,8 +6,8 @@
       "dist/Application/index.js",
       "dist/EndDevice/index.js",
       "dist/Gateway/index.js",
-      "dist/Interfaces/Doc Common/docApp.interface.js",
-      "dist/Interfaces/Doc Common/docEndDevice.interface.js"
+      "dist/Interfaces/Doc-Common/docApp.interface.js",
+      "dist/Interfaces/Doc-Common/docEndDevice.interface.js"
     ]
   },
   "plugins": ["plugins/markdown"],
@@ -17,7 +17,7 @@
   },
   "opts": {
     "template": "node_modules/clean-jsdoc-theme",
-    "readme": "./readme/readme.md",
+    "readme": "Readme.md",
     "recurse": true,
     "destination": "./docs/",
     "encoding": "utf8",
@@ -25,9 +25,9 @@
     "theme_opts": {
       "default_theme": "dark",
       "search": true,
-      "title": "TTN-VruttiTech",
-      "base_url": "D:/Vrutti Tech/The Things Stack/fuota-things-stack-node-sdk/docs/",
-      "homepageTitle": "The Things Stack Docs"
+      "title": "The Things Network NodeJS SDK",
+      "base_url": "https://ttn-node-sdk.fuota.io/",
+      "homepageTitle": "The Things Network Docs"
     }
   },
   "markdown": {

@@ -1,28 +1,40 @@
-# <u>The Things Stack</u>
+# <u>The Things Network NodeJS SDK</u>
 
-"Package" is use for "The Things Netowrk" to manage the applications, devices etc. Making it easy for the users to do all functionalitites by just using methods of this package.
+The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's Lorawan ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.
+
+<br>
 
 ### 🚀 Get Started
 
 ---
 
-Ready to start using "Package"? Let's begin!
+Ready to start using SDK ? Let's begin!
+
+<br>
+
+### 🎁 Explore Supported Methods
+
+---
+
+For EndDevice Related Methods: [EndDevice](https://ttn-node-sdk.fuota.io/EndDevice.html) <br>
+For Application Related Methods: [Application](https://ttn-node-sdk.fuota.io/Application.html) <br>
+For Gateway Related Methods: [Gateway](https://ttn-node-sdk.fuota.io/Gateway.html) <br>
+For User Related Methods: [User](https://ttn-node-sdk.fuota.io/User.html) <br>
+For Organization Related Methods: [Organization](https://ttn-node-sdk.fuota.io/Organization.html)
+
+<br>
 
 ### 🔧 Installation
 
 ---
 
-To install the latest version on npm globally:
-
-> npm install -g "Package"
-
 To install the latest version on npm locally and save it in your package's package.json file:
 
-> npm install --save-dev "Package"
+> npm install --save-dev thethingsnetwork
 
 To install the latest development version locally, without updating your project's package.json file:
 
-> npm install git+"link"
+> npm install git+https://github.com/fuota-io/The-Things-Network-NodeJS-SDK.git
 
 <br>
 
@@ -38,17 +50,17 @@ Let's say you want to create an application, it can be created for both **User**
 2. Then set user ID and the configuration.
 3. Pass the payload in the method.
 
-For more info, see this: [Create Application For User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html#createApplication)
+For more info, see this: [Create Application For User](https://ttn-node-sdk.fuota.io/User.html#createApplication)
 
 ```
 import { User } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
@@ -61,7 +73,7 @@ const payload = {
 
 const user = User('userId', config);
 
-user.createApplication(payload);
+await user.createApplication(payload);
 
 ```
 
@@ -73,17 +85,17 @@ user.createApplication(payload);
 2. Then set organization ID and the configuration.
 3. Pass the payload in the method.
 
-For more info, see this: [Create Application For Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html#createApplication)
+For more info, see this: [Create Application For Organization](https://ttn-node-sdk.fuota.io/Organization.html#createApplication)
 
 ```
 import { Organization } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
@@ -96,21 +108,11 @@ const payload = {
 
 const org = new Organization('organizationId', config);
 
-org.createApplication(payload);
+await org.createApplication(payload);
 
 ```
 
 <br>
-
-### 🎁 Explore Other Methods
-
----
-
-For User Related Methods: [User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html) <br>
-For Organization Related Methods: [Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html) <br>
-For Application Related Methods: [Application](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Application.html) <br>
-For EndDevice Related Methods: [EndDevice](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/EndDevice.html) <br>
-For Gateway Related Methods: [Gateway](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Gateway.html)
 
 ### 📖 More Examples
 
@@ -125,16 +127,16 @@ import { Application } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
-const app = new Application(config);
+const app = new Application('', config);
 
-app.getApplicationList();
+await app.getApplicationList();
 
 ```
 
@@ -145,10 +147,10 @@ import { EndDevice } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network/api/v3/ns',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network/api/v3/as',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network/api/v3/js',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
@@ -178,7 +180,7 @@ const payload = {
 
 const device = new EndDevice('userId' ,config);
 
-device.createEndDeviceIS(payload)
+await device.createEndDeviceIS(payload)
 
 ```
 
@@ -189,10 +191,10 @@ import { Gateway } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: eu1.cloud.thethings.network',
+  NETWORK_SERVER: nam1.cloud.thethings.network',
+  APPLICATION_SERVER: nam1.cloud.thethings.network',
+  JOIN_SERVER: nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
@@ -214,7 +216,7 @@ const payload = {
 
 const gateway = new Gateway('deviceId', config);
 
-gateway.createGateway(payload);
+await gateway.createGateway(payload);
 
 ```
 
@@ -233,10 +235,10 @@ import { EndDevice } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
   TENANT_ID: 'xxxxxxxxxx',
 };
@@ -255,7 +257,7 @@ const payload = {
 
 const device = new EndDevice('deviceId', config);
 
-device.subscribeDownLinkEvent(payload);
+await device.subscribeDownLinkEvent(payload);
 
 ```
 
@@ -266,10 +268,10 @@ import { EndDevice } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
   TENANT_ID: 'xxxxxxxxxx',
 };
@@ -288,9 +290,9 @@ const payload = {
 
 const device = new EndDevice('deviceId', config);
 
-const downevent = device.subscribeDownLinkEvent(payload);
+const downevent = await device.subscribeDownLinkEvent(payload);
 
-device.unsubscribeEvent(downevent);
+device.unsubscribeEvent(downevent.client, downevent.topic);
 
 ```
 
@@ -307,10 +309,10 @@ import { Application } from 'Package';
 
 //just an example of config
 const config = {
-  IDENTITY_SERVER: 'https://eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'https://nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'https://nam1.cloud.thethings.network',
-  JOIN_SERVER: 'https://nam1.cloud.thethings.network',
+  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
+  NETWORK_SERVER: 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
+  JOIN_SERVER: 'nam1.cloud.thethings.network',
   API_KEY: 'xxxxxapi_keyxxxxxx',
 };
 
@@ -323,13 +325,13 @@ const payload = {
 
 const app = new Application('appId', config);
 
-app.getApplicationList();
+await app.getApplicationList();
 
-app.updateApplication(payload);
+await app.updateApplication(payload);
 
-app.deleteApplication();
+await app.deleteApplication();
 
-app.restoreApplication();
+await app.restoreApplication();
 
 ```
 
@@ -339,4 +341,4 @@ app.restoreApplication();
 
 ---
 
-!!!!!
+MIT
