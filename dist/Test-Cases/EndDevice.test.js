@@ -19,7 +19,7 @@ describe('No Config Errors', () => {
     }));
     test('API Key Given', () => __awaiter(void 0, void 0, void 0, function* () {
         const appFailed = new EndDevice_1.EndDevice('meetsavaj', EndDeviceAPI_data_1.config_T);
-        expect(appFailed).toHaveProperty('API_KEY', 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ');
+        expect(appFailed).toHaveProperty('API_KEY', process.env.API_KEY);
     }));
 });
 describe('Config Errors', () => {
@@ -29,7 +29,7 @@ describe('Config Errors', () => {
     }));
     test('API Key Missing', () => __awaiter(void 0, void 0, void 0, function* () {
         const appFailed = new EndDevice_1.EndDevice('meetsavaj', EndDeviceAPI_data_1.config_F);
-        expect(appFailed).not.toHaveProperty('API_KEY', 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ');
+        expect(appFailed).not.toHaveProperty('API_KEY', process.env.API_KEY);
     }));
 });
 describe('EndDevice Creation', () => {
@@ -371,21 +371,12 @@ describe('IssueDevEUI', () => {
 //     expect(response).not.toBeNull;
 //   });
 // });
-// const device2 = new EndDevice('stratis-thermostat', configDownlink);
-// const downEvent = device2.subscribeDownLinkEvent(subscribeDownLinkEventUserPayload);
-// const upEvent = device2.subscribeUpLinkEvent(subscribeUpLinkEventUserPayload);
-// device.unsubscribeEvent(downEvent);
-// describe('SubscribeDownlink', () => {
-//   test('SubscribeDownlink Successfully', async () => {
-//     const device = new EndDevice('stratis-thermostat', configDownlink);
-//     const response = await device.subscribeDownLinkEvent(subscribeDwonLinkEventUserPayload);
-//     expect(response).not.toBeNull;
-//   });
-// });
-// describe('UnsubscribeDownlink', () => {
-//   test('UnsubscribeDownlink Successfully', async () => {
-//     const device = new EndDevice('stratis-thermostat', configDownlink);
-//     const response = await device.unsubscribeDownLinkEvent();
-//     expect(response).not.toBeNull;
+// describe('Subscribing Event', () => {
+//   test('DownlinkQueue Push/Replace Successfully', async () => {
+//     const clientObj = new EndDevice('stratis-thermostat', configDownlink);
+//     const upEvent = await clientObj.subscribeUpLinkEvent(subscribeUpLinkEventUserPayload);
+//     const downEvent = await clientObj.subscribeDownLinkEvent(subscribeDownLinkEventUserPayload);
+//     clientObj.unsubscribeEvent(upEvent.client, upEvent.topic);
+//     clientObj.unsubscribeEvent(downEvent.client, downEvent.topic);
 //   });
 // });

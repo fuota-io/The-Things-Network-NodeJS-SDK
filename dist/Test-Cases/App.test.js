@@ -23,7 +23,7 @@ describe('No Config Errors', () => {
     }));
     test('API Key Given', () => __awaiter(void 0, void 0, void 0, function* () {
         const appFailed = new index_3.User('meetsavaj', AppAPI_data_1.config_T);
-        expect(appFailed).toHaveProperty('API_KEY', 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ');
+        expect(appFailed).toHaveProperty('API_KEY', process.env.API_KEY);
     }));
 });
 describe('Config Errors', () => {
@@ -33,7 +33,7 @@ describe('Config Errors', () => {
     }));
     test('API Key Missing', () => __awaiter(void 0, void 0, void 0, function* () {
         const appFailed = new index_3.User('meetsavaj', AppAPI_data_1.config_F);
-        expect(appFailed).not.toHaveProperty('API_KEY', 'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ');
+        expect(appFailed).not.toHaveProperty('API_KEY', process.env.API_KEY);
     }));
 });
 describe('Application Creation (User)', () => {
