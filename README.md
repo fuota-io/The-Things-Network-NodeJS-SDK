@@ -10,6 +10,9 @@ The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network 
 
 Ready to start using SDK ? Let's begin!
 
+**Visit Doc** : <https://ttn-node-sdk.fuota.io> <br>
+**Visit GitHub** : <https://github.com/fuota-io/The-Things-Network-NodeJS-SDK>
+
 <br>
 
 ### 🎁 Explore Supported Methods
@@ -341,4 +344,4 @@ await app.restoreApplication();
 
 ---
 
-MIT
+[MIT](LICENSE)
