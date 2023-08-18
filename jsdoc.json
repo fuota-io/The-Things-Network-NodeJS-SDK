@@ -26,7 +26,7 @@
       "default_theme": "dark",
       "search": true,
       "title": "The Things Network NodeJS SDK",
-      "base_url": "C:/Meet Savaj/Projects/The Things Stack/The-Things-Network-NodeJS-SDK/docs/",
+      "base_url": "https://ttn-node-sdk.fuota.io/",
       "homepageTitle": "The Things Network Docs"
     }
   },
