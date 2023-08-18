@@ -34,7 +34,9 @@
     "identity server",
     "join server",
     "application server",
-    "network server"
+    "network server",
+    "ttn-sdk",
+    "ttn sdk"
   ],
   "repository": {
     "type": "git",
