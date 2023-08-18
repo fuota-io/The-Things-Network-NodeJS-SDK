@@ -1,4 +1,4 @@
-# <u>The Things Network</u>
+# <u>The Things Network NodeJS SDK</u>
 
 "Package" is use for "The Things Netowrk" to manage the applications, devices etc. Making it easy for the users to do all functionalitites by just using methods of this package.
 
@@ -7,6 +7,18 @@
 ---
 
 Ready to start using "Package"? Let's begin!
+
+### 🎁 Explore Supported Methods
+
+---
+
+For User Related Methods: [User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html) <br>
+For Organization Related Methods: [Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html) <br>
+For Application Related Methods: [Application](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Application.html) <br>
+For EndDevice Related Methods: [EndDevice](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/EndDevice.html) <br>
+For Gateway Related Methods: [Gateway](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Gateway.html)
+
+<br>
 
 ### 🔧 Installation
 
@@ -97,16 +109,6 @@ org.createApplication(payload);
 ```
 
 <br>
-
-### 🎁 Explore Other Methods
-
----
-
-For User Related Methods: [User](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/User.html) <br>
-For Organization Related Methods: [Organization](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Organization.html) <br>
-For Application Related Methods: [Application](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Application.html) <br>
-For EndDevice Related Methods: [EndDevice](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/EndDevice.html) <br>
-For Gateway Related Methods: [Gateway](https://vrutti-tech.github.io/TheThingsStack-NodeJS-SDK/Gateway.html)
 
 ### 📖 More Examples
 
