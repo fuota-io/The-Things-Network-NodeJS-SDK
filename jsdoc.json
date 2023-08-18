@@ -17,7 +17,7 @@
   },
   "opts": {
     "template": "node_modules/clean-jsdoc-theme",
-    "readme": "./readme/readme.md",
+    "readme": "Readme.md",
     "recurse": true,
     "destination": "./docs/",
     "encoding": "utf8",
@@ -25,7 +25,7 @@
     "theme_opts": {
       "default_theme": "dark",
       "search": true,
-      "title": "The Things Network",
+      "title": "The Things Network NodeJS SDK",
       "base_url": "C:/Meet Savaj/Projects/The Things Stack/The-Things-Network-NodeJS-SDK/docs/",
       "homepageTitle": "The Things Network Docs"
     }
