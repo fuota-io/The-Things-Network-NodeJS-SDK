@@ -43,20 +43,7 @@ import {
   setCollaboratorPayloadForOrg_T,
   setCollaboratorPayloadForOrg_F,
   getCollaboratorListUserPayload,
-  createGatewayPayload,
-  updateGatewayPayload,
-  createAPIKeyPayloadForGateway,
-  getAPIKeyListForGateway,
-  getAPIKeyInfoPayloadForGateway_T,
-  getAPIKeyInfoPayloadForGateway_F,
-  updateAPIKeyUserPayloadForGateway_T,
-  updateAPIKeyUserPayloadForGateway_F,
-  setCollaboratorPayloadForGateway_User_T,
-  setCollaboratorPayloadForGateway_User_F,
-  setCollaboratorPayloadForGateway_Org_T,
-  setCollaboratorPayloadForGateway_Org_F,
 } from '../Data/AppAPI-data';
-import { Gateway } from '../Gateway';
 
 const app = new Application('meet69', config_T);
 const user = new User('meetsavaj', config_T);
@@ -72,7 +59,7 @@ describe('No Config Errors', () => {
     const appFailed = new User('meetsavaj', config_T);
     expect(appFailed).toHaveProperty(
       'API_KEY',
-      'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ'
+      process.env.API_KEY
     );
   });
 });
@@ -87,7 +74,7 @@ describe('Config Errors', () => {
     const appFailed = new User('meetsavaj', config_F);
     expect(appFailed).not.toHaveProperty(
       'API_KEY',
-      'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ'
+      process.env.API_KEY
     );
   });
 });

@@ -4,21 +4,19 @@ import {
 } from '../Interfaces/Device/device.interface';
 
 export const config_T = {
-  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
-  NETWORK_SERVER: 'nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
-  JOIN_SERVER: 'nam1.cloud.thethings.network',
-  API_KEY:
-    'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ',
+  IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
+  JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
+  API_KEY: process.env.API_KEY || '',
 };
 
 export const config_F = {
-  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
-  NETWORK_SERVER: 'nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
-  JOIN_SERVER: 'nam1.cloud.thethings.network',
-  API_KEY:
-    'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTH',
+  IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
+  JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
+  API_KEY: process.env.API_KEY || '',
 };
 
 export const createEndDeviceISUserPayload = {
@@ -158,13 +156,12 @@ export const deleteEndDeviceNSUserPayload = { device_id: 'eui-70b3d57ed005b59e' 
 export const deleteEndDeviceASUserPayload = { device_id: 'eui-70b3d57ed005b59e' };
 
 export const configDownlink = {
-  IDENTITY_SERVER: 'oxit.eu1.cloud.thethings.industries',
-  NETWORK_SERVER: 'oxit.nam1.cloud.thethings.industries',
-  APPLICATION_SERVER: 'oxit.nam1.cloud.thethings.industries',
-  JOIN_SERVER: 'oxit.nam1.cloud.thethings.industries',
-  API_KEY:
-    'NNSXS.IY3KRIWPL4CDGVSTHFRIZQ73MW3HBBTLB5JCFMI.4NOQAD7BKYPE4LPJD6KKYM4DG2W4EXWFNH6HUMQ2GRDUVGWKCBPA',
-  TENANT_ID: 'oxit',
+  IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
+  JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
+  API_KEY: process.env.API_KEY || '*****',
+  TENANT_ID: process.env.TENANT_ID || 'ttn',
 };
 
 var x = new Uint8Array(2);
@@ -182,9 +179,9 @@ export const downlinkQueuePushUserPayload = {
 export const subscribeDownLinkEventUserPayload: subscribeDownLinkEventPayload = {
   device_id: 'eui-62af62f0385b5257',
   down_type: '#',
-  host: 'nam1.cloud.thethings.industries',
-  port: 1883,
-  username: 'stratis-thermostat@oxit',
+  host: process.env.HOST || 'nam1.cloud.thethings.network',
+  port: Number(process.env.PORT) || 8883,
+  username: process.env.USERNAME || '*****',
   callback_downlink_event: (data) => {
     console.log('downlinkEvent', data.toString('utf8'));
   },
@@ -198,9 +195,9 @@ export const subscribeDownLinkEventUserPayload: subscribeDownLinkEventPayload = 
 
 export const subscribeUpLinkEventUserPayload: subscribeUpLinkEventPayload = {
   device_id: 'eui-62af62f0385b5257',
-  host: 'nam1.cloud.thethings.industries',
-  port: 1883,
-  username: 'stratis-thermostat@oxit',
+  host: process.env.HOST || 'nam1.cloud.thethings.network',
+  port: Number(process.env.PORT) || 8883,
+  username: process.env.USERNAME || '*****',
   callback_uplink_event: (data) => {
     console.log('downlinkEvent', data.toString('utf8'));
   },

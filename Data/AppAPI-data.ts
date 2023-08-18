@@ -1,21 +1,17 @@
-import { UpdateGatewayUserPayload } from '../Interfaces/Gateway/gateway.interface';
-
 export const config_T = {
-  IDENTITY_SERVER: 'eu1.cloud.thethings.network',
-  NETWORK_SERVER: 'nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
-  JOIN_SERVER: 'nam1.cloud.thethings.network',
-  API_KEY:
-    'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTHQ',
+  IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
+  JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
+  API_KEY: process.env.API_KEY || '*****',
 };
 
 export const config_F = {
-  IDENTITY_SERVER: 'eu1.cloud.thethings.network/api/v3',
-  NETWORK_SERVER: 'nam1.cloud.thethings.network',
-  APPLICATION_SERVER: 'nam1.cloud.thethings.network',
-  JOIN_SERVER: 'nam1.cloud.thethings.network',
-  API_KEY:
-    'NNSXS.BGVLXTTMUZDIIFY7EDSKFKB3R2AROYP7XDKUYOQ.SGAC24PFU6KMGEYUOQ3IDFYIUF55C4ZZQN4E2DNFWYHGY7EKPTH',
+  IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network/api/v3',
+  NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
+  APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
+  JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
+  API_KEY: process.env.API_KEY || '',
 };
 
 export const createApplicationPayloadForUser_T = {
