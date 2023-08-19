@@ -7,6 +7,7 @@ The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network 
 ### 🚀 Get Started
 
 ---
+This SDK is compatible with The Things Network organization.
 
 Ready to start using SDK ? Let's begin!
 
@@ -33,7 +34,7 @@ For Organization Related Methods: [Organization](https://ttn-node-sdk.fuota.io/O
 
 To install the latest version on npm locally and save it in your package's package.json file:
 
-> npm install --save-dev thethingsnetwork
+> npm install thethingsnetwork --save
 
 To install the latest development version locally, without updating your project's package.json file:
 
