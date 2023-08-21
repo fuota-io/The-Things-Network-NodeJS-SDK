@@ -1,8 +1,8 @@
 {
   "name": "the-things-network",
   "version": "1.0.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dsit/index.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://ttn-node-sdk.fuota.io/",
   "description": "The user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.",
   "author": "fuota",
