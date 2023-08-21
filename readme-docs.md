@@ -1,6 +1,23 @@
 # <u>The Things Network NodeJS SDK</u>
 
-The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's Lorawan ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.
+<br>
+
+### 🏢 About Us
+
+---
+
+<p style="display:flex; align-items:center; justify-content:start">
+  <img src="https://sgp1.digitaloceanspaces.com/harimedia/vrutti/fuota-assets/logo/fuota.io_logo.png" width="70" height="70">
+  <span style="font-size:44px; padding-left:15px; font-weight:bolder">FUOTA.IO</span>
+</p>
+
+This SDK is being maintained by team @ fuota.io 
+
+Fuota.io is your all-in-one platform for effortless firmware updates and comprehensive device management for LoRaWAN devices with The Things Network and many other popular LoRaWAN Network Server. 
+
+In the rapidly evolving landscape of connected devices, keeping your devices up-to-date with the latest firmware is a critical factor for optimal performance, enhanced security, and feature-rich functionality. So, if you are looking for ready solution for firmware update deployment solution. Join us at Fuota.io and unlock the full potential of your connected LoRaWAN devices, keeping them updated, secure, and seamlessly integrated.
+
+**Visit Us** : <a href="https://fuota.io/"><b>fuota.io</b></a>
 
 <br>
 
@@ -8,12 +25,13 @@ The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network 
 
 ---
 
+The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's Lorawan ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.
+
 This SDK also works with "The Things Industries" and privately hosted "The Things Stack Instance".
 
 Ready to start using SDK ? Let's begin!
 
-**Visit Doc** : <a href="https://ttn-node-sdk.fuota.io/"><b>ttn-node-sdk.fuota.io</b></a> <br>
-**Visit GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/"><b>The-Things-Network-NodeJS-SDK</b></a>
+**Visit GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK"><b>The-Things-Network-NodeJS-SDK</b></a>
 
 <br>
 
@@ -339,25 +357,6 @@ await app.deleteApplication();
 await app.restoreApplication();
 
 ```
-
-<br>
-
-### 🏢 About Us
-
----
-
-<p style="display:flex; align-items:center; justify-content:start">
-  <img src="https://sgp1.digitaloceanspaces.com/harimedia/vrutti/fuota-assets/logo/fuota.io_logo.png" width="70" height="70">
-  <span style="font-size:50px; padding-left:15px">FUOTA.IO</span>
-</p>
-
-This SDK is being maintained by team @ fuota.io 
-
-Fuota.io is your all-in-one platform for effortless firmware updates and comprehensive device management for LoRaWAN devices with The Things Network and many other popular LoRaWAN Network Server. 
-
-In the rapidly evolving landscape of connected devices, keeping your devices up-to-date with the latest firmware is a critical factor for optimal performance, enhanced security, and feature-rich functionality. So, if you are looking for ready solution for firmware update deployment solution. Join us at Fuota.io and unlock the full potential of your connected LoRaWAN devices, keeping them updated, secure, and seamlessly integrated.
-
-**Visit Us** : <a href="https://fuota.io/"><b>fuota.io</b></a>
 
 <br>
 
