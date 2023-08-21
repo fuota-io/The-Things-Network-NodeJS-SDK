@@ -1,13 +1,13 @@
 {
   "source": {
     "include": [
-      "dist/User/index.js",
-      "dist/Organization/index.js",
-      "dist/Application/index.js",
-      "dist/EndDevice/index.js",
-      "dist/Gateway/index.js",
-      "dist/Interfaces/Doc-Common/docApp.interface.js",
-      "dist/Interfaces/Doc-Common/docEndDevice.interface.js"
+      "dist/src/modules/user/index.js",
+      "dist/src/modules/application/index.js",
+      "dist/src/modules/endDevice/index.js",
+      "dist/src/modules/gateway/index.js",
+      "dist/src/modules/organization/index.js",
+      "dist/src/interfaces/doc-interface/docApp.interface.js",
+      "dist/src/interfaces/doc-interface/docEndDevice.interface.js"
     ]
   },
   "plugins": ["plugins/markdown"],
