@@ -81,7 +81,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -119,6 +118,5 @@ tools/dev
 
 package-lock.json
 build/
-dist/
 deployments/
 .husky/

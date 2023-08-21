@@ -1,15 +1,18 @@
 {
-  "name": "thethingsnetwork",
+  "name": "the-things-network",
   "version": "1.0.0",
-  "homepage": "https://",
+  "main": "dsit/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://ttn-node-sdk.fuota.io/",
   "description": "The user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.",
   "author": "fuota",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
+    "copy-assets": "node copy-assets.js",
     "docs": "jsdoc -c jsdoc.json",
     "test": "jest",
-    "test:single": "jest ./Test-Cases/EndDevice.test.ts"
+    "test:single": "jest ../../src/test/endDevice.test.ts"
   },
   "keywords": [
     "npm",
@@ -34,12 +37,17 @@
     "identity server",
     "join server",
     "application server",
-    "network server"
+    "network server",
+    "ttn-sdk",
+    "ttn sdk"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/fuota-io/The-Things-Network-NodeJS-SDK.git"
   },
+  "contributors": [
+    "Meet Savaj (https://github.com/meetsavaj10)"
+  ],
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
@@ -58,6 +66,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.4.3",
     "jsdoc": "^4.0.2",
+    "ncp": "^2.0.0",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
   },
