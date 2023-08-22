@@ -1,6 +1,6 @@
 {
   "name": "the-things-network",
-  "version": "1.0.0",
+  "version": "1.0.0.alpha.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://ttn-node-sdk.fuota.io/",
@@ -47,6 +47,18 @@
   },
   "contributors": [
     "Meet Savaj (https://github.com/meetsavaj10)"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "/dist/**",
+    "LICENSE",
+    "SECURITY.md",
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "package.json"
   ],
   "devDependencies": {
     "@babel/core": "^7.21.0",
