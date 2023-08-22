@@ -12,8 +12,8 @@ This SDK also works with "The Things Industries" and privately hosted "The Thing
 
 Ready to start using SDK ? Let's begin!
 
-**Visit Doc** : <a href="https://ttn-node-sdk.fuota.io/"><b>ttn-node-sdk.fuota.io</b></a> <br>
-**Visit GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/"><b>The-Things-Network-NodeJS-SDK</b></a>
+**Documentation** : <a href="https://ttn-node-sdk.fuota.io/"><b>ttn-node-sdk.fuota.io</b></a> <br>
+**GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/"><b>The-Things-Network-NodeJS-SDK</b></a>
 
 <br>
 
@@ -37,9 +37,9 @@ To install the latest version on npm locally and save it in your package's packa
 
 > npm install the-things-network --save
 
-To install the latest development version locally, without updating your project's package.json file:
+To install a particular version:
 
-> npm install git+https://github.com/fuota-io/The-Things-Network-NodeJS-SDK.git
+> npm install the-things-network@version --save
 
 <br>
 
@@ -192,7 +192,7 @@ await device.createEndDeviceIS(payload);
 3. To create a gateway for user.
 
 ```
-import { Gateway } from 'the-things-network';
+import { User } from 'the-things-network';
 
 //just an example of config
 const config = {
@@ -219,7 +219,7 @@ const payload = {
   },
 };
 
-const gateway = new Gateway('userId', config);
+const gateway = new User('userId', config);
 
 await gateway.createGateway(payload);
 
@@ -342,22 +342,42 @@ await app.restoreApplication();
 
 <br>
 
+### 🤝 Contribute
+
+---
+
+We welcome contributions to **the-things-network**! If you're interested in contributing to this package, there are many ways to [contibute](https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/blob/dev/CONTRIBUTING.md) to the-things-network:
+
+**Report issues:** If you find any bugs, errors, or enhancements, feel free to open an issue on [GitHub](https://github.com/fuota-io/The-Things-Network-NodeJS-SDK).
+
+**Submit Pull Requests:** If you're able to fix an issue yourself or want to add a new feature, we would be glad to review your pull request.
+
+**Improve Documentation:** Whether you've found a typo, unclear documentation, or you have an idea for improving our documentation, we would love to hear from you!
+
+**Share Feedback:** Any feedback about your experience with our package would be greatly appreciated. Your input helps us make this package better for everyone.
+
+Please note that this project is released with a Contributor [Code of Conduct](https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/blob/dev/CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+
+We look forward to collaborating with you! 
+
+<br>
+
 ### 🏢 About Us
 
 ---
 
 <p style="display:flex; align-items:center; justify-content:start">
   <img src="https://sgp1.digitaloceanspaces.com/harimedia/vrutti/fuota-assets/logo/fuota.io_logo.png" width="70" height="70">
-  <span style="font-size:50px; padding-left:15px">FUOTA.IO</span>
+  <span style="font-size:44px; padding-left:15px; font-weight:bolder">FUOTA.IO</span>
 </p>
 
-This SDK is being maintained by team @ fuota.io 
+This SDK is being maintained by team **@fuota.io** 
 
 Fuota.io is your all-in-one platform for effortless firmware updates and comprehensive device management for LoRaWAN devices with The Things Network and many other popular LoRaWAN Network Server. 
 
 In the rapidly evolving landscape of connected devices, keeping your devices up-to-date with the latest firmware is a critical factor for optimal performance, enhanced security, and feature-rich functionality. So, if you are looking for ready solution for firmware update deployment solution. Join us at Fuota.io and unlock the full potential of your connected LoRaWAN devices, keeping them updated, secure, and seamlessly integrated.
 
-**Visit Us** : <a href="https://fuota.io/"><b>fuota.io</b></a>
+**Visit Us** : <a href="https://fuota.io/" style="font-size: 20px;"><b>fuota.io</b></a>
 
 <br>
 
@@ -365,4 +385,4 @@ In the rapidly evolving landscape of connected devices, keeping your devices up-
 
 ---
 
-[MIT](LICENSE)
+[MIT](https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/blob/dev/LICENSE)
