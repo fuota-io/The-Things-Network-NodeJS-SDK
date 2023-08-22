@@ -1,6 +1,6 @@
 # Contributing to the-things-network
 
-First off, thank you for considering contributing to the-things-network! We're excited to collaborate with you and appreciate your help in improving the package. This document provides some guidelines and information to help you get started.
+First off, thank you for considering contributing to **the-things-network**! We're excited to collaborate with you and appreciate your help in improving the package. This document provides some guidelines and information to help you get started.
 
 ## Code of Conduct
 
@@ -52,4 +52,4 @@ Here are some steps to get started with contributing code:
 
 If you have any questions or need help with your contributions, feel free to reach out to us by creating an [issue](https://github.com/fuota-io/The-Things-Network-NodeJS-SDK/issues).
 
-Thank you for contributing to the-things-network! We're excited to see your contributions and work together to make this project even better.
+Thank you for contributing to **the-things-network**! We're excited to see your contributions and work together to make this project even better.

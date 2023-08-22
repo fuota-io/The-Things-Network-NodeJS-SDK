@@ -1,6 +1,6 @@
 # Reporting a Vulnerability
 
-If you believe you've found a security vulnerability in the-things-network, please report it to us as described below.
+If you believe you've found a security vulnerability in **the-things-network**, please report it to us as described below.
 
 Do not report security vulnerabilities through public GitHub issues.
 
