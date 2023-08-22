@@ -1,13 +1,13 @@
 {
   "source": {
     "include": [
-      "dist/src/modules/user/index.js",
-      "dist/src/modules/application/index.js",
-      "dist/src/modules/endDevice/index.js",
-      "dist/src/modules/gateway/index.js",
-      "dist/src/modules/organization/index.js",
-      "dist/src/interfaces/doc-interface/docApp.interface.js",
-      "dist/src/interfaces/doc-interface/docEndDevice.interface.js"
+      "dist/modules/user/index.js",
+      "dist/modules/application/index.js",
+      "dist/modules/endDevice/index.js",
+      "dist/modules/gateway/index.js",
+      "dist/modules/organization/index.js",
+      "dist/interfaces/doc-interface/docApp.interface.js",
+      "dist/interfaces/doc-interface/docEndDevice.interface.js"
     ]
   },
   "plugins": ["plugins/markdown"],
@@ -17,7 +17,7 @@
   },
   "opts": {
     "template": "node_modules/clean-jsdoc-theme",
-    "readme": "Readme.md",
+    "readme": "readme-docs.md",
     "recurse": true,
     "destination": "./docs/",
     "encoding": "utf8",

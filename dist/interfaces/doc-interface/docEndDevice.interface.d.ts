@@ -24,8 +24,6 @@
  * @property {number} port - The port of the downlink queue.
  * @property {string} username - The username of the downlink queue.
  * @property {callBackFunction} callback_downlink_event - The callback downlink event of the downlink queue.
-//  * @property {callBackFunction} callback_subscribe_disconnect - The callback subscribe disconnect of the downlink queue.
-//  * @property {callBackFunction} callback_subscribe_error - The callback subscribe error of the downlink queue.
  */
 /**
  * @typedef {Object} Output-SubscribeDownLinkEvent
@@ -35,12 +33,10 @@
 /**
  * @typedef {Object} Input-SubscribeUpLinkEvent
  * @property {string} device_id - The device ID of the end device.
- * @property {string} host - The host of the downlink queue.
- * @property {number} port - The port of the downlink queue.
- * @property {string} username - The username of the downlink queue.
- * @property {callBackFunction} callback_downlink_event - The callback downlink event of the downlink queue.
-//  * @property {callBackFunction} callback_subscribe_disconnect - The callback subscribe disconnect of the downlink queue.
-//  * @property {callBackFunction} callback_subscribe_error - The callback subscribe error of the downlink queue.
+ * @property {string} host - The host of the uplink queue.
+ * @property {number} port - The port of the uplink queue.
+ * @property {string} username - The username of the uplink queue.
+ * @property {callBackFunction} callback_uplink_event - The callback uplink event of the uplink queue.
  */
 /**
  * @typedef {Object} Output-SubscribeUpLinkEvent
