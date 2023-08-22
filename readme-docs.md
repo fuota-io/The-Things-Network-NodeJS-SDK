@@ -31,7 +31,7 @@ This SDK also works with "The Things Industries" and privately hosted "The Thing
 
 Ready to start using SDK ? Let's begin!
 
-**GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK"><b>The-Things-Network-NodeJS-SDK</b></a>
+**GitHub** : <a href="https://github.com/fuota-io/The-Things-Network-NodeJS-SDK" style="font-size: 20px;"><b>The-Things-Network-NodeJS-SDK</b></a>
 
 <br>
 
