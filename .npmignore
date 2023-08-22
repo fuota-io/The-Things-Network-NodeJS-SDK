@@ -2,7 +2,6 @@
 !/dist/**
 !index.js
 !index.d.ts
-!CHANGELOG.md
 !LICENSE
 !README.md
 !SECURITY.md
