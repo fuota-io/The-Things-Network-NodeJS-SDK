@@ -142,5 +142,5 @@ export declare class EndDevice extends SetConfig {
      * It unsubscribes event topic.
      * @param {mqtt_connection_object} payload - MQTT Connection Object
      */
-    unsubscribeEvent(client: any, topic: string): void;
+    unsubscribeEvent(client: any, topic: string): Promise<any>;
 }

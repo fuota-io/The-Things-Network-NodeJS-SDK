@@ -1,4 +1,4 @@
 export declare const getBase64: (type: string, payload: any) => any;
-export declare function getAllKeys(obj: {
+export declare const getAllKeys: (obj: {
     [x: string]: any;
-}): string[];
+}) => string[];
