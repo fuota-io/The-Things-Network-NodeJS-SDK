@@ -25,7 +25,7 @@ In the rapidly evolving landscape of connected devices, keeping your devices up-
 
 ---
 
-The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's Lorawan ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.
+The Node.js SDK seamlessly integrates with The Things Network's LoRaWAN Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's LoRaWAN ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's LoRaWAN infrastructure.
 
 This SDK also works with "The Things Industries" and privately hosted "The Things Stack Instance".
 
@@ -96,7 +96,12 @@ const payload = {
 
 const user = User('userId', config);
 
-await user.createApplication(payload);
+const result = async () => {
+  const resp = await user.createApplication(payload);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -131,7 +136,12 @@ const payload = {
 
 const org = new Organization('organizationId', config);
 
-await org.createApplication(payload);
+const result = async () => {
+  const resp = await org.createApplication(payload);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -159,7 +169,12 @@ const config = {
 
 const app = new Application('', config);
 
-await app.getApplicationList();
+const result = async () => {
+  const resp = await app.getApplicationList();
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -203,7 +218,12 @@ const payload = {
 
 const device = new EndDevice('appId', config);
 
-await device.createEndDeviceIS(payload);
+const result = async () => {
+  const resp = await device.createEndDeviceIS(payload);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -239,7 +259,12 @@ const payload = {
 
 const gateway = new User('userId', config);
 
-await gateway.createGateway(payload);
+const result = async () => {
+  const resp = await gateway.createGateway(payload);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -280,7 +305,12 @@ const payload = {
 
 const device = new EndDevice('appId', config);
 
-await device.subscribeDownLinkEvent(payload);
+const result = async () => {
+  const resp = await device.subscribeUpLinkEvent(payload);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -313,9 +343,15 @@ const payload = {
 
 const device = new EndDevice('appId', config);
 
-const downevent = await device.subscribeDownLinkEvent(payload);
+const result = async () => {
+  const upevent = await device.subscribeUpLinkEvent(payload);
+  console.log(upevent);
 
-device.unsubscribeEvent(downevent.client, downevent.topic);
+  const resp = await device.unsubscribeEvent(upevent.client, upevent.topic);
+  console.log(resp);
+}
+
+result();
 
 ```
 
@@ -348,13 +384,21 @@ const payload = {
 
 const app = new Application('appId', config);
 
-await app.getApplicationList();
+const result = async () => {
+  const resp1 = await app.getApplicationList();
+  console.log(resp1);
 
-await app.updateApplication(payload);
+  const resp2 = await app.updateApplication(payload);
+  console.log(resp2);
 
-await app.deleteApplication();
+  const resp3 = await app.deleteApplication();
+  console.log(resp3);
 
-await app.restoreApplication();
+  const resp4 = await app.restoreApplication();
+  console.log(resp4);
+}
+
+result();
 
 ```
 
