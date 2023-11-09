@@ -97,8 +97,12 @@ const payload = {
 const user = User('userId', config);
 
 const result = async () => {
-  const resp = await user.createApplication(payload);
-  console.log(resp);
+  try {
+    const resp = await user.createApplication(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -137,8 +141,12 @@ const payload = {
 const org = new Organization('organizationId', config);
 
 const result = async () => {
-  const resp = await org.createApplication(payload);
-  console.log(resp);
+  try {
+    const resp = await org.createApplication(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -170,8 +178,12 @@ const config = {
 const app = new Application('', config);
 
 const result = async () => {
-  const resp = await app.getApplicationList();
-  console.log(resp);
+  try {
+    const resp = await app.getApplicationList();
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -219,8 +231,12 @@ const payload = {
 const device = new EndDevice('appId', config);
 
 const result = async () => {
-  const resp = await device.createEndDeviceIS(payload);
-  console.log(resp);
+  try {
+    const resp = await device.createEndDeviceIS(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -260,8 +276,12 @@ const payload = {
 const gateway = new User('userId', config);
 
 const result = async () => {
-  const resp = await gateway.createGateway(payload);
-  console.log(resp);
+  try {
+    const resp = await gateway.createGateway(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -306,8 +326,12 @@ const payload = {
 const device = new EndDevice('appId', config);
 
 const result = async () => {
-  const resp = await device.subscribeUpLinkEvent(payload);
-  console.log(resp);
+  try {
+    const resp = await device.subscribeUpLinkEvent(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -344,11 +368,15 @@ const payload = {
 const device = new EndDevice('appId', config);
 
 const result = async () => {
-  const upevent = await device.subscribeUpLinkEvent(payload);
-  console.log(upevent);
+  try {
+    const upevent = await device.subscribeUpLinkEvent(payload);
+    console.log(upevent);
 
-  const resp = await device.unsubscribeEvent(upevent.client, upevent.topic);
-  console.log(resp);
+    const resp = await device.unsubscribeEvent(upevent.client, upevent.topic);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
@@ -385,17 +413,21 @@ const payload = {
 const app = new Application('appId', config);
 
 const result = async () => {
-  const resp1 = await app.getApplicationList();
-  console.log(resp1);
+  try {
+    const resp1 = await app.getApplicationList();
+    console.log(resp1);
 
-  const resp2 = await app.updateApplication(payload);
-  console.log(resp2);
+    const resp2 = await app.updateApplication(payload);
+    console.log(resp2);
 
-  const resp3 = await app.deleteApplication();
-  console.log(resp3);
+    const resp3 = await app.deleteApplication();
+    console.log(resp3);
 
-  const resp4 = await app.restoreApplication();
-  console.log(resp4);
+    const resp4 = await app.restoreApplication();
+    console.log(resp4);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 result();
