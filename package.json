@@ -1,10 +1,10 @@
 {
   "name": "the-things-network",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "homepage": "https://ttn-node-sdk.fuota.io/",
-  "description": "The user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.",
+  "description": "The user-friendly Node.js SDK to boost connectivity and data management within The Things Network's LoRaWAN infrastructure.",
   "author": "fuota",
   "license": "MIT",
   "scripts": {
@@ -28,7 +28,7 @@
     "tti",
     "things",
     "fuota",
-    "firmware update over the air",
+    "firmware update",
     "identity server",
     "join server",
     "application server",
