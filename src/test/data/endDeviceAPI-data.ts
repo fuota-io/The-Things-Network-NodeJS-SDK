@@ -3,20 +3,20 @@ import {
   subscribeUpLinkEventPayload,
 } from '../../interfaces/endDevice.interface';
 
-export const config_T = {
+export const config_T = {  // enter correct details here
   IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network',
   NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
   APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
   JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
-  API_KEY: process.env.API_KEY || '',
+  API_KEY: process.env.API_KEY || 'enter-your-api-key'
 };
 
-export const config_F = {
+export const config_F = {  // enter wrong details here
   IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network',
   NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
   APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
   JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
-  API_KEY: process.env.API_KEY || '',
+  API_KEY: process.env.API_KEY || 'wrong-api-key',
 };
 
 export const createEndDeviceISUserPayload = {
@@ -132,6 +132,18 @@ export const getEndDeviceInfoUserPayload_F = {
   device_id: 'eui-70b3d57ed005b59z',
 };
 
+export const getEndDeviceListuserPayload_T = {
+  order: '-created_at',
+  limit: 20,
+  page: 1,
+};
+
+export const getEndDeviceListuserPayload_F = {
+  order: '-created_at',
+  limit: 20,
+  page: 1,
+};
+
 export const updateEndDeviceUserPayload = {
   end_device: {
     ids: {
@@ -160,7 +172,7 @@ export const configDownlink = {
   NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
   APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
   JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
-  API_KEY: process.env.API_KEY || '*****',
+  API_KEY: process.env.API_KEY || 'enter-your-api-key',
   TENANT_ID: process.env.TENANT_ID || 'ttn',
 };
 

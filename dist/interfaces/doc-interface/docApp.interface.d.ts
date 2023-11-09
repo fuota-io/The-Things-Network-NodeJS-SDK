@@ -15,7 +15,7 @@
  */
 /**
  * @typedef {Object} Output-CreateApplication
- * @prop {Object} ids Application Id
+ * @prop {string} ids.application_id Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
  * @prop {timestamp} deleted_at Application Deleted At
@@ -23,8 +23,8 @@
  * @prop {string} description Application Description
  * @prop {string} attributes Application Attributes
  * @prop {string[]} contact_info Application Contact Info
- * @prop {Object} administrative_contact Application Administrative Contact
- * @prop {Object} technical_contact Application Technical Contact
+ * @prop {string} administrative_contact.user_ids.user_id Application Administrative Contact
+ * @prop {string} technical_contact.user_ids.user_id Application Technical Contact
  * @prop {string} network_server_address Application Network Server Address
  * @prop {string} application_server_address Application Application Server Address
  * @prop {string} join_server_address Application Join Server Address
@@ -32,8 +32,25 @@
  * @prop {null} end_device_limit Application End Device Limit
  */
 /**
+ * @typedef {Object} ApplicationList
+ * @prop {string} ids.application_id Application Id
+ * @prop {timestamp} created_at Application Created At
+ * @prop {timestamp} updated_at Application Updated At
+ * @prop {string} name - The Name of the application
+ * @prop {string} description - The Description of the application
+ * @prop {string} network_server_address Application Network Server Address
+ * @prop {string} application_server_address Application Application Server Address
+ * @prop {string} join_server_address Application Join Server Address
+ */
+/**
+ * @typedef {Object} Input-GetApplicationList
+ * @prop {string} [order] Order the results by this field path (must be present in the field mask). Default ordering is by ID. Prepend with a minus (-) to reverse the order. (e.g '-created_at')
+ * @prop {number} [limit] Limit the number of results per page. (less than 1000)
+ * @prop {number} [page] Page number for pagination. 0 is interpreted as 1.
+ */
+/**
  * @typedef {Object} Output-GetApplicationList
- * @prop {Object[]} application Application List
+ * @prop {ApplicationList[]} applications Application List
  */
 /**
  * @typedef {Object} Input-CreateAPIKeyForUser
@@ -52,14 +69,23 @@
  * @prop {timestamp} expires_at API Key Expires At
  */
 /**
+ * @typedef {Object} APIKeysList
+ * @prop {string} id API Key Id
+ * @prop {string} name API Key Name
+ * @prop {string[]} rights API Key Rights
+ * @prop {timestamp} created_at API Key Created At
+ * @prop {timestamp} updated_at API Key Updated At
+ * @prop {timestamp} expires_at API Key Expires At
+ */
+/**
  * @typedef {Object} Input-GetAPIKeyList
- * @prop {string} [order] Order
- * @prop {number} [limit] Limit
- * @prop {number} [page] Page
+ * @prop {string} [order] Order the results by this field path (must be present in the field mask). Default ordering is by ID. Prepend with a minus (-) to reverse the order. (e.g '-created_at')
+ * @prop {number} [limit] Limit the number of results per page. (less than 1000)
+ * @prop {number} [page] Page number for pagination. 0 is interpreted as 1.
  */
 /**
  * @typedef {Object} Output-GetAPIKeyList
- * @prop {Object[]} api_keys API Key List
+ * @prop {APIKeysList[]} api_keys API Key List
  */
 /**
  * @typedef {Object} Input-GetAPIKeyInfo
@@ -111,7 +137,8 @@
  */
 /**
  * @typedef {Object} Output-GetCollaboratorInfo
- * @prop {Object} ids User Id and Email
+ * @prop {string} [ids.user_ids.user_id] User Id
+ * @prop {string} [ids.user_ids.email] User Email
  * @prop {string[]} rights Collaborator Rights
  */
 /**
@@ -126,7 +153,7 @@
  */
 /**
  * @typedef {Object} Output-GetApplication
- * @prop {Object} ids Application Id
+ * @prop {string} ids.application_id Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
  * @prop {timestamp} deleted_at Application Deleted At
@@ -134,8 +161,8 @@
  * @prop {string} description Application Description
  * @prop {string} attributes Application Attributes
  * @prop {string[]} contact_info Application Contact Info
- * @prop {Object} administrative_contact Application Administrative Contact
- * @prop {Object} technical_contact Application Technical Contact
+ * @prop {string} administrative_contact.user_ids.user_id Application Administrative Contact
+ * @prop {string} technical_contact.user_ids.user_id Application Technical Contact
  * @prop {string} network_server_address Application Network Server Address
  * @prop {string} application_server_address Application Application Server Address
  * @prop {string} join_server_address Application Join Server Address
@@ -150,7 +177,7 @@
  */
 /**
  * @typedef {Object} Output-UpdateApplication
- * @prop {Object} ids Application Id
+ * @prop {string} ids.application_id Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
  * @prop {timestamp} deleted_at Application Deleted At
@@ -158,8 +185,8 @@
  * @prop {string} description Application Description
  * @prop {string} attributes Application Attributes
  * @prop {string[]} contact_info Application Contact Info
- * @prop {Object} administrative_contact Application Administrative Contact
- * @prop {Object} technical_contact Application Technical Contact
+ * @prop {string} administrative_contact.user_ids.user_id Application Administrative Contact
+ * @prop {string} technical_contact.user_ids.user_id Application Technical Contact
  * @prop {string} network_server_address Application Network Server Address
  * @prop {string} application_server_address Application Application Server Address
  * @prop {string} join_server_address Application Join Server Address
@@ -168,7 +195,7 @@
  */
 /**
  * @typedef {Object} Output-SearchApplication
- * @prop {Object} ids Application Id
+ * @prop {string} ids.application_id Application Id
  * @prop {timestamp} created_at Application Created At
  * @prop {timestamp} updated_at Application Updated At
  * @prop {timestamp} deleted_at Application Deleted At
@@ -176,8 +203,8 @@
  * @prop {string} description Application Description
  * @prop {string} attributes Application Attributes
  * @prop {string[]} contact_info Application Contact Info
- * @prop {Object} administrative_contact Application Administrative Contact
- * @prop {Object} technical_contact Application Technical Contact
+ * @prop {string} administrative_contact.user_ids.user_id Application Administrative Contact
+ * @prop {string} technical_contact.user_ids.user_id Application Technical Contact
  * @prop {string} network_server_address Application Network Server Address
  * @prop {string} application_server_address Application Application Server Address
  * @prop {string} join_server_address Application Join Server Address
@@ -207,7 +234,8 @@
  */
 /**
  * @typedef {Object} Output-GetCollaboratorInfoOfUser
- * @prop {Object} ids User Id and Email
+ * @prop {string} [ids.user_ids.user_id] User Id
+ * @prop {string} [ids.user_ids.email] User Email
  * @prop {string[]} rights Collaborator Rights
  */
 /**
@@ -216,7 +244,7 @@
  */
 /**
  * @typedef {Object} Output-GetCollaboratorInfoOfOrg
- * @prop {Object} ids Organization Id
+ * @prop {string} [ids.organization_ids.organization_id] Organization Id
  * @prop {string[]} rights Collaborator Rights
  */
 /**
@@ -231,16 +259,29 @@
  * @prop {string[]} rights Collaborator Rights
  */
 /**
+ * @typedef {Object} CollabortorList
+ * @prop {string} [ids.organization_ids.organization_id] Organization Id
+ * @prop {string} [ids.user_ids.user_id] User Id
+ * @prop {string} [ids.user_ids.email] User Email
+ * @prop {string[]} rights Collaborator Rights
+ */
+/**
  * @typedef {Object} Input-GetCollabortorList
- * @prop {string} [order] Order
- * @prop {number} [limit] Limit
- * @prop {number} [page] Page
+ * @prop {string} [order] Order the results by this field path (must be present in the field mask). Default ordering is by ID. Prepend with a minus (-) to reverse the order. (e.g '-id')
+ * @prop {number} [limit] Limit the number of results per page. (less than 1000)
+ * @prop {number} [page] Page number for pagination. 0 is interpreted as 1.
  */
 /**
  * @typedef {Object} Output-GetCollabortorList
- * @prop {Object} collaborators Ids and Rights
+ * @prop {CollabortorList[]} collaborators Collaborator List
  */
 /**
  * @typedef {Object} Output-GetGatewayRight
  * @prop {string[]} rights Gateway Rights
  */
+/**
+ * @typedef {Object} Input-GetGatewayList
+ * @prop {string} [order] Order the results by this field path (must be present in the field mask). Default ordering is by ID. Prepend with a minus (-) to reverse the order. (e.g '-created_at')
+ * @prop {number} [limit] Limit the number of results per page. (less than 1000)
+ * @prop {number} [page] Page number for pagination. 0 is interpreted as 1.
+ */ 

@@ -15,9 +15,6 @@ import {
   createAPIKeyPayloadForApplication,
   createAPIKeyPayloadForUser,
   createAPIKeyPayloadForOrg,
-  getAPIKeyListForApplication,
-  getAPIKeyListForUser,
-  getAPIKeyListForOrg,
   getAPIKeyInfoPayloadForApplication_T,
   getAPIKeyInfoPayloadForApplication_F,
   getAPIKeyInfoPayloadForUser_T,
@@ -42,7 +39,12 @@ import {
   setCollaboratorPayloadForApplication_Org_F,
   setCollaboratorPayloadForOrg_T,
   setCollaboratorPayloadForOrg_F,
-  getCollaboratorListUserPayload,
+  getCollaboratorListUserPayload_T,
+  getCollaboratorListUserPayload_F,
+  getApplicationListPayload_T,
+  getApplicationListPayload_F,
+  getAPIKeyList_T,
+  getAPIKeyList_F
 } from './data/appAPI-data';
 
 const app = new Application('meet69', config_T);
@@ -135,22 +137,85 @@ describe('Get Application Errors', () => {
 
 describe('List Applications', () => {
   test('Getting Application List Successfully', async () => {
-    const response = await app.getApplicationList();
+    const response = await app.getApplicationList(getApplicationListPayload_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Applications Errors', () => {
+  test('Invalid Authorization', async () => {
+    try {
+      const app = new Application('meet165656', config_F);
+      const response = await app.getApplicationList(getApplicationListPayload_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 16);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await app.getApplicationList(getApplicationListPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
 describe('List Applications (User)', () => {
   test('Getting Application (User) List Successfully', async () => {
-    const response = await user.getApplicationList();
+    const response = await user.getApplicationList(getApplicationListPayload_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Applications (User) Errors', () => {
+  test('No Rights', async () => {
+    try {
+      const user = new User('meetsa', config_T);
+      const response = await user.getApplicationList(getApplicationListPayload_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await user.getApplicationList(getApplicationListPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
 describe('List Applications (Org)', () => {
   test('Getting Application (Org) List Successfully', async () => {
-    const response = await org.getApplicationList();
+    const response = await org.getApplicationList(getApplicationListPayload_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Applications (Org) Errors', () => {
+  test('No Rights', async () => {
+    try {
+      const org = new Organization('orga1', config_T);
+      const response = await org.getApplicationList(getApplicationListPayload_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await org.getApplicationList(getApplicationListPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
@@ -301,7 +366,7 @@ describe('API Key Creation', () => {
 
 describe('List API Keys (Application)', () => {
   test('Listing API Keys Successfully', async () => {
-    const response = await app.getAPIKeyList(getAPIKeyListForApplication);
+    const response = await app.getAPIKeyList(getAPIKeyList_T);
     expect(response).toBeDefined();
   });
 });
@@ -310,17 +375,26 @@ describe('List API Keys Errors (Application)', () => {
   test('No Rights', async () => {
     try {
       const app = new Application('meet165656', config_T);
-      const response = await app.getAPIKeyList(getAPIKeyListForApplication);
+      const response = await app.getAPIKeyList(getAPIKeyList_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await app.getAPIKeyList(getAPIKeyList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });
 
 describe('List API Keys (User)', () => {
   test('Listing API Keys Successfully', async () => {
-    const response = await user.getAPIKeyList(getAPIKeyListForUser);
+    const response = await user.getAPIKeyList(getAPIKeyList_T);
     expect(response).toBeDefined();
   });
 });
@@ -328,18 +402,27 @@ describe('List API Keys (User)', () => {
 describe('List API Keys Errors (User)', () => {
   test('No Rights', async () => {
     try {
-      const user = new User('hjfds', config_T);
-      const response = await user.getAPIKeyList(getAPIKeyListForUser);
+      const user = new User('meetsava', config_T);
+      const response = await user.getAPIKeyList(getAPIKeyList_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await user.getAPIKeyList(getAPIKeyList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });
 
 describe('List API Keys (Org)', () => {
   test('Listing API Keys Successfully', async () => {
-    const response = await org.getAPIKeyList(getAPIKeyListForOrg);
+    const response = await org.getAPIKeyList(getAPIKeyList_T);
     expect(response).toBeDefined();
   });
 });
@@ -347,11 +430,20 @@ describe('List API Keys (Org)', () => {
 describe('List API Keys Errors (Org)', () => {
   test('No Rights', async () => {
     try {
-      const org = new Organization('jgyua', config_T);
-      const response = await org.getAPIKeyList(getAPIKeyListForOrg);
+      const org = new Organization('orga1', config_T);
+      const response = await org.getAPIKeyList(getAPIKeyList_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await org.getAPIKeyList(getAPIKeyList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });
@@ -719,7 +811,7 @@ describe('Set Collaborator Errors (Org)', () => {
 
 describe('List Collaborators', () => {
   test('Listing Collaborators Successfully', async () => {
-    const response = await app.getCollaboratorList(getCollaboratorListUserPayload);
+    const response = await app.getCollaboratorList(getCollaboratorListUserPayload_T);
     expect(response).toBeDefined();
   });
 });
@@ -728,10 +820,19 @@ describe('List Collaborators Errors', () => {
   test('Application Entity Not Found', async () => {
     try {
       const app = new Application('bdvkjh', config_T);
-      const response = await app.getCollaboratorList(getCollaboratorListUserPayload);
+      const response = await app.getCollaboratorList(getCollaboratorListUserPayload_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 5);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await app.getCollaboratorList(getCollaboratorListUserPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });

@@ -1,6 +1,6 @@
 import { SetConfig } from '../../helpers/config';
 import { Config } from '../../interfaces/config.interface';
-import { GetApplication, GetApplicationList, UpdateApplicationUserPayload, UpdateApplication, SearchApplication, GetApplicationRight, CreateAPIKeyPayload, CreateAPIKey, GetAPIKeyListUserPayload, GetAPIKeyList, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKey, UpdateAPIKeyUserPayload, GetCollabortorListUserPayload, GetCollabortorList, GetCollaboratorInfoUserPayload, GetCollaboratorInfoOrgPayload, SetCollaboratorUserPayloadForUser, SetCollaboratorUserPayloadForOrg, GetCollaboratorInfoUser, GetCollaboratorInfoOrg } from '../../interfaces/application.interface';
+import { GetApplication, GetApplicationList, UpdateApplicationUserPayload, UpdateApplication, SearchApplication, GetApplicationRight, CreateAPIKeyPayload, CreateAPIKey, GetAPIKeyListUserPayload, GetAPIKeyList, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKey, UpdateAPIKeyUserPayload, GetCollabortorListUserPayload, GetCollabortorList, GetCollaboratorInfoUserPayload, GetCollaboratorInfoOrgPayload, SetCollaboratorUserPayloadForUser, SetCollaboratorUserPayloadForOrg, GetCollaboratorInfoUser, GetCollaboratorInfoOrg, GetApplicationListUserPayload } from '../../interfaces/application.interface';
 /**
  * @classdesc The Application class is a child class of the SetConfig class. The Application class has a constructor that takes
  * in a applicationID and a config object. The Application class has a bunch of methods that make API calls to the Identity Server.
@@ -23,11 +23,12 @@ export declare class Application extends SetConfig {
      */
     getApplicationInfo(): Promise<GetApplication>;
     /**
-     * It returns the list of applications that have been created by both user and organization.
+     * It returns the list of applications that have been created by both user and organization (Default returns ).
+     * @param {Input-GetApplicationList} [payload] - Input-GetApplicationList
      * @returns {Output-GetApplicationList}
      * The response from the API.
      */
-    getApplicationList(): Promise<GetApplicationList>;
+    getApplicationList(payload?: GetApplicationListUserPayload): Promise<GetApplicationList>;
     /**
      * It updates the application information.
      * @param {Input-UpdateApplication} payload - Input-UpdateApplication
@@ -74,11 +75,11 @@ export declare class Application extends SetConfig {
     createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey>;
     /**
      * It returns the list of API keys for the application.
-     * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+     * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
      * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
-    getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
+    getAPIKeyList(payload?: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
     /**
      * It returns the API key information for the application.
      * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
@@ -122,10 +123,10 @@ export declare class Application extends SetConfig {
      */
     setCollaboratorOfOrg(payload: SetCollaboratorUserPayloadForOrg): Promise<any>;
     /**
-     * It returns the list of API keys for the application.
-     * @param {Input-GetCollabortorList} payload - Input-GetCollabortorList
+     * It returns the list of collaborators (members) of the application.
+     * @param {Input-GetCollabortorList} [payload] - Input-GetCollabortorList
      * @returns {Output-GetCollabortorList}
      * The response from the API.
      */
-    getCollaboratorList(payload: GetCollabortorListUserPayload): Promise<GetCollabortorList>;
+    getCollaboratorList(payload?: GetCollabortorListUserPayload): Promise<GetCollabortorList>;
 }

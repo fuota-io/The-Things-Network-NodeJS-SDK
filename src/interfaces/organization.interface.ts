@@ -1,3 +1,8 @@
+export interface Pagination {
+  limit?: number;
+  page?: number;
+  order?: string;
+}
 export interface CreateApplicationUserPayload {
   application_id: string;
   name: string;
@@ -43,11 +48,18 @@ export interface CreateApplication {
   end_device_limit: null;
 }
 
+export interface GetApplicationListUserPayload extends Pagination {}
+
 export interface GetApplicationList {
-  application: {
+  applications: {
     ids: { application_id: string };
+    name: string;
+    description: string;
     created_at: string;
     updated_at: string;
+    network_server_address: string;
+    application_server_address: string;
+    join_server_address: string;
   }[];
 }
 
@@ -73,16 +85,11 @@ export interface CreateAPIKey {
   expires_at: any;
 }
 
-export interface GetAPIKeyListUserPayload {
-  order?: string;
-  limit?: number;
-  page?: number;
-}
+export interface GetAPIKeyListUserPayload extends Pagination {}
 
 export interface GetAPIKeyList {
   api_keys: {
     id: string;
-    key: string;
     name: string;
     rights: string[];
     created_at: string;
@@ -279,6 +286,8 @@ export interface CreateGateway {
   lrfhss: { supported: boolean };
   disable_packet_broker_forwarding: boolean;
 }
+
+export interface GetGatewayListUserPayload extends Pagination {}
 
 export interface GetGatewayList {
   gateways: CreateGateway[];

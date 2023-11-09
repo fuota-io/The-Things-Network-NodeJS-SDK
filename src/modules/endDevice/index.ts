@@ -35,6 +35,7 @@ import {
   GetEndDeviceInfoJS,
   GetEndDeviceInfoNS,
   GetEndDeviceInfoAS,
+  GetEndDeviceListUserPayload,
 } from '../../interfaces/endDevice.interface';
 
 /**
@@ -338,13 +339,22 @@ export class EndDevice extends SetConfig {
 
   /**
    * It returns the list of end devices for the application in the Identity Server.
+   * @param {Input-GetEndDeviceList} [payload] - Input-GetCollabortorList
    * @returns {Output-GetEndDeviceList}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevices GetEndDeviceList}
    */
-  getEndDeviceList(): Promise<GetEndDeviceList> {
+  getEndDeviceList(payload?: GetEndDeviceListUserPayload): Promise<GetEndDeviceList> {
+    let page = 1, limit = 20, order = '-created_at';
+
+    if (payload) {
+      page = payload.page ? payload.page : 1;
+      limit = payload.limit ? payload.limit : 20;
+      order = payload.order ? payload.order : '-created_at';
+    }
+
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
+      url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?page=${page}&limit=${limit}&order=${order}&field_mask=name,application_server_address,network_server_address,join_server_address,last_seen_at`,
       headers: this.headers,
       data: {},
     });

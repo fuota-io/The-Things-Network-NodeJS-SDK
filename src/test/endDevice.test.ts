@@ -17,6 +17,8 @@ import {
   downlinkQueuePushUserPayload,
   subscribeUpLinkEventUserPayload,
   subscribeDownLinkEventUserPayload,
+  getEndDeviceListuserPayload_T,
+  getEndDeviceListuserPayload_F,
 } from './data/endDeviceAPI-data';
 
 const device = new EndDevice('meet69', config_T);
@@ -327,7 +329,7 @@ describe('Get EndDeviceInfoAS Errors', () => {
 
 describe('Get EndDeviceList', () => {
   test('Getting EndDeviceList Successfully', async () => {
-    const response = await device.getEndDeviceList();
+    const response = await device.getEndDeviceList(getEndDeviceListuserPayload_T);
     expect(response).toBeDefined();
   });
 });
@@ -336,10 +338,19 @@ describe('Get EndDeviceList Errors', () => {
   test('No Rights', async () => {
     try {
       const device = new EndDevice('meet5jhbjh', config_T);
-      const response = await device.getEndDeviceList();
+      const response = await device.getEndDeviceList(getEndDeviceListuserPayload_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await device.getEndDeviceList(getEndDeviceListuserPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });

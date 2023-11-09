@@ -1,6 +1,6 @@
 import { SetConfig } from '../../helpers/config';
 import { Config } from '../../interfaces/config.interface';
-import { CreateEndDeviceIS, SetEndDeviceJS, SetEndDeviceJSUserPayload, SetEndDeviceNSUserPayload, SetEndDeviceNS, SetEndDeviceASUserPayload, SetEndDeviceAS, GetEndDeviceInfoUserPayload, GetEndDeviceList, deleteEndDeviceASUserPayload, deleteEndDeviceNSUserPayload, deleteEndDeviceJSUserPayload, UpdateEndDevice, CreateEndDeviceISUserPayload, UpdateEndDeviceUserPayload, downlinkQueueUserPayload, subscribeDownLinkEventPayload, subscribeUpLinkEventPayload, deleteEndDeviceISUserPayload, issueDevEUI, GetEndDeviceInfoIS, GetEndDeviceInfoJS, GetEndDeviceInfoNS, GetEndDeviceInfoAS } from '../../interfaces/endDevice.interface';
+import { CreateEndDeviceIS, SetEndDeviceJS, SetEndDeviceJSUserPayload, SetEndDeviceNSUserPayload, SetEndDeviceNS, SetEndDeviceASUserPayload, SetEndDeviceAS, GetEndDeviceInfoUserPayload, GetEndDeviceList, deleteEndDeviceASUserPayload, deleteEndDeviceNSUserPayload, deleteEndDeviceJSUserPayload, UpdateEndDevice, CreateEndDeviceISUserPayload, UpdateEndDeviceUserPayload, downlinkQueueUserPayload, subscribeDownLinkEventPayload, subscribeUpLinkEventPayload, deleteEndDeviceISUserPayload, issueDevEUI, GetEndDeviceInfoIS, GetEndDeviceInfoJS, GetEndDeviceInfoNS, GetEndDeviceInfoAS, GetEndDeviceListUserPayload } from '../../interfaces/endDevice.interface';
 /**
  * @classdesc The EndDevice class is used to create an end device for the application.
  * @extends SetConfig
@@ -76,10 +76,11 @@ export declare class EndDevice extends SetConfig {
     getEndDeviceInfoAS(payload: GetEndDeviceInfoUserPayload): Promise<GetEndDeviceInfoAS>;
     /**
      * It returns the list of end devices for the application in the Identity Server.
+     * @param {Input-GetEndDeviceList} [payload] - Input-GetCollabortorList
      * @returns {Output-GetEndDeviceList}
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevices GetEndDeviceList}
      */
-    getEndDeviceList(): Promise<GetEndDeviceList>;
+    getEndDeviceList(payload?: GetEndDeviceListUserPayload): Promise<GetEndDeviceList>;
     /**
      * It updates the end device information for the application.
      * @param {Input-UpdateEndDevice} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:UpdateEndDeviceRequest UpdateEndDevice}

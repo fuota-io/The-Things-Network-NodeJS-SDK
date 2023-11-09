@@ -1,3 +1,9 @@
+export interface Pagination {
+  order?: string;
+  limit?: number;
+  page?: number;
+}
+
 export interface CreateEndDeviceISUserPayload {
   end_device: {
     ids: {
@@ -512,6 +518,8 @@ export interface GetEndDeviceInfoAS {
   session: Session;
   pending_session: Session;
 }
+
+export interface GetEndDeviceListUserPayload extends Pagination {}
 
 export interface GetEndDeviceList {
   end_devices: GetEndDeviceInfoIS[];
