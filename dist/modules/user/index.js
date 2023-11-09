@@ -43,13 +43,20 @@ class User extends config_1.SetConfig {
     }
     /**
      * It returns the list of applications that have been created by the user.
+     * @param {Input-GetApplicationList} [payload] - Input-GetApplicationList
      * @returns {Output-GetApplicationList}
      * The response from the API.
      */
-    getApplicationList() {
+    getApplicationList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/applications`,
+            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/applications?page=${page}&limit=${limit}&order=${order}&field_mask=name,description,network_server_address,application_server_address,join_server_address`,
             headers: this.headers,
             data: {},
         });
@@ -75,14 +82,20 @@ class User extends config_1.SetConfig {
     }
     /**
      * It returns the list of api keys that have been created by the user.
-     * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+     * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
      * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
     getAPIKeyList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/api-keys`,
+            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/api-keys?page=${page}&limit=${limit}&order=${order}`,
             headers: this.headers,
             data: payload,
         });
@@ -149,13 +162,20 @@ class User extends config_1.SetConfig {
     }
     /**
      * It returns the list of gateways that have been created by the user.
+     * @param {Input-GetGatewayList} [payload] - Input-GetGatewayList
      * @returns {Output-GetGatewayList}
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
      */
-    getGatewayList() {
+    getGatewayList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/gateways`,
+            url: `${this.IDENTITY_SERVER}/users/${this.USER_ID}/gateways?page=${page}&limit=${limit}&order=${order}&field_mask=name,description,frequency_plan_ids,gateway_server_address`,
             headers: this.headers,
             data: {},
         });

@@ -43,18 +43,3 @@ class Mqtt {
     }
 }
 exports.Mqtt = Mqtt;
-// const topic = 'vtteam/meet';
-// client.on('connect', () => {
-//   console.log('Connected');
-//   client.subscribe([topic], () => {
-//     // console.log(`Subscribe to topic '${topic}'`);
-//   });
-//   client.publish('vtteam/meet', 'Hello there!!', { qos: 0, retain: false }, (error) => {
-//     if (error) {
-//       console.error(error);
-//     }
-//   });
-// });
-// client.on('message', (topic, payload) => {
-//   console.log('Received Message:', topic, payload.toString());
-// });

@@ -23,12 +23,6 @@ class EndDevice extends config_1.SetConfig {
         this.paths = [];
         this.APPLICATION_ID = applicationID;
     }
-    // /**
-    //  * It creates an end device for the application.
-    //  * @param {Input-CreateEndDeviceIS} payload - Input-CreateEndDeviceIS
-    //  * @returns {Output-CreateEndDeviceIS}
-    //  * The response from the API.
-    //  */
     /**
      * It creates an end device for the application.
      * @param {Input-CreateEndDeviceIS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:CreateEndDeviceRequest CreateEndDeviceIS}
@@ -72,12 +66,6 @@ class EndDevice extends config_1.SetConfig {
             data: apiPayload,
         });
     }
-    // /**
-    //  * It sets an end device for the application in the Join Server.
-    //  * @param {Input-SetEndDeviceJS} payload - Input-SetEndDeviceJS
-    //  * @returns {Output-SetEndDeviceJS}
-    //  * The response from the API.
-    //  */
     /**
      * It sets an end device for the application in the Join Server.
      * @param {Input-SetEndDeviceJS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:SetEndDeviceRequest SetEndDeviceJS}
@@ -116,12 +104,6 @@ class EndDevice extends config_1.SetConfig {
             data: apiPayload,
         });
     }
-    // /**
-    //  * It sets an end device for the application in the Network Server.
-    //  * @param {Input-SetEndDeviceNS} payload - Input-SetEndDeviceNS
-    //  * @returns {Output-SetEndDeviceNS}
-    //  * The response from the API.
-    //  */
     /**
      * It sets an end device for the application in the Network Server.
      * @param {Input-SetEndDeviceNS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:SetEndDeviceRequest SetEndDeviceNS}
@@ -195,12 +177,6 @@ class EndDevice extends config_1.SetConfig {
             data: apiPayload,
         });
     }
-    // /**
-    //  * It sets an end device for the application in the Application Server.
-    //  * @param {Input-SetEndDeviceAS} payload - Input-SetEndDeviceAS
-    //  * @returns {Output-SetEndDeviceAS}
-    //  * The response from the API.
-    //  */
     /**
      * It sets an end device for the application in the Application Server.
      * @param {Input-SetEndDeviceAS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:SetEndDeviceRequest SetEndDeviceAS}
@@ -255,12 +231,6 @@ class EndDevice extends config_1.SetConfig {
             data: apiPayload,
         });
     }
-    // /**
-    //  * It returns the end device information for the application in the Identity Server.
-    //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {Output-GetEndDeviceInfo}
-    //  * The response from the API.
-    //  */
     /**
      * It returns the end device information for the application in the Identity Server.
      * @param {Input-GetEndDeviceInfo} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:GetEndDeviceRequest GetEndDeviceInfo}
@@ -275,12 +245,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It returns the end device information for the application in the Join Server.
-    //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {Output-GetEndDeviceInfo}
-    //  * The response from the API.
-    //  */
     /**
      * It returns the end device information for the application in the Join Server.
      * @param {Input-GetEndDeviceInfo} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:GetEndDeviceRequest GetEndDeviceInfo}
@@ -295,12 +259,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It returns the end device information for the application in the Network Server.
-    //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {Output-GetEndDeviceInfo}
-    //  * The response from the API.
-    //  */
     /**
      * It returns the end device information for the application in the Network Server.
      * @param {Input-GetEndDeviceInfo} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:GetEndDeviceRequest GetEndDeviceInfo}
@@ -315,12 +273,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It returns the end device information for the application in the Application Server.
-    //  * @param {Input-GetEndDeviceInfo} payload - Input-GetEndDeviceInfo
-    //  * @returns {Output-GetEndDeviceInfo}
-    //  * The response from the API.
-    //  */
     /**
      * It returns the end device information for the application in the Application Server.
      * @param {Input-GetEndDeviceInfo} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:GetEndDeviceRequest GetEndDeviceInfo}
@@ -335,20 +287,22 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It returns the list of end devices for the application in the Identity Server.
-    //  * @returns {Output-GetEndDeviceList}
-    //  * The response from the API.
-    //  */
     /**
      * It returns the list of end devices for the application in the Identity Server.
+     * @param {Input-GetEndDeviceList} [payload] - Input-GetCollabortorList
      * @returns {Output-GetEndDeviceList}
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDevices GetEndDeviceList}
      */
-    getEndDeviceList() {
+    getEndDeviceList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?field_mask=name,version_ids,last_seen_at,network_server_address,application_server_address,join_server_address,locations,claim_authentication_code,attributes`,
+            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/devices?page=${page}&limit=${limit}&order=${order}&field_mask=name,application_server_address,network_server_address,join_server_address,last_seen_at`,
             headers: this.headers,
             data: {},
         });
@@ -485,12 +439,6 @@ class EndDevice extends config_1.SetConfig {
             data: apiPayload,
         });
     }
-    // /**
-    //  * It deletes the end device in the identity server.
-    //  * @param {Input-DeleteEndDeviceIS} payload - Input-DeleteEndDeviceIS
-    //  * @returns {Output-EmptyPayload}
-    //  * The response from the API.
-    //  */
     /**
      * It deletes the end device in the identity server.
      * @param {Input-DeleteEndDeviceIS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceIS}
@@ -505,12 +453,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It deletes the end device in the join server.
-    //  * @param {Input-DeleteEndDeviceJS} payload - Input-DeleteEndDeviceJS
-    //  * @returns {Output-EmptyPayload}
-    //  * The response from the API.
-    //  */
     /**
      * It deletes the end device in the join server.
      * @param {Input-DeleteEndDeviceJS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceJS}
@@ -525,12 +467,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It deletes the end device in the network server.
-    //  * @param {Input-DeleteEndDeviceNS} payload - Input-DeleteEndDeviceNS
-    //  * @returns {Output-EmptyPayload}
-    //  * The response from the API.
-    //  */
     /**
      * It deletes the end device in the network server.
      * @param {Input-DeleteEndDeviceNS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceNS}
@@ -545,12 +481,6 @@ class EndDevice extends config_1.SetConfig {
             data: {},
         });
     }
-    // /**
-    //  * It deletes the end device in the application server.
-    //  * @param {Input-DeleteEndDeviceAS} payload - Input-DeleteEndDeviceAS
-    //  * @returns {Output-EmptyPayload}
-    //  * The response from the API.
-    //  */
     /**
      * It deletes the end device in the application server.
      * @param {Input-DeleteEndDeviceAS} payload - {@link https://www.thethingsindustries.com/docs/reference/api/end_device/#message:EndDeviceIdentifiers DeleteEndDeviceAS}
@@ -644,30 +574,44 @@ class EndDevice extends config_1.SetConfig {
      * @returns {Output-SubscribeDownLinkEvent} It returns client object and topic.
      */
     subscribeDownLinkEvent(payload) {
-        return new Promise((resolve) => {
-            this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-            this.topic = payload.device_id ?
-                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
-                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
-            this.conn.client.on('connect', () => {
-                this.conn.client.subscribe([this.topic], () => {
-                    // console.log(`Subscribe to topic '${topic}'`);
+        return new Promise((resolve, reject) => {
+            try {
+                this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+                this.topic = payload.device_id ?
+                    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/down/${payload.down_type}` :
+                    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/down/${payload.down_type}`;
+                this.conn.client.on('connect', () => {
+                    this.conn.client.subscribe([this.topic], (err) => {
+                        if (err) {
+                            reject(err); // reject the promise if an error occurs
+                        }
+                        else {
+                            const clientObj = {
+                                client: this.conn.client,
+                                topic: this.topic,
+                            };
+                            resolve(clientObj);
+                        }
+                    });
                 });
-            });
-            this.conn.client.on('message', (topic, mqtt_payload) => {
-                payload.callback_downlink_event(mqtt_payload);
-            });
-            const clientObj = {
-                client: this.conn.client,
-                topic: this.topic,
-            };
-            resolve(clientObj);
-            // this.conn.client.on('disconnect', (topic: any, mqtt_payload: any) => {
-            //   payload.callback_subscribe_disconnect(mqtt_payload);
-            // });
-            // conn.client.on('error', (error: any) => {
-            //   payload.callback_subscribe_error(error);
-            // });
+                this.conn.client.on('message', (topic, mqtt_payload) => {
+                    try {
+                        payload.callback_downlink_event(mqtt_payload);
+                    }
+                    catch (e) {
+                        reject(e); // reject the promise if an error occurs in the callback
+                    }
+                });
+                this.conn.client.on('disconnect', (mqtt_payload) => {
+                    payload.callback_subscribe_disconnect(mqtt_payload);
+                });
+                this.conn.client.on('error', (err) => {
+                    payload.callback_subscribe_error(err); // reject the promise if an error event is emitted
+                });
+            }
+            catch (e) {
+                reject(e); // reject the promise if an error occurs
+            }
         });
     }
     /**
@@ -676,30 +620,44 @@ class EndDevice extends config_1.SetConfig {
      * @returns {Output-SubscribeUpLinkEvent} It returns client object and topic.
      */
     subscribeUpLinkEvent(payload) {
-        return new Promise((resolve) => {
-            this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
-            this.topic = payload.device_id ?
-                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
-                `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
-            this.conn.client.on('connect', () => {
-                this.conn.client.subscribe([this.topic], () => {
-                    // console.log(`Subscribe to topic '${topic}'`);
+        return new Promise((resolve, reject) => {
+            try {
+                this.conn = new mqtt_1.Mqtt(payload.host, payload.port, payload.username, this.API_KEY);
+                this.topic = payload.device_id ?
+                    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/${payload.device_id}/up` :
+                    `v3/${this.APPLICATION_ID}@${this.TENANT_ID}/devices/+/up`;
+                this.conn.client.on('connect', () => {
+                    this.conn.client.subscribe([this.topic], (err) => {
+                        if (err) {
+                            reject(err); // reject the promise if an error occurs
+                        }
+                        else {
+                            const clientObj = {
+                                client: this.conn.client,
+                                topic: this.topic,
+                            };
+                            resolve(clientObj);
+                        }
+                    });
                 });
-            });
-            this.conn.client.on('message', (topic, mqtt_payload) => {
-                payload.callback_uplink_event(mqtt_payload);
-            });
-            const clientObj = {
-                client: this.conn.client,
-                topic: this.topic,
-            };
-            resolve(clientObj);
-            // conn.client.on('error', (error: any) => {
-            //   payload.callback_subscribe_error(error);
-            // });
-            // conn.client.on('disconnect', () => {
-            //   payload.callback_subscribe_disconnect(topic);
-            // });
+                this.conn.client.on('message', (topic, mqtt_payload) => {
+                    try {
+                        payload.callback_uplink_event(mqtt_payload);
+                    }
+                    catch (e) {
+                        reject(e); // reject the promise if an error occurs in the callback
+                    }
+                });
+                this.conn.client.on('disconnect', (mqtt_payload) => {
+                    payload.callback_subscribe_disconnect(mqtt_payload);
+                });
+                this.conn.client.on('error', (err) => {
+                    payload.callback_subscribe_error(err); // reject the promise if an error event is emitted
+                });
+            }
+            catch (e) {
+                reject(e); // reject the promise if an error occurs
+            }
         });
     }
     /**
@@ -707,8 +665,16 @@ class EndDevice extends config_1.SetConfig {
      * @param {mqtt_connection_object} payload - MQTT Connection Object
      */
     unsubscribeEvent(client, topic) {
-        client.unsubscribe(topic, (error) => {
-            console.log('unsubscribeDownLinkEvent', error);
+        return new Promise((resolve, reject) => {
+            client.unsubscribe(topic, (err) => {
+                if (err) {
+                    // Handle the error if unsubscribe fails
+                    reject(new Error(`Failed to unsubscribe from topic ${topic}: ${err.message}`));
+                }
+                else {
+                    resolve(`Successfully unsubscribed from topic ${topic}`);
+                }
+            });
         });
     }
 }

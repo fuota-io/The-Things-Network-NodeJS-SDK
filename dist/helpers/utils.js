@@ -18,16 +18,16 @@ const getBase64 = (type, payload) => {
 };
 exports.getBase64 = getBase64;
 //************** To Extract Nested Object Keys ******************
-function getAllKeys(obj) {
+const getAllKeys = (obj) => {
     let keys = [];
     for (let key in obj) {
         if (typeof obj[key] === 'object' && obj[key] !== null) {
-            keys.push(...getAllKeys(obj[key]).map((subKey) => `${key}.${subKey}`));
+            keys.push(...(0, exports.getAllKeys)(obj[key]).map((subKey) => `${key}.${subKey}`));
         }
         else {
             keys.push(key);
         }
     }
     return keys;
-}
+};
 exports.getAllKeys = getAllKeys;

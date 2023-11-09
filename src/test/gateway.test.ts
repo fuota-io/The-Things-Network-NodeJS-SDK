@@ -9,11 +9,9 @@ import {
   getCollaboratorInfoPayloadForApplication_User_F,
   getCollaboratorInfoPayloadForApplication_Org_T,
   getCollaboratorInfoPayloadForApplication_Org_F,
-  getCollaboratorListUserPayload,
   createGatewayPayload,
   updateGatewayPayload,
   createAPIKeyPayloadForGateway,
-  getAPIKeyListForGateway,
   getAPIKeyInfoPayloadForGateway_T,
   getAPIKeyInfoPayloadForGateway_F,
   updateAPIKeyUserPayloadForGateway_T,
@@ -22,6 +20,13 @@ import {
   setCollaboratorPayloadForGateway_User_F,
   setCollaboratorPayloadForGateway_Org_T,
   setCollaboratorPayloadForGateway_Org_F,
+  getGatewayList_T,
+  getCollaboratorListUserPayload_T,
+  getCollaboratorListUserPayload_F,
+  getGatewayList_F,
+  config_F,
+  getAPIKeyListForGateway_T,
+  getAPIKeyListForGateway_F,
 } from './data/appAPI-data';
 
 const user = new User('meetsavaj', config_T);
@@ -86,22 +91,85 @@ describe('Get Gateway Errors', () => {
 
 describe('List Gateways', () => {
   test('Getting Gateway List Successfully', async () => {
-    const response = await gateway.getGatewayList();
+    const response = await gateway.getGatewayList(getGatewayList_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Gateways Errors', () => {
+  test('No rights', async () => {
+    try {
+      const gateway = new Gateway('eui-ee34634e6ada3425', config_F);
+      const response = await gateway.getGatewayList(getGatewayList_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 16);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await gateway.getGatewayList(getGatewayList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
 describe('List Gateways (User)', () => {
   test('Getting Gateway (User) List Successfully', async () => {
-    const response = await user.getGatewayList();
+    const response = await user.getGatewayList(getGatewayList_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Gateways (User) Errors', () => {
+  test('No rights', async () => {
+    try {
+      const user = new User('eui-ee34634e6ada3425', config_T);
+      const response = await user.getGatewayList(getGatewayList_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await user.getGatewayList(getGatewayList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
 describe('List Gateways (Org)', () => {
   test('Getting Gateway (Org) List Successfully', async () => {
-    const response = await org.getGatewayList();
+    const response = await org.getGatewayList(getGatewayList_T);
     expect(response).toBeDefined();
+  });
+});
+
+describe('List Gateways (Org) Errors', () => {
+  test('No rights', async () => {
+    try {
+      const org = new Organization('eui-ee34634e6ada3425', config_T);
+      const response = await org.getGatewayList(getGatewayList_T);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await org.getGatewayList(getGatewayList_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
+    }
   });
 });
 
@@ -223,7 +291,7 @@ describe('API Key Creation', () => {
 
 describe('List API Keys (Gateway)', () => {
   test('Listing API Keys Successfully', async () => {
-    const response = await gateway.getAPIKeyList(getAPIKeyListForGateway);
+    const response = await gateway.getAPIKeyList(getAPIKeyListForGateway_T);
     expect(response).toBeDefined();
   });
 });
@@ -232,10 +300,19 @@ describe('List API Keys Errors (Gateway)', () => {
   test('No Rights', async () => {
     try {
       const gateway = new Gateway('meet165656', config_T);
-      const response = await gateway.getAPIKeyList(getAPIKeyListForGateway);
+      const response = await gateway.getAPIKeyList(getAPIKeyListForGateway_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 7);
+    }
+  });
+
+  test('Invalid field values', async () => {
+    try {
+      const response = await gateway.getAPIKeyList(getAPIKeyListForGateway_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });
@@ -430,7 +507,7 @@ describe('Set Collaborator Errors (Gateway-Org)', () => {
 
 describe('List Collaborators', () => {
   test('Listing Collaborators Successfully', async () => {
-    const response = await gateway.getCollaboratorList(getCollaboratorListUserPayload);
+    const response = await gateway.getCollaboratorList(getCollaboratorListUserPayload_T);
     expect(response).toBeDefined();
   });
 });
@@ -438,11 +515,21 @@ describe('List Collaborators', () => {
 describe('List Collaborators Errors', () => {
   test('Gateway Entity Not Found', async () => {
     try {
-      const gateway = new Gateway('eui-ee34634e6ada3428', config_T);
-      const response = await gateway.getCollaboratorList(getCollaboratorListUserPayload);
+      const gateway = new Gateway('eui-ee34634e6ada32', config_T);
+      const response = await gateway.getCollaboratorList(getCollaboratorListUserPayload_T);
       expect(response).toBeUndefined();
     } catch (error: any) {
       expect(error).toHaveProperty('code', 5);
+    }
+  });
+
+  test('Invalid field Values', async () => {
+    try {
+      const gateway = new Gateway('eui-ee34634e6ada3428', config_T);
+      const response = await gateway.getCollaboratorList(getCollaboratorListUserPayload_F);
+      expect(response).toBeUndefined();
+    } catch (error: any) {
+      expect(error).toHaveProperty('code', 3);
     }
   });
 });

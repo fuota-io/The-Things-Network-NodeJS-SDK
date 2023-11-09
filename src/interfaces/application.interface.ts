@@ -1,3 +1,9 @@
+export interface Pagination {
+  limit?: number;
+  page?: number;
+  order?: string;
+}
+
 export interface GetApplicationUserPayload {
   application_id: string;
 }
@@ -36,11 +42,18 @@ export interface GetApplication {
   end_device_limit?: null;
 }
 
+export interface GetApplicationListUserPayload extends Pagination {}
+
 export interface GetApplicationList {
   applications: {
     ids: { application_id: string };
+    name: string;
+    description: string;
     created_at: string;
     updated_at: string;
+    network_server_address: string;
+    application_server_address: string;
+    join_server_address: string;
   }[];
 }
 
@@ -71,15 +84,10 @@ export interface SearchApplication extends GetApplication {}
 
 export interface GetApplicationRightUserPayload extends DeleteApplicationUserPayload {}
 
+export interface GetApplicationRightUserPayload extends Pagination {}
 export interface GetApplicationRight {
   rights: string[];
 }
-
-// export interface CreateAPIKeyUserPayload {
-//   name: string;
-//   rights: string[];
-//   expires_at?: any;
-// }
 
 export interface CreateAPIKeyPayload {
   name: string;
@@ -97,23 +105,11 @@ export interface CreateAPIKey {
   expires_at: any;
 }
 
-export interface GetAPIKeyListUserPayload {
-  order?: string;
-  limit?: number;
-  page?: number;
-}
-
-export interface GetAPIKeyListPayload {
-  application_ids: { application_id: string };
-  order?: string;
-  limit?: number;
-  page?: number;
-}
+export interface GetAPIKeyListUserPayload extends Pagination {}
 
 export interface GetAPIKeyList {
   api_keys: {
     id: string;
-    key: string;
     name: string;
     rights: string[];
     created_at: string;
@@ -154,18 +150,7 @@ export interface UpdateAPIKeyPayload {
 
 export interface UpdateAPIKey extends CreateAPIKey {}
 
-export interface GetCollabortorListUserPayload {
-  limit?: number;
-  page?: number;
-  order?: string;
-}
-
-export interface GetCollabortorListPayload {
-  application_ids: { application_id: string };
-  limit?: number;
-  page?: number;
-  order?: string;
-}
+export interface GetCollabortorListUserPayload extends Pagination {}
 
 export interface GetCollabortorList {
   collaborators: {

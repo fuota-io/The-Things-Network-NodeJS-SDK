@@ -39,14 +39,21 @@ class Application extends config_1.SetConfig {
         });
     }
     /**
-     * It returns the list of applications that have been created by both user and organization.
+     * It returns the list of applications that have been created by both user and organization (Default returns ).
+     * @param {Input-GetApplicationList} [payload] - Input-GetApplicationList
      * @returns {Output-GetApplicationList}
      * The response from the API.
      */
-    getApplicationList() {
+    getApplicationList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications`,
+            url: `${this.IDENTITY_SERVER}/applications?page=${page}&limit=${limit}&order=${order}&field_mask=name,description,network_server_address,application_server_address,join_server_address`,
             headers: this.headers,
             data: {},
         });
@@ -162,14 +169,20 @@ class Application extends config_1.SetConfig {
     }
     /**
      * It returns the list of API keys for the application.
-     * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+     * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
      * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
     getAPIKeyList(payload) {
+        let page = 1, limit = 20, order = '-created_at';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-created_at';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/api-keys`,
+            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/api-keys?page=${page}&limit=${limit}&order=${order}`,
             headers: this.headers,
             data: payload,
         });
@@ -293,15 +306,21 @@ class Application extends config_1.SetConfig {
         });
     }
     /**
-     * It returns the list of API keys for the application.
-     * @param {Input-GetCollabortorList} payload - Input-GetCollabortorList
+     * It returns the list of collaborators (members) of the application.
+     * @param {Input-GetCollabortorList} [payload] - Input-GetCollabortorList
      * @returns {Output-GetCollabortorList}
      * The response from the API.
      */
     getCollaboratorList(payload) {
+        let page = 1, limit = 20, order = '-id';
+        if (payload) {
+            page = payload.page ? payload.page : 1;
+            limit = payload.limit ? payload.limit : 20;
+            order = payload.order ? payload.order : '-id';
+        }
         return this.API.send({
             method: 'GET',
-            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/collaborators`,
+            url: `${this.IDENTITY_SERVER}/applications/${this.APPLICATION_ID}/collaborators?page=${page}&limit=${limit}&order=${order}`,
             headers: this.headers,
             data: payload,
         });

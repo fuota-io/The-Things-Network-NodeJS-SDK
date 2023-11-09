@@ -1,7 +1,7 @@
 import { SetConfig } from '../../helpers/config';
 import { Config } from '../../interfaces/config.interface';
-import { CreateAPIKeyPayload, CreateAPIKey, GetAPIKeyListUserPayload, GetAPIKeyList, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKey, UpdateAPIKeyUserPayload, GetCollabortorListUserPayload, GetCollabortorList, GetCollaboratorInfoUserPayload, GetCollaboratorInfoOrgPayload, SetCollaboratorUserPayloadForUser, SetCollaboratorUserPayloadForOrg, GetCollaboratorInfoUser, GetCollaboratorInfoOrg } from '../../interfaces/application.interface';
-import { GetGatewayInfo, GetGatewayList, GetGatewayRight, SearchGateway, UpdateGateway, UpdateGatewayUserPayload } from '../../interfaces/gateway.interface';
+import { CreateAPIKeyPayload, CreateAPIKey, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKey, UpdateAPIKeyUserPayload, GetCollaboratorInfoUserPayload, GetCollaboratorInfoOrgPayload, SetCollaboratorUserPayloadForUser, SetCollaboratorUserPayloadForOrg, GetCollaboratorInfoUser, GetCollaboratorInfoOrg } from '../../interfaces/application.interface';
+import { GetAPIKeyList, GetAPIKeyListUserPayload, GetCollabortorList, GetCollabortorListUserPayload, GetGatewayInfo, GetGatewayList, GetGatewayListUserPayload, GetGatewayRight, SearchGateway, UpdateGateway, UpdateGatewayUserPayload } from '../../interfaces/gateway.interface';
 /**
  * @classdesc The Gateway class is a child class of the SetConfig class. The Gateway class has a constructor that takes in a
  * applicationID and a config object. The Gateway class has a bunch of methods that make API calls to the Identity Server.
@@ -26,10 +26,11 @@ export declare class Gateway extends SetConfig {
     getGatewayInfo(): Promise<GetGatewayInfo>;
     /**
      * It returns the list of gateways.
+     * @param {Input-GetGatewayList} [payload] - Input-GetGatewayList
      * @returns {Output-GetGatewayList}
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
      */
-    getGatewayList(): Promise<GetGatewayList>;
+    getGatewayList(payload?: GetGatewayListUserPayload): Promise<GetGatewayList>;
     /**
      * It updates the gateway.
      * @param {Input-UpdateGateway} payload - {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:UpdateGatewayRequest UpdateGateway}
@@ -76,11 +77,11 @@ export declare class Gateway extends SetConfig {
     createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey>;
     /**
      * It returns the list of API keys for the gateway.
-     * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+     * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
      * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
-    getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
+    getAPIKeyList(payload?: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
     /**
      * It returns the API key information for the application.
      * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
@@ -124,10 +125,10 @@ export declare class Gateway extends SetConfig {
      */
     setCollaboratorOfOrg(payload: SetCollaboratorUserPayloadForOrg): Promise<any>;
     /**
-     * It returns the list of API keys for the application.
-     * @param {Input-GetCollabortorList} payload - Input-GetCollabortorList
+     * It returns the list of collaborators (members) of the application.
+     * @param {Input-GetCollabortorList} [payload] - Input-GetCollabortorList
      * @returns {Output-GetCollabortorList}
      * The response from the API.
      */
-    getCollaboratorList(payload: GetCollabortorListUserPayload): Promise<GetCollabortorList>;
+    getCollaboratorList(payload?: GetCollabortorListUserPayload): Promise<GetCollabortorList>;
 }

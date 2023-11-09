@@ -1,6 +1,6 @@
 # <u>The Things Network NodeJS SDK</u>
 
-The Node.js SDK seamlessly integrates with The Things Network's Lorawan Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's Lorawan ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's Lorawan infrastructure.
+The Node.js SDK seamlessly integrates with The Things Network's LoRaWAN Network Server (LNS), allowing developers to easily connect and manage IoT devices. With extensive API support, this package simplifies application interaction with TTN's LoRaWAN ecosystem, enabling device provisioning, data transmission, and device status monitoring. Utilize the user-friendly Node.js SDK to boost connectivity and data management within The Things Network's LoRaWAN infrastructure.
 
 <br>
 
@@ -78,7 +78,16 @@ const payload = {
 
 const user = User('userId', config);
 
-await user.createApplication(payload);
+const result = async () => {
+  try {
+    const resp = await user.createApplication(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 
@@ -113,7 +122,16 @@ const payload = {
 
 const org = new Organization('organizationId', config);
 
-await org.createApplication(payload);
+const result = async () => {
+  try {
+    const resp = await org.createApplication(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 
@@ -141,7 +159,16 @@ const config = {
 
 const app = new Application('', config);
 
-await app.getApplicationList();
+const result = async () => {
+  try {
+    const resp = await app.getApplicationList();
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  } 
+}
+
+result();
 
 ```
 
@@ -185,7 +212,16 @@ const payload = {
 
 const device = new EndDevice('appId', config);
 
-await device.createEndDeviceIS(payload);
+const result = async () => {
+  try {
+    const resp = await device.createEndDeviceIS(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 
@@ -221,7 +257,16 @@ const payload = {
 
 const gateway = new User('userId', config);
 
-await gateway.createGateway(payload);
+const result = async () => {
+  try {
+    const resp = await gateway.createGateway(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 
@@ -233,7 +278,7 @@ await gateway.createGateway(payload);
 
 <br>
 
-1. To subscribe a downlink event.
+1. To subscribe an uplink event.
 
 ```
 import { EndDevice } from 'the-things-network';
@@ -255,14 +300,29 @@ const payload = {
   host: 'nam1.cloud.thethings.industries',
   port: 1883,
   username: 'user@tenant',
-  callback_downlink_event: (data) => {
-    console.log('downlinkEvent', data.toString('utf8'));
+  callback_uplink_event: (data) => {
+    console.log('upEvent', data.toString('utf8'));
   },
+  callback_subscribe_error: (data) => {
+    console.log('upEvent', data.toString('utf8'));
+  },
+  callback_subscribe_disconnect: (data) => {
+    console.log('upEvent', data.toString('utf8'));
+  }
 };
 
 const device = new EndDevice('appId', config);
 
-await device.subscribeDownLinkEvent(payload);
+const result = async () => {
+  try {
+    const resp = await device.subscribeUpLinkEvent(payload);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 
@@ -288,16 +348,32 @@ const payload = {
   host: 'nam1.cloud.thethings.industries',
   port: 1883,
   username: 'user@example',
-  callback_downlink_event: (data) => {
-    console.log('downlinkEvent', data.toString('utf8'));
+  callback_uplink_event: (data) => {
+    console.log('upEvent', data.toString('utf8'));
   },
+  callback_subscribe_error: (data) => {
+    console.log('upEvent', data.toString('utf8'));
+  },
+  callback_subscribe_disconnect: (data) => {
+    console.log('upEvent', data.toString('utf8'));
+  }
 };
 
 const device = new EndDevice('appId', config);
 
-const downevent = await device.subscribeDownLinkEvent(payload);
+const result = async () => {
+  try {
+    const upevent = await device.subscribeUpLinkEvent(payload);
+    console.log(upevent);
+  
+    const resp = await device.unsubscribeEvent(upevent.client, upevent.topic);
+    console.log(resp);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-device.unsubscribeEvent(downevent.client, downevent.topic);
+result();
 
 ```
 
@@ -330,13 +406,25 @@ const payload = {
 
 const app = new Application('appId', config);
 
-await app.getApplicationList();
+const result = async () => {
+  try {
+    const resp1 = await app.getApplicationList();
+    console.log(resp1);
 
-await app.updateApplication(payload);
+    const resp2 = await app.updateApplication(payload);
+    console.log(resp2);
 
-await app.deleteApplication();
+    const resp3 = await app.deleteApplication();
+    console.log(resp3);
 
-await app.restoreApplication();
+    const resp4 = await app.restoreApplication();
+    console.log(resp4);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+result();
 
 ```
 

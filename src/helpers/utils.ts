@@ -13,7 +13,7 @@ export const getBase64 = (type: string, payload: any) => {
 };
 
 //************** To Extract Nested Object Keys ******************
-export function getAllKeys(obj: { [x: string]: any }): string[] {
+export const getAllKeys = (obj: { [x: string]: any }): string[] => {
   let keys = [];
   for (let key in obj) {
     if (typeof obj[key] === 'object' && obj[key] !== null) {

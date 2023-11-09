@@ -1,17 +1,17 @@
-export const config_T = {
+export const config_T = {  // enter correct details here
   IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network',
   NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
   APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
   JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
-  API_KEY: process.env.API_KEY || ''
+  API_KEY: process.env.API_KEY || 'enter-your-api-key'
 };
 
-export const config_F = {
+export const config_F = {  // enter wrong details here
   IDENTITY_SERVER: process.env.IDENTITY_SERVER || 'eu1.cloud.thethings.network',
   NETWORK_SERVER: process.env.NETWORK_SERVER || 'nam1.cloud.thethings.network',
   APPLICATION_SERVER: process.env.APPLICATION_SERVER || 'nam1.cloud.thethings.network',
   JOIN_SERVER: process.env.JOIN_SERVER || 'nam1.cloud.thethings.network',
-  API_KEY: process.env.API_KEY || '',
+  API_KEY: process.env.API_KEY || 'wrong-api-key',
 };
 
 export const createApplicationPayloadForUser_T = {
@@ -60,12 +60,16 @@ export const getApplicationPayload_F = {
   application_id: 'meet60',
 };
 
-export const getApplicationListPayloadForUser = {
-  user_id: 'meetsavaj',
+export const getApplicationListPayload_T = {
+  order: '-created_at',
+  limit: 20,
+  page: 1,
 };
 
-export const getApplicationListPayloadForOrg = {
-  organization_id: 'organ1',
+export const getApplicationListPayload_F = {
+  order: '-created_',
+  limit: 20,
+  page: 1,
 };
 
 export const updateApplicationPayload_T = {
@@ -127,22 +131,16 @@ export const createAPIKeyPayloadForOrg = {
   expires_at: null,
 };
 
-export const getAPIKeyListForApplication = {
-  order: '',
-  limit: 0,
-  page: 0,
+export const getAPIKeyList_T = {
+  order: '-created_at',
+  limit: 1,
+  page: 20,
 };
 
-export const getAPIKeyListForUser = {
-  order: '',
-  limit: 0,
-  page: 0,
-};
-
-export const getAPIKeyListForOrg = {
-  order: '',
-  limit: 0,
-  page: 0,
+export const getAPIKeyList_F = {
+  order: '-created_',
+  limit: 1,
+  page: 20,
 };
 
 export const getAPIKeyInfoPayloadForApplication_T = {
@@ -297,10 +295,16 @@ export const setCollaboratorPayloadForOrg_F = {
   rights: ['RIGHT_ALL'],
 };
 
-export const getCollaboratorListUserPayload = {
-  order: '',
-  limit: 0,
-  page: 0,
+export const getCollaboratorListUserPayload_T = {
+  order: '-id',
+  limit: 1,
+  page: 20,
+};
+
+export const getCollaboratorListUserPayload_F = {
+  order: '-i',
+  limit: 1,
+  page: 20,
 };
 
 export const issueDevEUIPayload = {
@@ -341,10 +345,16 @@ export const createAPIKeyPayloadForGateway = {
   expires_at: null,
 };
 
-export const getAPIKeyListForGateway = {
-  order: '',
-  limit: 0,
-  page: 0,
+export const getAPIKeyListForGateway_T = {
+  order: '-created_at',
+  limit: 20,
+  page: 1,
+};
+
+export const getAPIKeyListForGateway_F = {
+  order: '-created',
+  limit: 20,
+  page: 1,
 };
 
 export const getAPIKeyInfoPayloadForGateway_T = {
@@ -408,3 +418,16 @@ export const setCollaboratorPayloadForGateway_Org_F = {
   organization_id: 'organ4asfas',
   rights: ['RIGHT_APPLICATION_ALL'],
 };
+
+export const getGatewayList_T = {
+  order: '-created_at',
+  limit: 1,
+  page: 20,
+};
+
+export const getGatewayList_F = {
+  order: '-created_at',
+  limit: 1,
+  page: 20,
+};
+

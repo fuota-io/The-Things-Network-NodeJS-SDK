@@ -5,15 +5,11 @@ import { getAllKeys } from '../../helpers/utils';
 import {
   CreateAPIKeyPayload,
   CreateAPIKey,
-  GetAPIKeyListUserPayload,
-  GetAPIKeyList,
   GetAPIKeyInfoUserPayload,
   GetAPIKeyInfo,
   UpdateAPIKey,
   UpdateAPIKeyUserPayload,
   UpdateAPIKeyPayload,
-  GetCollabortorListUserPayload,
-  GetCollabortorList,
   GetCollaboratorInfoUserPayload,
   GetCollaboratorInfoOrgPayload,
   SetCollaboratorUserPayloadForUser,
@@ -24,8 +20,13 @@ import {
   GetCollaboratorInfoOrg,
 } from '../../interfaces/application.interface';
 import {
+  GetAPIKeyList,
+  GetAPIKeyListUserPayload,
+  GetCollabortorList,
+  GetCollabortorListUserPayload,
   GetGatewayInfo,
   GetGatewayList,
+  GetGatewayListUserPayload,
   GetGatewayRight,
   SearchGateway,
   UpdateGateway,
@@ -70,13 +71,22 @@ export class Gateway extends SetConfig {
 
   /**
    * It returns the list of gateways.
+   * @param {Input-GetGatewayList} [payload] - Input-GetGatewayList
    * @returns {Output-GetGatewayList}
    * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
    */
-  getGatewayList(): Promise<GetGatewayList> {
+  getGatewayList(payload?: GetGatewayListUserPayload): Promise<GetGatewayList> {
+    let page = 1, limit = 20, order = '-created_at';
+
+    if (payload) {
+      page = payload.page ? payload.page : 1;
+      limit = payload.limit ? payload.limit : 20;
+      order = payload.order ? payload.order : '-created_at';
+    }
+
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/gateways?field_mask=name`,
+      url: `${this.IDENTITY_SERVER}/gateways?page=${page}&limit=${limit}&order=${order}&field_mask=name,description,frequency_plan_ids,gateway_server_address`,
       headers: this.headers,
       data: {},
     });
@@ -250,14 +260,22 @@ export class Gateway extends SetConfig {
 
   /**
    * It returns the list of API keys for the gateway.
-   * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+   * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
    * @returns {Output-GetAPIKeyList}
    * The response from the API.
    */
-  getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
+  getAPIKeyList(payload?: GetAPIKeyListUserPayload): Promise<GetAPIKeyList> {
+    let page = 1, limit = 20, order = '-created_at';
+
+    if (payload) {
+      page = payload.page ? payload.page : 1;
+      limit = payload.limit ? payload.limit : 20;
+      order = payload.order ? payload.order : '-created_at';
+    }
+
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/gateways/${this.GATEWAY_ID}/api-keys`,
+      url: `${this.IDENTITY_SERVER}/gateways/${this.GATEWAY_ID}/api-keys?page=${page}&limit=${limit}&order=${order}`,
       headers: this.headers,
       data: payload,
     });
@@ -394,15 +412,23 @@ export class Gateway extends SetConfig {
   }
 
   /**
-   * It returns the list of API keys for the application.
-   * @param {Input-GetCollabortorList} payload - Input-GetCollabortorList
+   * It returns the list of collaborators (members) of the application.
+   * @param {Input-GetCollabortorList} [payload] - Input-GetCollabortorList
    * @returns {Output-GetCollabortorList}
    * The response from the API.
    */
-  getCollaboratorList(payload: GetCollabortorListUserPayload): Promise<GetCollabortorList> {
+  getCollaboratorList(payload?: GetCollabortorListUserPayload): Promise<GetCollabortorList> {
+    let page = 1, limit = 20, order = '-id';
+
+    if (payload) {
+      page = payload.page ? payload.page : 1;
+      limit = payload.limit ? payload.limit : 20;
+      order = payload.order ? payload.order : '-id';
+    }
+
     return this.API.send({
       method: 'GET',
-      url: `${this.IDENTITY_SERVER}/gateways/${this.GATEWAY_ID}/collaborators`,
+      url: `${this.IDENTITY_SERVER}/gateways/${this.GATEWAY_ID}/collaborators?page=${page}&limit=${limit}&order=${order}`,
       headers: this.headers,
       data: payload,
     });

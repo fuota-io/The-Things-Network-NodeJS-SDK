@@ -10,4 +10,4 @@ Do not report security vulnerabilities through public GitHub issues.
 
 **Disclosure:** We appreciate your patience as we work to fix any vulnerabilities you report. We ask that you don't disclose the vulnerability publicly until we've had a chance to address it.
 
-Thank you for improving the security of thethingsnetwork. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
+Thank you for improving the security of **the-things-network**. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.

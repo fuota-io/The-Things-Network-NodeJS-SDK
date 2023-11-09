@@ -1,6 +1,6 @@
 import { SetConfig } from '../../helpers/config';
 import { Config } from '../../interfaces/config.interface';
-import { CreateApplication, CreateApplicationUserPayload, GetApplicationList, CreateAPIKey, CreateAPIKeyPayload, GetAPIKeyListUserPayload, GetAPIKeyList, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKeyUserPayload, UpdateAPIKey, CreateGatewayUserPayload, CreateGateway, GetGatewayList } from '../../interfaces/user.interface';
+import { CreateApplication, CreateApplicationUserPayload, GetApplicationList, CreateAPIKey, CreateAPIKeyPayload, GetAPIKeyListUserPayload, GetAPIKeyList, GetAPIKeyInfoUserPayload, GetAPIKeyInfo, UpdateAPIKeyUserPayload, UpdateAPIKey, CreateGatewayUserPayload, CreateGateway, GetGatewayList, GetApplicationListUserPayload, GetGatewayListUserPayload } from '../../interfaces/user.interface';
 /**
  * @classdesc The User class is a child class of the SetConfig class. The User class has a constructor that takes
  * in a userID and a config object. The User class has a bunch of methods that make API calls to the Identity Server.
@@ -25,10 +25,11 @@ export declare class User extends SetConfig {
     createApplication(payload: CreateApplicationUserPayload): Promise<CreateApplication>;
     /**
      * It returns the list of applications that have been created by the user.
+     * @param {Input-GetApplicationList} [payload] - Input-GetApplicationList
      * @returns {Output-GetApplicationList}
      * The response from the API.
      */
-    getApplicationList(): Promise<GetApplicationList>;
+    getApplicationList(payload?: GetApplicationListUserPayload): Promise<GetApplicationList>;
     /**
      * It creates an api key for the user.
      * @param {Input-CreateAPIKeyForUser} payload - Input-CreateAPIKeyForUser
@@ -38,11 +39,11 @@ export declare class User extends SetConfig {
     createAPIKey(payload: CreateAPIKeyPayload): Promise<CreateAPIKey>;
     /**
      * It returns the list of api keys that have been created by the user.
-     * @param {Input-GetAPIKeyList} payload - Input-GetAPIKeyList
+     * @param {Input-GetAPIKeyList} [payload] - Input-GetAPIKeyList
      * @returns {Output-GetAPIKeyList}
      * The response from the API.
      */
-    getAPIKeyList(payload: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
+    getAPIKeyList(payload?: GetAPIKeyListUserPayload): Promise<GetAPIKeyList>;
     /**
      * It returns the information of the api key that has been created by the user.
      * @param {Input-GetAPIKeyInfo} payload - Input-GetAPIKeyInfo
@@ -66,8 +67,9 @@ export declare class User extends SetConfig {
     createGateway(payload: CreateGatewayUserPayload): Promise<CreateGateway>;
     /**
      * It returns the list of gateways that have been created by the user.
+     * @param {Input-GetGatewayList} [payload] - Input-GetGatewayList
      * @returns {Output-GetGatewayList}
      * The response from the API. ----> {@link https://www.thethingsindustries.com/docs/reference/api/gateway/#message:Gateways GetGatewayList}
      */
-    getGatewayList(): Promise<GetGatewayList>;
+    getGatewayList(payload?: GetGatewayListUserPayload): Promise<GetGatewayList>;
 }

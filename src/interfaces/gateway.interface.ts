@@ -1,3 +1,8 @@
+export interface Pagination {
+  limit?: number;
+  page?: number;
+  order?: string;
+}
 export interface GetGatewayInfo {
   ids: { gateway_id: string; eui: string };
   created_at: any;
@@ -52,6 +57,8 @@ export interface GetGatewayInfo {
   lrfhss: { supported: boolean };
   disable_packet_broker_forwarding: boolean;
 }
+
+export interface GetGatewayListUserPayload extends Pagination {}
 
 export interface GetGatewayList {
   gateways: GetGatewayInfo[];
@@ -136,6 +143,19 @@ export interface UpdateGatewayPayload {
   };
 }
 
+export interface GetAPIKeyListUserPayload extends Pagination {}
+
+export interface GetAPIKeyList {
+  api_keys: {
+    id: string;
+    name: string;
+    rights: string[];
+    created_at: string;
+    updated_at: string;
+    expires_at: any;
+  }[];
+}
+
 export interface UpdateGateway extends GetGatewayInfo {}
 
 export interface SearchGateway {
@@ -144,4 +164,16 @@ export interface SearchGateway {
 
 export interface GetGatewayRight {
   rights: string[];
+}
+
+export interface GetCollabortorListUserPayload extends Pagination {}
+
+export interface GetCollabortorList {
+  collaborators: {
+    ids: {
+      organization_ids?: { organization_id: string };
+      user_ids?: { user_id: string; email: string };
+    };
+    rights: string[];
+  }[];
 }
